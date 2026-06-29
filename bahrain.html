@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hidden Manama — Ataraxia</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', sans-serif; color: #222; background: #fff; }
+
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 40px; border-bottom: 1px solid #e8e8e8;
+      background: #fff; position: sticky; top: 0; z-index: 100;
+    }
+    .nav-logo { font-size: 22px; font-weight: 700; color: #3d8a5a; letter-spacing: 2px; text-decoration: none; }
+    .nav-links { display: flex; gap: 28px; }
+    .nav-links a { font-size: 13px; color: #555; text-decoration: none; }
+    .nav-links a:hover { color: #3d8a5a; }
+
+    .hero { 
+  background-image: url('Manama.jpg');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  padding: 72px 40px; 
+  text-align: center; 
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(26, 74, 90, 0.65);
+}
+.hero-label, .hero h1, .hero p { position: relative; z-index: 1; }
+    .hero-label { font-size: 11px; letter-spacing: 3px; color: #a0c8d8; text-transform: uppercase; margin-bottom: 12px; }
+    .hero h1 { font-size: 42px; font-weight: 700; color: #fff; margin-bottom: 12px; }
+    .hero p { font-size: 15px; color: #a0c8d8; max-width: 520px; margin: 0 auto; line-height: 1.7; }
+
+    .breadcrumb { padding: 14px 40px; font-size: 12px; color: #aaa; border-bottom: 1px solid #e8e8e8; }
+    .breadcrumb a { color: #3d8a5a; text-decoration: none; }
+    .breadcrumb span { margin: 0 6px; }
+
+    .page-intro { padding: 40px 40px 24px; }
+    .page-intro p { font-size: 15px; color: #555; line-height: 1.8; max-width: 680px; }
+
+    .accordion { padding: 0 40px 48px; }
+    .acc-item { border: 1px solid #e8e8e8; border-radius: 12px; margin-bottom: 12px; overflow: hidden; }
+
+    .acc-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 22px; cursor: pointer; background: #fff; transition: background 0.2s;
+    }
+    .acc-header:hover { background: #f7faf8; }
+    .acc-header-left { display: flex; align-items: center; gap: 14px; }
+    
+
+    .acc-title { font-size: 16px; font-weight: 700; color: #222; }
+    .acc-subtitle { font-size: 12px; color: #777; margin-top: 2px; }
+    .acc-arrow { font-size: 20px; color: #3d8a5a; transition: transform 0.3s; display: inline-block; }
+    .acc-item.open .acc-arrow { transform: rotate(180deg); }
+
+    .acc-body { display: none; padding: 20px 22px 22px; border-top: 1px solid #e8e8e8; }
+    .acc-item.open .acc-body { display: block; }
+
+    .spots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .spot-card { border: 1px solid #e8e8e8; border-radius: 10px; overflow: hidden; }
+    .spot-photo { width: 100%; height: 130px; object-fit: cover; display: block; }
+    .spot-body { padding: 14px 16px; }
+    .spot-body h3 { font-size: 14px; font-weight: 600; margin-bottom: 6px; color: #222; }
+    .spot-body p { font-size: 12px; color: #666; line-height: 1.6; }
+    .spot-tip { margin-top: 10px; font-size: 11px; color: #3d8a5a; border-left: 2px solid #3d8a5a; padding-left: 8px; line-height: 1.5; }
+
+    .food-card { border: 1px solid #cce5d6; border-radius: 10px; overflow: hidden; background: #f7faf8; }
+    .food-photo { width: 100%; height: 130px; object-fit: cover; display: block; }
+    .food-body { padding: 14px 16px; }
+    .food-body h3 { font-size: 15px; font-weight: 600; color: #1a4a2a; margin-bottom: 3px; }
+    .food-body .arabic { font-size: 12px; color: #3d8a5a; margin-bottom: 8px; }
+    .food-body p { font-size: 12px; color: #555; line-height: 1.6; }
+    .ig-link { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: #3d8a5a; text-decoration: none; margin-top: 8px; font-weight: 600; }
+
+    .back-section { padding: 8px 40px 40px; }
+    .back-btn { display: inline-block; padding: 11px 24px; border: 1.5px solid #3d8a5a; color: #3d8a5a; font-size: 13px; border-radius: 30px; text-decoration: none; }
+    .back-btn:hover { background: #f2f8f4; }
+
+    footer { text-align: center; padding: 28px 40px; border-top: 1px solid #e8e8e8; background: #fafafa; }
+    .social-links { display: flex; justify-content: center; gap: 24px; margin-bottom: 10px; }
+    .social-links a { font-size: 13px; color: #3d8a5a; text-decoration: none; }
+    footer p { font-size: 11px; color: #aaa; }
+
+    @media (max-width: 600px) {
+      nav { padding: 16px 20px; }
+      .hero { padding: 52px 20px; }
+      .hero h1 { font-size: 28px; }
+      .breadcrumb, .page-intro, .accordion, .back-section { padding-left: 20px; padding-right: 20px; }
+    }
+
+    .sub-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: #3d8a5a;
+      margin: 20px 0 12px; padding-bottom: 6px;
+      border-bottom: 1px solid #e8e8e8;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="index.html">ATARAXIA</a>
+    <div class="nav-links">
+      <a href="index.html#destinations">destinations</a>
+      <a href="index.html#featured">guides</a>
+      <a href="index.html#about">about</a>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <p class="hero-label">Bahrain</p>
+    <h1>Hidden Manama</h1>
+    <p>Beyond the malls and the skyline — the Bahrain that locals actually love.</p>
+  </div>
+
+  <div class="breadcrumb">
+    <a href="index.html">Home</a><span>›</span>
+    <a href="index.html#destinations">Destinations</a><span>›</span>
+    Hidden Manama
+  </div>
+
+  <div class="page-intro">
+    <p>Bahrain is one of the most historically rich countries in the Gulf — and most of it sits quietly, waiting to be discovered. Tap each category to explore.</p>
+  </div>
+
+  <div class="accordion">
+
+    <!-- FORTS -->
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggle(this)">
+        <div class="acc-header-left">
+          
+          <div><div class="acc-title">Forts</div><div class="acc-subtitle">Ancient fortresses & UNESCO heritage</div></div>
+        </div>
+        <span class="acc-arrow">&#8964;</span>
+      </div>
+      <div class="acc-body">
+        <div class="spots">
+          <div class="spot-card">
+            <img src="Bahrain-Fort.jpeg" alt="Bahrain Fort" class="spot-photo"/>
+            <div class="spot-body"><h3>Bahrain Fort (Qal'at al-Bahrain)</h3><p>A UNESCO World Heritage Site and one of the oldest forts in the Gulf. Layers of civilisation dating back 4,000 years.</p><p class="spot-tip">Go at golden hour — the light over the sea is unreal.</p></div>
+          </div>
+          <div class="spot-card">
+            <img src="Arad-Fort.jpeg" alt="Arad Fort" class="spot-photo"/>
+            <div class="spot-body"><h3>Arad Fort</h3><p>A beautifully restored Portuguese-era fort in Muharraq. Small but atmospheric, especially at dusk with the water behind it.</p><p class="spot-tip">Combine with a walk along the Muharraq corniche.</p></div>
+          </div>
+          <div class="spot-card">
+            <img src="Riffafort.jpg" alt="Riffa Fort" class="spot-photo"/>
+            <div class="spot-body"><h3>Riffa Fort</h3><p>Perched on a cliff overlooking Hunanaiya Valley, this fort was once home to Bahraini rulers. Stunning views and rich history.</p><p class="spot-tip">Less crowded than Bahrain Fort — a hidden gem.</p></div>
+          </div>
+          <div class="spot-card">
+            <img src="Bu-Maher.jpeg" alt="Qalaat Bu Maher" class="spot-photo"/>
+            <div class="spot-body"><h3>Qalaat Bu Maher</h3><p>A coastal fort in Muharraq partially submerged at high tide, giving it an almost mythical appearance. Accessible only by boat from Bahrain National Museum.</p><p class="spot-tip">Ask at the museum about boat trips — it's worth every minute.</p></div>
+          </div>
+          <div class="spot-card">
+            <img src="museum.jpg" alt="Bahrain National Museum" class="spot-photo"/>
+            <div class="spot-body"><h3>Bahrain National Museum</h3><p>The museum houses artefacts from Dilmun civilisation and brings Bahrain's ancient story to life beautifully — and is the starting point for the Bu Maher boat ride.</p><p class="spot-tip">Spend at least 2 hours here — there's more than you'd expect.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NATURE -->
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggle(this)">
+        <div class="acc-header-left">
+          
+          <div><div class="acc-title">Nature</div><div class="acc-subtitle">Desert wonders & natural landmarks</div></div>
+        </div>
+        <span class="acc-arrow">&#8964;</span>
+      </div>
+      <div class="acc-body">
+        <div class="spots">
+          <div class="spot-card">
+            <img src="Tree-of-life.jpeg" alt="Tree of Life" class="spot-photo"/>
+            <div class="spot-body"><h3>Tree of Life</h3><p>A 400-year-old mesquite tree standing alone in the middle of the desert — no water source, no explanation. One of Bahrain's most mystical spots.</p><p class="spot-tip">Best visited at sunset or under a full moon.</p></div>
+          </div>
+          <div class="spot-card">
+            <img src="Beach.jpg" alt="Al Bilaj Beach" class="spot-photo"/>
+            <div class="spot-body"><h3>Al Bilaj Beach</h3><p>One of Bahrain's most serene and unspoilt beaches — far from the crowds, with calm clear water and raw natural beauty.</p><p class="spot-tip">Perfect for a quiet sunrise or sunset — bring your own refreshments.</p></div>
+          </div>
+          <div class="spot-card">
+            <img src="alareenwild.jpg" alt="Al Areen Wildlife Park" class="spot-photo"/>
+            <div class="spot-body"><h3>Al Areen Wildlife Park</h3><p>Bahrain's only wildlife sanctuary — home to Arabian oryx, gazelles, ostriches and more roaming freely across a protected desert reserve.</p><p class="spot-tip">Go in the morning when animals are most active.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CRAFTS -->
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggle(this)">
+        <div class="acc-header-left">
+          
+          <div><div class="acc-title">Crafts</div><div class="acc-subtitle">Pottery, weaving & traditional arts</div></div>
+        </div>
+        <span class="acc-arrow">&#8964;</span>
+      </div>
+      <div class="acc-body">
+        <div class="spots">
+          <div class="spot-card">
+            <img src="Pottery.jpeg" alt="Pottery Village" class="spot-photo"/>
+            <div class="spot-body"><h3>Pottery Village — A'ali</h3><p>The oldest continuously working pottery village in the Gulf. Watch local craftsmen shape clay the same way their ancestors did centuries ago.</p><p class="spot-tip">You can try making your own piece at some workshops.</p></div>
+          </div>
+          <div class="spot-card">
+            <img src="Naseej.jpg" alt="Alnaseej Textile Factory" class="spot-photo"/>
+            <div class="spot-body"><h3>Alnaseej Textile Factory</h3><p>A traditional textile factory in Muharraq where craftsmen weave fabric on ancient wooden looms. A living piece of Bahraini heritage.</p><p class="spot-tip">Go on a weekday morning to see the weavers actively working.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ADVENTURE & SPORTS -->
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggle(this)">
+        <div class="acc-header-left">
+          
+          <div><div class="acc-title">Adventure & Sports</div><div class="acc-subtitle">Thrills, outdoor experiences & activities</div></div>
+        </div>
+        <span class="acc-arrow">&#8964;</span>
+      </div>
+      <div class="acc-body">
+        <div class="spots">
+          <div class="spot-card">
+            <img src="Gravity.jpeg" alt="Gravity" class="spot-photo"/>
+            <div class="spot-body"><h3>Gravity Indoor Skydiving</h3><p>Bahrain's wind tunnel experience — the closest thing to freefall without jumping out of a plane. Great for all ages.</p><p class="spot-tip">Book in advance — slots fill up fast on weekends.</p></div>
+          </div>
+          <div class="spot-card">
+            <img src="Horse-riding.jpeg" alt="Horse Riding" class="spot-photo"/>
+            <div class="spot-body"><h3>Horse Riding</h3><p>Ride through Bahrain's desert landscape — guided rides at sunrise or sunset across open terrain.</p><p class="spot-tip">Early morning rides are cooler and the desert light is beautiful.</p></div>
+          </div>
+          <div class="spot-card">
+            <img src="cycling.jpeg" alt="Cycling" class="spot-photo"/>
+            <div class="spot-body"><h3>Cycling</h3><p>Bahrain has a growing cycling scene with dedicated tracks and open coastal roads.</p><p class="spot-tip">Sheikh Nasser Loop in Zallaq is the most scenic route — flat, coastal and stunning at golden hour.</p></div>
+          </div>
+          <div class="spot-card">
+            <img src="sup.jpeg" alt="Kayaking & SUP" class="spot-photo"/>
+            <div class="spot-body"><h3>Kayaking & SUP</h3><p>Paddle through Bahrain's calm coastal waters and mangroves, or try stand up paddleboarding on the flat calm sea.</p><p class="spot-tip">The mangroves in Tubli Bay are stunning. Sunset SUP sessions are a must.</p></div>
+          </div>
+          <div class="spot-card">
+            <img src="boatrides.jpg" alt="Boat Rides" class="spot-photo"/>
+            <div class="spot-body"><h3>Boat Rides</h3><p>Explore Bahrain's coastline and nearby islands by boat — a completely different perspective of the island.</p><p class="spot-tip">Sunset boat tours are especially magical.</p></div>
+          </div>
+          <div class="spot-card">
+            <img src="F1.jpg" alt="Go Karting & F1" class="spot-photo"/>
+            <div class="spot-body"><h3>Go Karting & F1 Circuit</h3><p>World class karting facilities near the iconic F1 circuit. Great for a competitive day out with friends or family.</p><p class="spot-tip">Bahrain International Circuit offers karting on race weekends.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRADITIONAL RESTAURANTS -->
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggle(this)">
+        <div class="acc-header-left">
+          
+          <div><div class="acc-title">Traditional Restaurants</div><div class="acc-subtitle">Breakfast, grills & seafood — the Bahraini way</div></div>
+        </div>
+        <span class="acc-arrow">&#8964;</span>
+      </div>
+      <div class="acc-body">
+
+        <div class="sub-label">Breakfast</div>
+        <div class="spots">
+          <div class="food-card">
+            <div class="food-body"><h3>Hajis</h3><div class="arabic">حاجي</div><p>A legendary Bahraini breakfast institution in old Manama. Locals have been coming here for generations for slow-cooked meat dishes served with freshly baked bread in an unpretentious, no-frills setting.</p><a href="https://www.instagram.com/hajiscafe" class="ig-link">@hajiscafe</a></div>
+          </div>
+          <div class="food-card">
+            <div class="food-body"><h3>Danet AlTawawish Restaurant & Cafe</h3><div class="arabic">دانة الطواويش</div><p>A traditional Bahraini restaurant in the heart of Manama. The kind of place where recipes have been passed down through families and every meal feels homemade — must try their Mahyawa bread with cheese (مهياوة وجبن).</p><a href="https://maps.app.goo.gl/nwJRK8hteFKuappp6" class="ig-link">📍 View on Google Maps</a></div>
+          </div>
+          <div class="food-card">
+            <div class="food-body"><h3>Baba Taher</h3><div class="arabic">بابا طاهر</div><p>A beloved old-school Bahraini bakery and sweet shop. Famous for its fresh pastries and traditional Bahraini sweets, it's a neighbourhood staple that has stood the test of time.</p><a href="https://www.instagram.com/babataher.bh" class="ig-link">@baba_taher_restaurant</a></div>
+          </div>
+          <div class="food-card">
+            <div class="food-body"><h3>Emmawash</h3><div class="arabic">إماواش</div><p>A traditional Bahraini seafood restaurant rooted in the island's fishing heritage. Known for its rich, spiced fish dishes served over rice — a true taste of coastal Bahrain.</p><a href="https://www.instagram.com/emmawash.bh" class="ig-link">@emmawash_bh</a></div>
+          </div>
+          <div class="food-card">
+            <div class="food-body"><h3>Darseen Cafe</h3><div class="arabic">دارسين</div><p>A charming cafe nestled inside the Bahrain National Museum, known for its warm cinnamon-infused drinks and traditional Bahraini breakfast spread. A peaceful spot after exploring the museum.</p><a href="https://www.instagram.com/darseen.cafe" class="ig-link">@darseencafebh</a></div>
+          </div>
+          <div class="food-card">
+            <div class="food-body"><h3>Sharbet Saffron Cafe</h3><div class="arabic">شربت زعفران</div><p>A well-loved Bahraini breakfast cafe with a loyal local following. Famous for its golden saffron drinks and traditional morning dishes that have made it a daily ritual for many Bahrainis.</p><a href="https://www.instagram.com/sharbetsaffron.bh" class="ig-link">@sharbet_saffron</a></div>
+          </div>
+        </div>
+
+        <div class="sub-label">Grills</div>
+        <div class="spots">
+          <div class="food-card">
+            <div class="food-body"><h3>Tren Tren</h3><p>One of Bahrain's most celebrated grill spots, best known for their Riyash — juicy, perfectly charred lamb chops that keep people coming back. A must for any serious meat lover.</p><p class="spot-tip">The Riyash is the star — don't leave without ordering it.</p><a href="https://www.instagram.com/trentren.bh" class="ig-link">@trentren.bh</a></div>
+          </div>
+          <div class="food-card">
+            <div class="food-body"><h3>Bu Jamal</h3><p>A beloved grill institution in Riffa with a loyal local following. Their tikka is famously juicy, and the spicy yogurt tikka is a standout dish you won't find done better elsewhere. They serve much more than just tikka too.</p><p class="spot-tip">Ask for the spicy yogurt tikka — it's the one to order.</p><a href="https://maps.app.goo.gl/uKeFzPsKLkKSi2vm6" class="ig-link">📍 View on Google Maps</a></div>
+          </div>
+          <div class="food-card">
+            <div class="food-body"><h3>BBQ Town</h3><p>A one-of-a-kind outdoor dining experience in Bilad Al Qadeem — part garden restaurant, part food village. Multiple cuisines, family indoor and outdoor seating, a perfume shop, and a main kitchen serving everything from kebabs and burgers to noodles and pasta. Their Rughab (رقبة) — neck meat slow-cooked in BBQ sauce — is buttery, tender and unforgettable.</p><p class="spot-tip">Go with a group so you can try as many dishes as possible.</p><a href="https://www.instagram.com/bbqtown.bh" class="ig-link">@bbq_.town</a></div>
+          </div>
+          <div class="food-card">
+            <div class="food-body"><h3>Saber Ayoob</h3><p>A reliable Bahraini grill chain found all around the island, making it an easy go-to for quality tikka, kebab, and grills. Unpretentious, consistent, and always satisfying.</p><p class="spot-tip">Great for a quick, no-fuss grill fix anywhere in Bahrain.</p><a href="https://www.instagram.com/saberayoob.bh" class="ig-link">@sabarayoobrestaurant</a></div>
+          </div>
+          <div class="food-card">
+            <div class="food-body"><h3>Kwar</h3><p>Found in Hamad Town, Souq Al Baraha, Riffa and Hoora, Kwar serves a wonderful mix of traditional Bahraini food and grills. Their cheesy scrambled eggs are legendary — soft, rich and indulgent. The tikka maqliya (fried tikka) is crispy and deeply flavourful, and their kebabs, daal, and qeema round out a menu that feels like home cooking at its best.</p><p class="spot-tip">The cheesy scrambled eggs and fried tikka are not to be missed.</p><a href="https://www.instagram.com/alkwar" class="ig-link">@alkwar</a></div>
+          </div>
+          <div class="food-card">
+            <div class="food-body"><h3>Khan Baghdad</h3><p>An Iraqi cuisine gem in Bahrain, Khan Baghdad is known for its authentic Reghab (رقبة) — slow-cooked neck meat that falls off the bone — and its Iraqi kebab, which has a distinct flavour and texture unlike anything else on the island.</p><p class="spot-tip">The Iraqi kebab is unlike any other kebab in Bahrain — a must try.</p><a href="https://www.instagram.com/khanbaghdad.bh" class="ig-link">@khan_bghdad</a></div>
+          </div>
+        </div>
+
+        <div class="sub-label">Seafood</div>
+        <div class="spots">
+          <div class="food-card">
+            <div class="food-body"><h3>Asmak Alseef</h3><p>A great seafood destination, particularly known for its seabass, seabream, and safee fish (سمج صافي). Fresh, well-prepared and a solid choice for anyone craving quality seafood in Bahrain.</p><p class="spot-tip">The seabass and safee fish (سمج صافي) are the ones to order.</p><a href="https://www.instagram.com/asmakalseef.bh" class="ig-link">@alseef.fish</a></div>
+          </div>
+          <div class="food-card">
+            <div class="food-body"><h3>Fish Line</h3><p>Located on Budaiya Road, Fish Line offers a comprehensive seafood menu covering all the classic Bahraini fish dishes. A reliable, well-loved spot for fresh seafood done right.</p><p class="spot-tip">A solid all-rounder — good for the whole family.</p><a href="https://www.instagram.com/fishline.bh" class="ig-link">@fishline.bh</a></div>
+          </div>
+          <div class="food-card">
+            <div class="food-body"><h3>Tabreez</h3><p>A sprawling outdoor garden restaurant that doubles as a seafood market — you can buy fresh fish to take home or sit down for a full meal. Famous for safee fish (سمج صافي) served with muhammar rice (عيش محمر) (rice cooked in date molasses for that perfect sweet and savoury balance), daal, salmon, and virtually every fish you could want. A popular spot for families and tourists alike.</p><p class="spot-tip">The safee fish (سمج صافي) with muhammar rice (عيش محمر) is the signature dish — sweet, savoury and deeply Bahraini.</p><a href="https://www.instagram.com/tabreez.bh" class="ig-link">@tabreez_restaurant</a></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CAFES & MARKETS -->
+    <div class="acc-item">
+      <div class="acc-header" onclick="toggle(this)">
+        <div class="acc-header-left">
+          
+          <div><div class="acc-title">Cafes & Markets</div><div class="acc-subtitle">Local favourites & hidden gems</div></div>
+        </div>
+        <span class="acc-arrow">&#8964;</span>
+      </div>
+      <div class="acc-body">
+        <div class="spots">
+          <div class="spot-card">
+            <img src="Farmersmarket.jpg" alt="Farmers Market" class="spot-photo"/>
+            <div class="spot-body"><h3>Farmers Market — Hoorat Aali</h3><p>A vibrant weekly market in the village of Aali featuring fresh local produce, homemade goods, and artisan crafts. A wonderful slice of everyday Bahraini life.</p><p class="spot-tip">Go early on market day — the best stalls sell out fast.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="back-section">
+    <a href="index.html" class="back-btn">← back to all destinations</a>
+  </div>
+
+  <footer>
+    <div class="social-links">
+      <a href="https://www.instagram.com/ataraxia.adv/">Instagram</a>
+      <a href="mailto:ataraxia.adv@gmail.com">Contact</a>
+    </div>
+    <p>© 2026 Ataraxia — Your Travel Encyclopedia</p>
+  </footer>
+
+  <script>
+    function toggle(header) {
+      const item = header.parentElement;
+      item.classList.toggle('open');
+    }
+  </script>
+
+</body>
+</html>
