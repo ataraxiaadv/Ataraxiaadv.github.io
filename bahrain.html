@@ -245,6 +245,20 @@
     .social-links a:hover { color: var(--green); }
     .footer-copy { font-size: 10px; color: rgba(255,255,255,0.2); width: 100%; }
 
+    /* MAP */
+    .map-section { margin-top: 20px; }
+    .map-label {
+      font-size: 10px; font-weight: 500; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--green);
+      margin-bottom: 10px; display: flex; align-items: center; gap: 8px;
+    }
+    .map-label::before { content: '📍'; font-size: 13px; }
+    .map-frame {
+      width: 100%; height: 320px; border-radius: 4px;
+      border: 1px solid var(--border); overflow: hidden;
+    }
+    .map-frame iframe { width: 100%; height: 100%; border: 0; }
+
     /* RESPONSIVE */
     @media (max-width: 768px) {
       nav, .breadcrumb, .page-intro, .accordion, .back-section { padding-left: 20px; padding-right: 20px; }
@@ -309,6 +323,16 @@
           <div class="spot-card"><img src="bumaher.jpg" alt="Qalaat Bu Maher" class="spot-photo"/><div class="spot-body"><h3>Qalaat Bu Maher</h3><p>A coastal fort partially submerged at high tide — almost mythical. Accessible by boat from the National Museum.</p><p class="spot-tip">Ask at the museum about boat trips — it's worth every minute.</p></div></div>
           <div class="spot-card"><img src="museum.jpg" alt="Bahrain National Museum" class="spot-photo"/><div class="spot-body"><h3>Bahrain National Museum</h3><p>Brings Bahrain's ancient Dilmun story to life — and is the starting point for the Bu Maher boat ride.</p><p class="spot-tip">Spend at least 2 hours here.</p></div></div>
         </div>
+        <div class="map-section">
+          <p class="map-label">All forts on the map</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+            <div><p style="font-size:11px;color:var(--grey);margin-bottom:6px;">Bahrain Fort</p><div class="map-frame"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3578.8797869305304!2d50.51767701744385!3d26.233095300000013!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e49a54914835ccf%3A0xdf17ca9d3f2752d0!2sBahrain%20Fort!5e0!3m2!1sen!2sbh!4v1782768489948!5m2!1sen!2sbh" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div></div>
+            <div><p style="font-size:11px;color:var(--grey);margin-bottom:6px;">Arad Fort</p><div class="map-frame"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3578.2823559326935!2d50.627197599999995!3d26.252498!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e49a627e35b53ab%3A0xc6990946dc9df02e!2sArad%20Fort!5e0!3m2!1sen!2sbh!4v1782768551439!5m2!1sen!2sbh" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div></div>
+            <div><p style="font-size:11px;color:var(--grey);margin-bottom:6px;">Riffa Fort</p><div class="map-frame"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3582.4234668019762!2d50.56302059999999!3d26.117732300000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e49ac50d7625ffd%3A0x81907ad88fb4e595!2sSheikh%20Salman%20bin%20Ahmed%20Fort!5e0!3m2!1sen!2sbh!4v1782768653428!5m2!1sen!2sbh" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div></div>
+            <div><p style="font-size:11px;color:var(--grey);margin-bottom:6px;">Bu Maher Fort</p><div class="map-frame"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3578.626472258649!2d50.613595399999994!3d26.241323799999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e49a8a3c72dcba5%3A0xe222b96634668e7f!2sBu%20Maher%20Fort!5e0!3m2!1sen!2sbh!4v1782768686402!5m2!1sen!2sbh" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div></div>
+            <div style="grid-column:1/-1"><p style="font-size:11px;color:var(--grey);margin-bottom:6px;">Bahrain National Museum</p><div class="map-frame"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3578.6425565559243!2d50.598085999999995!3d26.2408014!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e49a7f3ce5331bf%3A0xb088fba62e92b067!2sBahrain%20National%20Museum!5e0!3m2!1sen!2sbh!4v1782768713658!5m2!1sen!2sbh" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div></div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -323,6 +347,14 @@
           <div class="spot-card"><img src="Beach.jpg" alt="Al Bilaj Beach" class="spot-photo"/><div class="spot-body"><h3>Al Bilaj Beach</h3><p>One of Bahrain's most serene and unspoilt beaches — far from the crowds, with calm clear water and raw natural beauty.</p><p class="spot-tip">Perfect for a quiet sunrise — bring your own refreshments.</p></div></div>
           <div class="spot-card"><img src="alareenwild.jpg" alt="Al Areen Wildlife Park" class="spot-photo"/><div class="spot-body"><h3>Al Areen Wildlife Park</h3><p>Bahrain's only wildlife sanctuary — home to Arabian oryx, gazelles, and ostriches roaming freely across a protected desert reserve.</p><p class="spot-tip">Go in the morning when animals are most active.</p></div></div>
         </div>
+        <div class="map-section">
+          <p class="map-label">All nature spots on the map</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+            <div><p style="font-size:11px;color:var(--grey);margin-bottom:6px;">Tree of Life</p><div class="map-frame"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d229306.29131075242!2d50.538409050000006!3d26.10183024999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e49ad2161891555%3A0x6a3b167814b8c131!2sTree%20of%20Life%20Bahrain!5e0!3m2!1sen!2sbh!4v1782768745456!5m2!1sen!2sbh" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div></div>
+            <div><p style="font-size:11px;color:var(--grey);margin-bottom:6px;">Al Bilaj Beach</p><div class="map-frame"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3586.328252106294!2d50.4630625!3d25.99006250000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e484d7d040d755d%3A0x671c9c6254f85f4f!2sBilaj%20Al%20Jazayer!5e0!3m2!1sen!2sbh!4v1782768775726!5m2!1sen!2sbh" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div></div>
+            <div style="grid-column:1/-1"><p style="font-size:11px;color:var(--grey);margin-bottom:6px;">Al Areen Wildlife Park</p><div class="map-frame"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3585.557868430642!2d50.494425!3d26.0152969!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e484df01115689b%3A0x98be339496a01691!2sMohamed%20bin%20Zayed%20Nature%20Reserve!5e0!3m2!1sen!2sbh!4v1782768804623!5m2!1sen!2sbh" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div></div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -335,6 +367,13 @@
         <div class="spots">
           <div class="spot-card"><img src="pottery.jpg" alt="Pottery Village" class="spot-photo"/><div class="spot-body"><h3>Pottery Village — A'ali</h3><p>The oldest continuously working pottery village in the Gulf. Watch craftsmen shape clay the way their ancestors did centuries ago.</p><p class="spot-tip">You can try making your own piece at some workshops.</p></div></div>
           <div class="spot-card"><img src="Naseej.jpg" alt="Alnaseej Textile Factory" class="spot-photo"/><div class="spot-body"><h3>Alnaseej Textile Factory</h3><p>A traditional textile factory in Muharraq where craftsmen weave fabric on ancient wooden looms. A living piece of Bahraini heritage.</p><p class="spot-tip">Go on a weekday morning to see the weavers actively working.</p></div></div>
+        </div>
+        <div class="map-section">
+          <p class="map-label">Find them on the map</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+            <div><p style="font-size:11px;color:var(--grey);margin-bottom:6px;">Pottery Village A'ali</p><div class="map-frame"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3581.152133785428!2d50.516993799999995!3d26.159174399999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e49ae2111fbdf1d%3A0xdc3c646c39845f7d!2sA&#39;ali%20Pottery%20Workshop-alshugel%20pottery!5e0!3m2!1sen!2sbh!4v1782768864244!5m2!1sen!2sbh" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div></div>
+            <div><p style="font-size:11px;color:var(--grey);margin-bottom:6px;">Bani Jamra Textile Factory</p><div class="map-frame"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d57271.90678547552!2d50.42532027910154!3d26.213128!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e49ba68c12d5aa1%3A0xd1602caf91a9e01e!2sBani%20Jamra%20Textile%20Factory!5e0!3m2!1sen!2sbh!4v1782769018430!5m2!1sen!2sbh" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div></div>
+          </div>
         </div>
       </div>
     </div>
@@ -352,6 +391,13 @@
           <div class="spot-card"><img src="nature.jpg" alt="Kayaking & SUP" class="spot-photo"/><div class="spot-body"><h3>Kayaking & SUP</h3><p>Paddle through Bahrain's calm coastal waters and mangroves, or try stand up paddleboarding on the flat calm sea.</p><p class="spot-tip">The Tubli Bay mangroves at sunset are unmissable.</p></div></div>
           <div class="spot-card"><img src="boatrides.jpg" alt="Boat Rides" class="spot-photo"/><div class="spot-body"><h3>Boat Rides</h3><p>Explore Bahrain's coastline and nearby islands by boat — a completely different perspective of the island.</p><p class="spot-tip">Sunset boat tours are especially magical.</p></div></div>
           <div class="spot-card"><img src="F1.jpg" alt="Go Karting & F1" class="spot-photo"/><div class="spot-body"><h3>Go Karting & F1 Circuit</h3><p>World class karting facilities near the iconic F1 circuit. Great for a competitive day out.</p><p class="spot-tip">Bahrain International Circuit offers karting on race weekends.</p></div></div>
+        </div>
+        <div class="map-section">
+          <p class="map-label">Adventure spots on the map</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+            <div><p style="font-size:11px;color:var(--grey);margin-bottom:6px;">Gravity Indoor Skydiving</p><div class="map-frame"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3585.1743561169988!2d50.49499109999998!3d26.027850599999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e484d6ac98b80c9%3A0x93fafdab415ae0c0!2sGravity%20Indoor%20Skydiving!5e0!3m2!1sen!2sbh!4v1782769041724!5m2!1sen!2sbh" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div></div>
+            <div><p style="font-size:11px;color:var(--grey);margin-bottom:6px;">Bahrain International Circuit</p><div class="map-frame"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3585.0434844128595!2d50.51081429999997!3d26.032133200000015!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e484d66f7114f99%3A0xb08bbfbdc59c2dc!2sBahrain%20International%20Circuit!5e0!3m2!1sen!2sbh!4v1782769065116!5m2!1sen!2sbh" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div></div>
+          </div>
         </div>
       </div>
     </div>
@@ -397,6 +443,10 @@
       <div class="acc-body">
         <div class="spots">
           <div class="spot-card"><img src="Farmersmarket.jpg" alt="Farmers Market" class="spot-photo"/><div class="spot-body"><h3>Farmers Market — Hoorat Aali</h3><p>A vibrant weekly market in the village of Aali featuring fresh local produce, homemade goods, and artisan crafts.</p><p class="spot-tip">Go early on market day — the best stalls sell out fast.</p></div></div>
+        </div>
+        <div class="map-section">
+          <p class="map-label">Find it on the map</p>
+          <div class="map-frame"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7161.7695258214735!2d50.52940139114653!3d26.167882219495215!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e49ae3c5a42402f%3A0x5e96799a3e001f58!2sHoarat%20A&#39;ali!5e0!3m2!1sen!2sbh!4v1782769121100!5m2!1sen!2sbh" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
         </div>
       </div>
     </div>
