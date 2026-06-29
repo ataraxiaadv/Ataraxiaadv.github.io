@@ -1,143 +1,411 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Ataraxia — Your Travel Encyclopedia</title>
+  <title>Ataraxia — Follow the Journey</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Segoe UI', sans-serif; color: #222; background: #fff; }
-
-    nav {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 18px 40px; border-bottom: 1px solid #e8e8e8;
-      background: #fff; position: sticky; top: 0; z-index: 100;
+    :root {
+      --green:   #3d8a5a;
+      --green-d: #2a6140;
+      --green-l: #e8f4ee;
+      --white:   #ffffff;
+      --ink:     #1a1a1a;
+      --grey:    #6b6b6b;
+      --sand:    #f0ebe3;
+      --border:  #d8eed e;
     }
-    .nav-logo { font-size: 22px; font-weight: 700; color: #3d8a5a; letter-spacing: 2px; text-decoration: none; }
-    .nav-links { display: flex; gap: 28px; }
-    .nav-links a { font-size: 13px; color: #555; text-decoration: none; letter-spacing: 0.5px; }
-    .nav-links a:hover { color: #3d8a5a; }
 
-    .hero { background: #3d8a5a; padding: 80px 40px; text-align: center; }
-    .hero h1 { font-size: 48px; font-weight: 700; color: #fff; letter-spacing: 6px; margin-bottom: 12px; }
-    .hero p { font-size: 15px; color: #c8e6d5; margin-bottom: 28px; letter-spacing: 1px; }
-    .hero-btn { display: inline-block; padding: 12px 30px; border: 1.5px solid #fff; color: #fff; font-size: 13px; border-radius: 30px; text-decoration: none; letter-spacing: 1px; transition: background 0.2s; }
-    .hero-btn:hover { background: rgba(255,255,255,0.15); }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--ink); }
 
-    section { padding: 48px 40px; }
-    .section-label { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #3d8a5a; margin-bottom: 20px; }
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 48px;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(61,138,90,0.12);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none;
+    }
+    .nav-logo img {
+      height: 36px; width: 36px; border-radius: 50%; object-fit: cover;
+    }
+    .nav-logo-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px; font-weight: 600; letter-spacing: 3px;
+      color: var(--green); text-transform: uppercase;
+    }
+    .nav-links { display: flex; gap: 32px; }
+    .nav-links a {
+      font-size: 11px; font-weight: 500; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--grey); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--green); }
 
-    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
-    .card { border-radius: 12px; overflow: hidden; border: 1px solid #e8e8e8; transition: transform 0.2s; text-decoration: none; color: inherit; display: block; }
-    .card:hover { transform: translateY(-3px); }
-    .card-img { height: 140px; background-size: cover; background-position: center; display: flex; align-items: flex-end; padding: 10px; }
-    .card-bahrain { background-color: #1a4a5a; background-image: url('Manama.jpg'); }
-    .card-uae     { background: #7a5a1a; }
-    .card-oman    { background: #1a5a3a; }
-    .card-saudi   { background: #5a1a1a; }
-    .card-tag { font-size: 10px; color: #fff; background: rgba(0,0,0,0.35); padding: 3px 10px; border-radius: 12px; }
-    .card-body { padding: 12px 14px; }
-    .card-body h3 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
-    .card-body p  { font-size: 12px; color: #777; }
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      background: var(--green);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 120px 48px 80px;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 60% 40%, rgba(255,255,255,0.06), transparent 70%);
+    }
+    .hero > * { position: relative; z-index: 1; }
+    .hero-eyebrow {
+      font-size: 10px; font-weight: 500; letter-spacing: 4px;
+      text-transform: uppercase; color: rgba(255,255,255,0.55);
+      margin-bottom: 24px;
+    }
+    .hero-logo-img {
+      height: 72px; margin-bottom: 20px;
+      filter: brightness(0) invert(1);
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(52px, 10vw, 100px);
+      font-weight: 400; line-height: 0.95;
+      color: var(--white); letter-spacing: 10px;
+      text-transform: uppercase; margin-bottom: 28px;
+    }
+    .hero-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic; font-size: clamp(17px, 2.2vw, 22px);
+      color: rgba(255,255,255,0.75);
+      max-width: 500px; line-height: 1.7; margin-bottom: 40px;
+    }
+    .hero-tags {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      justify-content: center; margin-bottom: 52px;
+    }
+    .hero-tag {
+      font-size: 10px; letter-spacing: 1.5px;
+      color: rgba(255,255,255,0.7);
+      border: 1px solid rgba(255,255,255,0.25);
+      padding: 6px 14px; border-radius: 99px;
+      transition: all 0.2s;
+    }
+    .hero-tag:hover { background: rgba(255,255,255,0.1); color: #fff; }
+    .hero-cta {
+      display: inline-block;
+      font-size: 11px; font-weight: 500; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--green);
+      background: var(--white); padding: 14px 36px;
+      text-decoration: none; border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .hero-cta:hover { background: var(--green-l); }
+    .hero-scroll {
+      position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+      font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+    }
+    .hero-scroll::after {
+      content: ''; width: 1px; height: 36px;
+      background: rgba(255,255,255,0.3);
+      animation: pulse 1.8s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity: 0.3; } 50% { opacity: 1; }
+    }
 
-    .featured { display: grid; grid-template-columns: 1.5fr 1fr; gap: 16px; }
-    .feat-main { background: #2a4a3a; border-radius: 12px; padding: 28px; display: flex; flex-direction: column; justify-content: flex-end; min-height: 200px; }
-    .feat-main h3 { font-size: 20px; font-weight: 600; color: #fff; margin-bottom: 6px; }
-    .feat-main p  { font-size: 13px; color: #a0c8b0; }
-    .feat-side { display: flex; flex-direction: column; gap: 16px; }
-    .feat-mini { background: #f7f9f8; border-radius: 12px; padding: 18px; border: 1px solid #e8e8e8; flex: 1; }
-    .feat-mini h4 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
-    .feat-mini p  { font-size: 12px; color: #777; }
+    /* SECTIONS */
+    .section { padding: 80px 48px; }
+    .section-header { margin-bottom: 44px; }
+    .section-eyebrow {
+      font-size: 10px; font-weight: 500; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--green); margin-bottom: 8px;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(32px, 5vw, 48px); font-weight: 400;
+      color: var(--ink); line-height: 1.1;
+    }
 
-    .about-box { background: #f2f8f4; border-radius: 14px; padding: 28px 32px; display: flex; align-items: center; gap: 20px; border: 1px solid #cce5d6; }
-    .avatar { width: 56px; height: 56px; border-radius: 50%; background: #3d8a5a; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 700; color: #fff; flex-shrink: 0; }
-    .about-text h3 { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
-    .about-text p  { font-size: 13px; color: #555; line-height: 1.7; }
+    /* DESTINATIONS */
+    #destinations { background: var(--white); }
+    .dest-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .dest-card {
+      position: relative; overflow: hidden; border-radius: 4px;
+      aspect-ratio: 3/4; display: block;
+      text-decoration: none; background: var(--green-l);
+    }
+    .dest-card-img {
+      width: 100%; height: 100%;
+      background-size: cover; background-position: center;
+      transition: transform 0.6s ease;
+    }
+    .dest-card:hover .dest-card-img { transform: scale(1.04); }
+    .dest-bahrain { background-color: #2a5a6a; background-image: url('Manama.jpg'); }
+    .dest-uae     { background: linear-gradient(135deg, #c8a96e, #8b6914); }
+    .dest-oman    { background: linear-gradient(135deg, #4a8a5a, #2a5a3a); }
+    .dest-saudi   { background: linear-gradient(135deg, #8a4a3a, #5a2a1a); }
+    .dest-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(20,40,28,0.8) 0%, rgba(20,40,28,0.1) 55%, transparent 100%);
+    }
+    .dest-card:hover .dest-overlay { background: linear-gradient(to top, rgba(20,40,28,0.85) 0%, rgba(20,40,28,0.2) 55%, transparent 100%); }
+    .dest-info {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 24px 20px;
+    }
+    .dest-region {
+      font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+      color: rgba(255,255,255,0.55); margin-bottom: 6px;
+    }
+    .dest-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px; font-weight: 600; color: #fff; line-height: 1.1;
+    }
+    .dest-sub { font-size: 11px; color: rgba(255,255,255,0.55); margin-top: 4px; }
+    .dest-soon {
+      position: absolute; top: 14px; right: 14px;
+      font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 4px 10px; border-radius: 99px;
+    }
 
-    footer { text-align: center; padding: 28px 40px; border-top: 1px solid #e8e8e8; background: #fafafa; }
-    .social-links { display: flex; justify-content: center; gap: 24px; margin-bottom: 10px; }
-    .social-links a { font-size: 13px; color: #3d8a5a; text-decoration: none; }
-    footer p { font-size: 11px; color: #aaa; }
+    /* MANIFESTO */
+    .manifesto {
+      background: var(--green-l);
+      padding: 64px 48px; text-align: center;
+      border-top: 1px solid rgba(61,138,90,0.15);
+      border-bottom: 1px solid rgba(61,138,90,0.15);
+    }
+    .manifesto p {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(20px, 3vw, 30px);
+      color: var(--green-d); line-height: 1.6;
+      max-width: 680px; margin: 0 auto;
+    }
 
-    @media (max-width: 600px) {
-      nav { padding: 16px 20px; }
+    /* FEATURED */
+    #featured { background: var(--white); }
+    .feat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .feat-main {
+      background: var(--green); border-radius: 4px;
+      padding: 48px 40px; display: flex;
+      flex-direction: column; justify-content: flex-end; min-height: 260px;
+    }
+    .feat-label {
+      font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+      color: rgba(255,255,255,0.5); margin-bottom: 14px;
+    }
+    .feat-main h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 30px; font-weight: 400; color: #fff;
+      line-height: 1.2; margin-bottom: 10px;
+    }
+    .feat-main p { font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.6; }
+    .feat-side { display: flex; flex-direction: column; gap: 20px; }
+    .feat-mini {
+      background: var(--green-l); border-radius: 4px;
+      padding: 28px 24px; flex: 1;
+      border-left: 3px solid var(--green);
+    }
+    .feat-mini h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px; font-weight: 400; color: var(--ink); margin-bottom: 6px;
+    }
+    .feat-mini p { font-size: 12px; color: var(--grey); line-height: 1.5; }
+
+    /* ABOUT */
+    #about { background: var(--sand); }
+    .about-inner {
+      display: grid; grid-template-columns: auto 1fr;
+      gap: 32px; align-items: start; max-width: 640px;
+    }
+    .about-avatar {
+      width: 64px; height: 64px; border-radius: 50%;
+      object-fit: cover; border: 2px solid var(--green); flex-shrink: 0;
+    }
+    .about-text h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px; font-weight: 400; color: var(--ink); margin-bottom: 10px;
+    }
+    .about-text p { font-size: 14px; color: var(--grey); line-height: 1.8; }
+
+    /* FOOTER */
+    footer {
+      background: var(--ink); padding: 36px 48px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px; letter-spacing: 4px;
+      text-transform: uppercase; color: var(--green);
+    }
+    .footer-links { display: flex; gap: 28px; }
+    .footer-links a {
+      font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+      color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--green); }
+    .footer-copy { font-size: 10px; color: rgba(255,255,255,0.25); width: 100%; }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 14px 20px; }
       .nav-links { gap: 16px; }
-      section { padding: 36px 20px; }
-      .hero { padding: 60px 20px; }
-      .hero h1 { font-size: 32px; }
-      .featured { grid-template-columns: 1fr; }
+      .hero { padding: 100px 24px 80px; }
+      .section { padding: 56px 24px; }
+      .dest-grid { grid-template-columns: 1fr 1fr; }
+      .feat-grid { grid-template-columns: 1fr; }
+      .manifesto { padding: 48px 24px; }
+      footer { padding: 28px 20px; flex-direction: column; align-items: flex-start; }
+      .about-inner { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .dest-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
   <nav>
-    <a class="nav-logo" href="#">ATARAXIA</a>
+    <a class="nav-logo" href="#">
+      <img src="1.png" alt="Ataraxia logo"/>
+      <span class="nav-logo-text">Ataraxia</span>
+    </a>
     <div class="nav-links">
-      <a href="#destinations">destinations</a>
-      <a href="#featured">guides</a>
-      <a href="#about">about</a>
+      <a href="#destinations">Destinations</a>
+      <a href="#featured">Guides</a>
+      <a href="#about">About</a>
     </div>
   </nav>
 
   <div class="hero">
-    <h1>ATARAXIA</h1>
-    <p>your travel encyclopedia — curated escapes from Bahrain &amp; beyond</p>
-    <a href="#destinations" class="hero-btn">explore destinations</a>
+    <p class="hero-eyebrow">Your travel encyclopedia</p>
+    <h1>Ataraxia</h1>
+    <p class="hero-quote">"Leave only footprints. Take only memories. Follow the journey wherever it leads."</p>
+    <div class="hero-tags">
+      <span class="hero-tag">#solo</span>
+      <span class="hero-tag">#growth</span>
+      <span class="hero-tag">#connection</span>
+      <span class="hero-tag">#unplanned</span>
+      <span class="hero-tag">#peace</span>
+      <span class="hero-tag">#leave only footprints</span>
+    </div>
+    <a href="#destinations" class="hero-cta">Explore destinations</a>
+    <div class="hero-scroll">Scroll</div>
   </div>
 
-  <section id="destinations">
-    <p class="section-label">destinations</p>
-    <div class="cards">
-      <a href="bahrain.html" class="card">
-        <div class="card-img card-bahrain"><span class="card-tag">Bahrain</span></div>
-        <div class="card-body"><h3>Hidden Manama</h3><p>Local gems &amp; old souqs</p></div>
+  <section class="section" id="destinations">
+    <div class="section-header">
+      <p class="section-eyebrow">Where to go</p>
+      <h2 class="section-title">Destinations</h2>
+    </div>
+    <div class="dest-grid">
+      <a href="bahrain.html" class="dest-card">
+        <div class="dest-card-img dest-bahrain"></div>
+        <div class="dest-overlay"></div>
+        <div class="dest-info">
+          <p class="dest-region">Bahrain</p>
+          <h3 class="dest-name">Hidden Manama</h3>
+          <p class="dest-sub">Local gems & old souqs</p>
+        </div>
       </a>
-      <div class="card">
-        <div class="card-img card-uae"><span class="card-tag">UAE</span></div>
-        <div class="card-body"><h3>Dubai off-script</h3><p>Beyond the towers</p></div>
+      <div class="dest-card">
+        <div class="dest-card-img dest-uae"></div>
+        <div class="dest-overlay"></div>
+        <div class="dest-info">
+          <p class="dest-region">UAE</p>
+          <h3 class="dest-name">Dubai Off-Script</h3>
+          <p class="dest-sub">Beyond the towers</p>
+        </div>
+        <span class="dest-soon">Coming soon</span>
       </div>
-      <div class="card">
-        <div class="card-img card-oman"><span class="card-tag">Oman</span></div>
-        <div class="card-body"><h3>Muscat &amp; Wadis</h3><p>Nature &amp; culture</p></div>
+      <div class="dest-card">
+        <div class="dest-card-img dest-oman"></div>
+        <div class="dest-overlay"></div>
+        <div class="dest-info">
+          <p class="dest-region">Oman</p>
+          <h3 class="dest-name">Muscat & Wadis</h3>
+          <p class="dest-sub">Nature & ancient culture</p>
+        </div>
+        <span class="dest-soon">Coming soon</span>
       </div>
-      <div class="card">
-        <div class="card-img card-saudi"><span class="card-tag">Saudi Arabia</span></div>
-        <div class="card-body"><h3>Al Ula &amp; beyond</h3><p>The kingdom's best kept secret</p></div>
+      <div class="dest-card">
+        <div class="dest-card-img dest-saudi"></div>
+        <div class="dest-overlay"></div>
+        <div class="dest-info">
+          <p class="dest-region">Saudi Arabia</p>
+          <h3 class="dest-name">Al Ula & Beyond</h3>
+          <p class="dest-sub">The kingdom's best kept secret</p>
+        </div>
+        <span class="dest-soon">Coming soon</span>
       </div>
     </div>
   </section>
 
-  <section id="featured" style="background:#fafafa; border-top:1px solid #e8e8e8; border-bottom:1px solid #e8e8e8;">
-    <p class="section-label">featured guides</p>
-    <div class="featured">
+  <div class="manifesto">
+    <p>Not every journey needs a plan. Some of the best ones begin with a single step into the unfamiliar — and end somewhere you never expected to love.</p>
+  </div>
+
+  <section class="section" id="featured">
+    <div class="section-header">
+      <p class="section-eyebrow">Read</p>
+      <h2 class="section-title">Featured guides</h2>
+    </div>
+    <div class="feat-grid">
       <div class="feat-main">
+        <p class="feat-label">Saudi Arabia</p>
         <h3>A weekend in Al Ula</h3>
-        <p>Saudi Arabia's most breathtaking destination — where to stay, eat, and explore.</p>
+        <p>The kingdom's most breathtaking destination — where to stay, eat, and let the ancient landscape change you.</p>
       </div>
       <div class="feat-side">
-        <div class="feat-mini"><h4>48hrs in Bahrain</h4><p>The perfect layover guide for first-timers</p></div>
-        <div class="feat-mini"><h4>GCC road trip</h4><p>Bahrain to Muscat — the full route guide</p></div>
+        <div class="feat-mini">
+          <h4>48hrs in Bahrain</h4>
+          <p>The perfect layover guide for first-timers who want to go deeper than the airport.</p>
+        </div>
+        <div class="feat-mini">
+          <h4>GCC road trip</h4>
+          <p>Bahrain to Muscat — the full unplanned route guide for those who drive to think.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="about">
-    <div class="about-box">
-      <img src="1.png" alt="Ataraxia" style="width:56px; height:56px; border-radius:50%; object-fit:cover; flex-shrink:0;"/>
+  <section class="section" id="about">
+    <div class="about-inner">
+      <img src="1.png" alt="Ataraxia" class="about-avatar"/>
       <div class="about-text">
         <h3>About Ataraxia</h3>
-        <p>A Bahrain-based travel page sharing slow, intentional travel across the GCC and beyond. No noise — just honest guides, hidden spots, and the good stuff only locals know.</p>
+        <p>A Bahrain-based travel page for those who travel slowly, intentionally, and alone sometimes. No noise — just honest guides, hidden spots, and the good stuff only locals know. Follow the journey.</p>
       </div>
     </div>
   </section>
 
   <footer>
-    <div class="social-links">
+    <span class="footer-logo">Ataraxia</span>
+    <div class="footer-links">
       <a href="https://www.instagram.com/ataraxia.adv/">Instagram</a>
       <a href="mailto:ataraxia.adv@gmail.com">Contact</a>
     </div>
-    <p>© 2026 Ataraxia — Your Travel Encyclopedia</p>
+    <p class="footer-copy">© 2026 Ataraxia — Your Travel Encyclopedia</p>
   </footer>
 
 </body>
