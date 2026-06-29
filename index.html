@@ -34,7 +34,7 @@
       --ink:     #1a1a1a;
       --grey:    #6b6b6b;
       --sand:    #f0ebe3;
-      --border:  #d8eed e;
+      --border:  rgba(61,138,90,0.15);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -251,7 +251,7 @@
     .feat-mini p { font-size: 12px; color: var(--grey); line-height: 1.5; }
 
     /* ABOUT */
-    #about { background: var(--sand); }
+    #about { background: var(--linen); }
     .about-inner {
       display: grid; grid-template-columns: auto 1fr;
       gap: 32px; align-items: start; max-width: 640px;
@@ -265,6 +265,95 @@
       font-size: 26px; font-weight: 400; color: var(--ink); margin-bottom: 10px;
     }
     .about-text p { font-size: 14px; color: var(--grey); line-height: 1.8; }
+
+    /* BOOKING */
+    .booking-wrap {
+      display: grid; grid-template-columns: 1fr 1.6fr; gap: 48px; align-items: start;
+    }
+    .booking-intro {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic; font-size: 17px; color: var(--grey); line-height: 1.8; margin-bottom: 24px;
+    }
+    .booking-perks {
+      list-style: none;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+      margin-top: 8px;
+    }
+    .booking-perks li {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic; font-size: 14px;
+      color: var(--green);
+      border: 1px solid rgba(61,138,90,0.25);
+      padding: 6px 16px; border-radius: 99px;
+      background: transparent;
+      line-height: 1.4; text-align: center;
+    }
+    .booking-perks li::before { content: none; }
+    .booking-perks li:last-child:nth-child(odd) {
+      grid-column: 1 / -1; width: 50%; margin: 0 auto; text-align: center;
+    }
+    .booking-form-wrap {
+      background: var(--white); border-radius: 4px;
+      padding: 32px; border: 1px solid rgba(61,138,90,0.15);
+    }
+    .booking-form { display: flex; flex-direction: column; gap: 18px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group label {
+      font-size: 10px; font-weight: 500; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--grey);
+    }
+    .form-group input, .form-group select, .form-group textarea {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px; color: var(--grey);
+      border: 1px solid rgba(61,138,90,0.2); border-radius: 2px;
+      padding: 10px 12px; background: var(--white);
+      transition: border-color 0.2s; outline: none;
+      -webkit-appearance: none; appearance: none;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      border-color: var(--green);
+    }
+    .form-group textarea { resize: vertical; }
+    .checkbox-row {
+      display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px;
+    }
+    .checkbox-label {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 12px; color: var(--ink); cursor: pointer;
+      background: var(--green-l); padding: 6px 12px; border-radius: 2px;
+      border: 1px solid transparent; transition: all 0.2s;
+    }
+    .checkbox-label:has(input:checked) {
+      background: var(--green); color: #fff; border-color: var(--green);
+    }
+    .checkbox-label input { display: none; }
+    .booking-btn {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px; font-weight: 500; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--white);
+      background: var(--green); border: none;
+      padding: 14px 32px; border-radius: 2px; cursor: pointer;
+      transition: background 0.2s; align-self: flex-start;
+    }
+    .booking-btn:hover { background: var(--green-d); }
+    .form-note {
+      font-size: 11px; color: var(--grey); margin-top: -8px;
+    }
+    .booking-success {
+      text-align: center; padding: 32px 16px;
+    }
+    .success-icon {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: var(--green); color: #fff;
+      font-size: 22px; display: flex; align-items: center;
+      justify-content: center; margin: 0 auto 16px;
+    }
+    .booking-success h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 24px; font-weight: 400; color: var(--ink); margin-bottom: 8px;
+    }
+    .booking-success p { font-size: 13px; color: var(--grey); }
 
     /* FOOTER */
     footer {
@@ -296,6 +385,8 @@
       .manifesto { padding: 48px 24px; }
       footer { padding: 28px 20px; flex-direction: column; align-items: flex-start; }
       .about-inner { grid-template-columns: 1fr; }
+      .booking-wrap { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
     }
     @media (max-width: 480px) {
       .dest-grid { grid-template-columns: 1fr; }
@@ -312,6 +403,7 @@
     <div class="nav-links">
       <a href="#destinations">Destinations</a>
       <a href="#featured">Guides</a>
+      <a href="#book">Book a Tour</a>
       <a href="#about">About</a>
     </div>
   </nav>
@@ -408,6 +500,81 @@
     </div>
   </section>
 
+  <!-- BOOK A TOUR -->
+  <section class="section" id="book" style="background:var(--sand);">
+    <div class="section-header">
+      <p class="section-eyebrow">Plan with us</p>
+      <h2 class="section-title">Book a guided tour</h2>
+    </div>
+    <div class="booking-wrap">
+      <div class="booking-left">
+        <p class="booking-intro">Want a local to show you around? We offer personalised guided experiences across Bahrain — from hidden forts to the best breakfast spots only locals know. Fill in your details and we'll be in touch.</p>
+        <ul class="booking-perks">
+          <li>Custom itineraries</li>
+          <li>Local food tours</li>
+          <li>Historical deep dives</li>
+          <li>Sunrise & sunset experiences</li>
+          <li>Solo, couples & small groups</li>
+        </ul>
+      </div>
+      <div class="booking-form-wrap">
+        <form class="booking-form" id="bookingForm" onsubmit="submitBooking(event)">
+          <input type="hidden" name="_subject" value="New Tour Enquiry — Ataraxia"/>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Your name</label>
+              <input type="text" placeholder="e.g. Sara Ahmed" required/>
+            </div>
+            <div class="form-group">
+              <label>Email or WhatsApp</label>
+              <input type="text" placeholder="email or +973 XXXX XXXX" required/>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Country you're visiting from</label>
+              <input type="text" placeholder="e.g. United Kingdom, Saudi Arabia"/>
+            </div>
+            <div class="form-group">
+              <label>Group size</label>
+              <select>
+                <option>Just me</option>
+                <option>2 people</option>
+                <option>3–5 people</option>
+                <option>6+ people</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>When are you visiting?</label>
+            <input type="date" min="2026-07-01" style="color-scheme: light; color: var(--grey);"/>
+          </div>
+          <div class="form-group">
+            <label>What interests you most?</label>
+            <div class="checkbox-row">
+              <label class="checkbox-label"><input type="checkbox" value="history"/> History & Forts</label>
+              <label class="checkbox-label"><input type="checkbox" value="food"/> Food & Restaurants</label>
+              <label class="checkbox-label"><input type="checkbox" value="nature"/> Nature & Outdoors</label>
+              <label class="checkbox-label"><input type="checkbox" value="culture"/> Culture & Crafts</label>
+              <label class="checkbox-label"><input type="checkbox" value="adventure"/> Adventure & Sports</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Anything else you'd like us to know?</label>
+            <textarea placeholder="Tell us about your trip, any special requests, or questions..." rows="3"></textarea>
+          </div>
+          <button type="submit" class="booking-btn">Send enquiry</button>
+          <p class="form-note">We usually respond within 24 hours via email or WhatsApp.</p>
+        </form>
+        <div class="booking-success" id="bookingSuccess" style="display:none;">
+          <div class="success-icon">✓</div>
+          <h3>Enquiry sent!</h3>
+          <p>Thank you — we'll be in touch within 24 hours to plan your journey.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="section" id="about">
     <div class="about-inner">
       <img src="1.png" alt="Ataraxia" class="about-avatar"/>
@@ -426,6 +593,30 @@
     </div>
     <p class="footer-copy">© 2026 Ataraxia — Your Travel Encyclopedia</p>
   </footer>
+
+  <script>
+    function submitBooking(e) {
+      e.preventDefault();
+      const form = document.getElementById('bookingForm');
+      const name = form.querySelector('input[placeholder*="Sara"]').value;
+      const contact = form.querySelector('input[placeholder*="email"]').value;
+      const when = form.querySelector('input[type="date"]').value;
+      const country = form.querySelector('input[placeholder*="United Kingdom"]').value;
+      const group = form.querySelector('select').value;
+      const message = form.querySelector('textarea').value;
+      const interests = [...form.querySelectorAll('input[type=checkbox]:checked')].map(c => c.value).join(', ');
+
+      const subject = encodeURIComponent('Tour Enquiry — Ataraxia');
+      const body = encodeURIComponent(
+        `Name: ${name}\nContact: ${contact}\nVisiting from: ${country}\nVisiting when: ${when}\nGroup size: ${group}\nInterests: ${interests || 'Not specified'}\n\nMessage:\n${message}`
+      );
+
+      window.location.href = `mailto:ataraxia.adv@gmail.com?subject=${subject}&body=${body}`;
+
+      form.style.display = 'none';
+      document.getElementById('bookingSuccess').style.display = 'block';
+    }
+  </script>
 
 </body>
 </html>
