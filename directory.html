@@ -85,11 +85,12 @@
     .dir-section { margin-bottom:48px; }
     .dir-section-title {
       font-family:'Cormorant Garamond',serif;
-      font-size:26px; font-weight:600; color:var(--ink);
-      margin-bottom:4px;
+      font-size:28px; font-weight:400; color:var(--ink);
+      margin-bottom:4px; letter-spacing:0.5px;
     }
     .dir-section-sub {
-      font-size:11px; color:var(--grey); letter-spacing:0.5px;
+      font-size:10px; font-weight:500; letter-spacing:3px;
+      text-transform:uppercase; color:var(--green);
       margin-bottom:20px; padding-bottom:12px;
       border-bottom:1px solid var(--border);
     }
@@ -153,7 +154,7 @@
     <div class="nav-links">
       <a href="index.html#destinations">Destinations</a>
       <a href="bahrain.html">Bahrain Guide</a>
-      <a href="directory.html" class="active">📍 Directory</a>
+      <a href="directory.html" class="active">Directory</a>
       <a href="index.html#about">About</a>
     </div>
   </nav>
@@ -172,19 +173,19 @@
 
   <div class="filter-bar">
     <button class="filter-btn active" onclick="filterDir('all', this)">All</button>
-    <button class="filter-btn" onclick="filterDir('forts', this)">🏰 Forts</button>
-    <button class="filter-btn" onclick="filterDir('nature', this)">🌿 Nature</button>
-    <button class="filter-btn" onclick="filterDir('crafts', this)">🏺 Crafts</button>
-    <button class="filter-btn" onclick="filterDir('adventure', this)">⚡ Adventure</button>
-    <button class="filter-btn" onclick="filterDir('food', this)">🍽 Food</button>
-    <button class="filter-btn" onclick="filterDir('markets', this)">🛍 Markets</button>
+    <button class="filter-btn" onclick="filterDir('forts', this)">Forts</button>
+    <button class="filter-btn" onclick="filterDir('nature', this)">Nature</button>
+    <button class="filter-btn" onclick="filterDir('crafts', this)">Crafts</button>
+    <button class="filter-btn" onclick="filterDir('adventure', this)">Adventure</button>
+    <button class="filter-btn" onclick="filterDir('food', this)">Food</button>
+    <button class="filter-btn" onclick="filterDir('markets', this)">Markets</button>
   </div>
 
   <div class="directory">
 
     <!-- FORTS -->
     <div class="dir-section" data-category="forts">
-      <h2 class="dir-section-title">🏰 Forts</h2>
+      <h2 class="dir-section-title">Forts</h2>
       <p class="dir-section-sub">Ancient fortresses & UNESCO heritage</p>
       <div class="dir-grid">
 
@@ -248,7 +249,7 @@
 
     <!-- NATURE -->
     <div class="dir-section" data-category="nature">
-      <h2 class="dir-section-title">🌿 Nature</h2>
+      <h2 class="dir-section-title">Nature</h2>
       <p class="dir-section-sub">Desert wonders & natural landmarks</p>
       <div class="dir-grid">
 
@@ -272,7 +273,7 @@
 
     <!-- CRAFTS -->
     <div class="dir-section" data-category="crafts">
-      <h2 class="dir-section-title">🏺 Crafts</h2>
+      <h2 class="dir-section-title">Crafts</h2>
       <p class="dir-section-sub">Pottery, weaving & traditional arts</p>
       <div class="dir-grid">
 
@@ -291,7 +292,7 @@
 
     <!-- ADVENTURE -->
     <div class="dir-section" data-category="adventure">
-      <h2 class="dir-section-title">⚡ Adventure & Sports</h2>
+      <h2 class="dir-section-title">Adventure & Sports</h2>
       <p class="dir-section-sub">Thrills, outdoor experiences & activities</p>
       <div class="dir-grid">
 
@@ -310,7 +311,7 @@
 
     <!-- MARKETS -->
     <div class="dir-section" data-category="markets">
-      <h2 class="dir-section-title">🛍 Cafes & Markets</h2>
+      <h2 class="dir-section-title">Cafes & Markets</h2>
       <p class="dir-section-sub">Local favourites & hidden gems</p>
       <div class="dir-grid">
 
