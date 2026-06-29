@@ -157,6 +157,29 @@
       color: var(--ink); line-height: 1.1;
     }
 
+    /* INTRO STRIP */
+    .intro-strip {
+      background: var(--white);
+      padding: 64px 48px;
+      border-bottom: 1px solid rgba(61,138,90,0.1);
+    }
+    .intro-inner {
+      max-width: 720px; margin: 0 auto;
+    }
+    .intro-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(17px, 2vw, 20px);
+      color: var(--ink); line-height: 1.85;
+      margin-bottom: 24px;
+    }
+    .intro-text em { color: var(--green); font-style: italic; }
+    .intro-sub {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px; font-weight: 500; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--green);
+      margin-top: 8px;
+    }
+
     /* DESTINATIONS */
     #destinations { background: var(--white); }
     .dest-grid {
@@ -404,6 +427,7 @@
       <a href="#destinations">Destinations</a>
       <a href="#featured">Guides</a>
       <a href="#book">Book a Tour</a>
+      <a href="directory.html">📍 Directory</a>
       <a href="#about">About</a>
     </div>
   </nav>
@@ -411,7 +435,7 @@
   <div class="hero">
     <p class="hero-eyebrow">Your travel encyclopedia</p>
     <h1>Ataraxia</h1>
-    <p class="hero-quote">"Leave only footprints. Take only memories. Follow the journey wherever it leads."</p>
+    <p class="hero-quote">"Not all who wander are lost — some of us are just finally found."</p>
     <div class="hero-tags">
       <span class="hero-tag">#solo</span>
       <span class="hero-tag">#growth</span>
@@ -419,9 +443,28 @@
       <span class="hero-tag">#unplanned</span>
       <span class="hero-tag">#peace</span>
       <span class="hero-tag">#leave only footprints</span>
+      <span class="hero-tag">#low budget</span>
+      <span class="hero-tag">#off the beaten path</span>
+      <span class="hero-tag">#follow the journey</span>
+      <span class="hero-tag">#camp & hike</span>
+      <span class="hero-tag">#local first</span>
+      <span class="hero-tag">#rent a car & go</span>
     </div>
     <a href="#destinations" class="hero-cta">Explore destinations</a>
     <div class="hero-scroll">Scroll</div>
+  </div>
+
+  <!-- PERSONAL INTRO STRIP -->
+  <div class="intro-strip">
+    <div class="intro-inner">
+      <p class="intro-text">
+        Ataraxia started as a personal journal. A way to remember the mornings I woke up in a tent in Kyrgyzstan with no plan, the backroads in Montenegro I only found because I got lost, the silence of the Icelandic highlands at 2am when the sun still hadn't set. It became a page because people kept asking — <em>how do you travel like that?</em>
+      </p>
+      <p class="intro-text">
+        The answer is simpler than most expect. Rent a car. Sleep cheap. Eat local. Avoid the crowds. Trust the detour. You don't need a big budget — you need the right mindset. Whether you're exploring Bahrain for the first time or planning a solo trip to Portugal, Morocco, the Maldives, or somewhere you can't even pronounce yet — this is your starting point.
+      </p>
+      <p class="intro-sub">From Bahrain to the world — real places, real experiences, no noise.</p>
+    </div>
   </div>
 
   <section class="section" id="destinations">
