@@ -297,11 +297,11 @@
 
     /* BOOKING */
     .booking-wrap {
-      display: grid; grid-template-columns: 1fr 1.6fr; gap: 48px; align-items: start;
+      display: grid; grid-template-columns: 1fr 2fr; gap: 48px; align-items: start;
     }
     .booking-intro {
       font-family: 'Cormorant Garamond', serif;
-      font-style: italic; font-size: 17px; color: var(--grey); line-height: 1.8; margin-bottom: 24px;
+      font-style: italic; font-size: 16px; color: var(--grey); line-height: 1.8; margin-bottom: 20px;
     }
     .booking-perks {
       list-style: none;
@@ -310,12 +310,13 @@
     }
     .booking-perks li {
       font-family: 'Cormorant Garamond', serif;
-      font-style: italic; font-size: 14px;
+      font-style: italic; font-size: 13px;
       color: var(--green);
       border: 1px solid rgba(61,138,90,0.25);
-      padding: 6px 16px; border-radius: 99px;
+      padding: 6px 12px; border-radius: 99px;
       background: transparent;
       line-height: 1.4; text-align: center;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
     .booking-perks li::before { content: none; }
     .booking-perks li:last-child:nth-child(odd) {
@@ -323,11 +324,11 @@
     }
     .booking-form-wrap {
       background: var(--white); border-radius: 4px;
-      padding: 32px; border: 1px solid rgba(61,138,90,0.15);
+      padding: 28px; border: 1px solid rgba(61,138,90,0.15);
     }
-    .booking-form { display: flex; flex-direction: column; gap: 18px; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .booking-form { display: flex; flex-direction: column; gap: 16px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .form-group { display: flex; flex-direction: column; gap: 5px; }
     .form-group label {
       font-size: 10px; font-weight: 500; letter-spacing: 2px;
       text-transform: uppercase; color: var(--grey);
@@ -336,22 +337,23 @@
       font-family: 'DM Sans', sans-serif;
       font-size: 13px; color: var(--grey);
       border: 1px solid rgba(61,138,90,0.2); border-radius: 2px;
-      padding: 10px 12px; background: var(--white);
+      padding: 9px 12px; background: var(--white);
       transition: border-color 0.2s; outline: none;
       -webkit-appearance: none; appearance: none;
+      width: 100%;
     }
     .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
       border-color: var(--green);
     }
     .form-group textarea { resize: vertical; }
     .checkbox-row {
-      display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 4px;
     }
     .checkbox-label {
-      display: flex; align-items: center; gap: 6px;
-      font-size: 12px; color: var(--ink); cursor: pointer;
-      background: var(--green-l); padding: 6px 12px; border-radius: 2px;
-      border: 1px solid transparent; transition: all 0.2s;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; color: var(--ink); cursor: pointer;
+      background: var(--green-l); padding: 8px 10px; border-radius: 2px;
+      border: 1px solid transparent; transition: all 0.2s; text-align: center;
     }
     .checkbox-label:has(input:checked) {
       background: var(--green); color: #fff; border-color: var(--green);
@@ -437,10 +439,10 @@
     .mobile-menu a:hover { color: var(--green); }
 
     /* RESPONSIVE */
-    @media (max-width: 768px) {
+    @media (max-width: 900px) {
       nav { padding: 14px 20px; }
-      .nav-links { display: none; }
-      .hamburger { display: flex; }
+      .nav-links { display: none !important; }
+      .hamburger { display: flex !important; }
       .hero { padding: 100px 24px 80px; }
       .intro-strip { padding: 40px 20px; }
       .intro-text { font-size: 15px; line-height: 1.7; }
