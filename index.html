@@ -64,7 +64,13 @@
       color: var(--green); text-transform: uppercase;
     }
     .nav-links { display: none; gap: 32px; }
-    .hamburger { display: flex; }
+    .hamburger { 
+      display: -webkit-flex;
+      display: flex;
+      flex-direction: column; gap: 5px;
+      cursor: pointer; padding: 4px; 
+      background: none; border: none;
+    }
 
     /* DESKTOP ONLY */
     @media (min-width: 901px) {
@@ -149,6 +155,7 @@
       font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
       color: rgba(255,255,255,0.4);
       display: flex; flex-direction: column; align-items: center; gap: 8px;
+      white-space: nowrap;
     }
     .hero-scroll::after {
       content: ''; width: 1px; height: 36px;
