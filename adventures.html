@@ -4,36 +4,27 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>The Journey — Ataraxia</title>
-  <meta name="description" content="Follow the journey — personal travel stories, trails and adventures across Iceland, Kyrgyzstan, Portugal, Italy, the Philippines and beyond."/>
+  <meta name="description" content="Follow the journey — personal travel stories across Iceland, Kyrgyzstan, Sri Lanka, Philippines, Italy, Portugal, Maldives, Oman, Turkey and beyond."/>
   <meta property="og:title" content="The Journey — Ataraxia"/>
   <meta property="og:description" content="Not every journey needs a plan. Follow along."/>
-  <meta property="og:image" content="https://ataraxiaadv.github.io/Manama.jpg"/>
+  <meta property="og:image" content="https://ataraxiaadv.github.io/mounticeland.jpeg"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --green:   #3d8a5a;
-      --green-d: #2a6140;
-      --green-l: #e8f4ee;
-      --white:   #ffffff;
-      --ink:     #1a1a1a;
-      --grey:    #6b6b6b;
-      --sand:    #f0ebe3;
-      --border:  rgba(61,138,90,0.15);
+      --green:#3d8a5a; --green-d:#2a6140; --green-l:#e8f4ee;
+      --white:#ffffff; --ink:#1a1a1a; --grey:#6b6b6b;
+      --sand:#f0ebe3; --border:rgba(61,138,90,0.15);
     }
-
     * { margin:0; padding:0; box-sizing:border-box; }
     html { scroll-behavior:smooth; }
     body { font-family:'DM Sans',sans-serif; background:var(--white); color:var(--ink); }
 
-    /* NAV */
     nav {
       position:sticky; top:0; z-index:100;
       display:flex; align-items:center; justify-content:space-between;
-      padding:16px 48px;
-      background:rgba(255,255,255,0.96);
-      backdrop-filter:blur(10px);
-      border-bottom:1px solid var(--border);
+      padding:16px 32px; background:rgba(255,255,255,0.96);
+      backdrop-filter:blur(10px); border-bottom:1px solid var(--border);
       flex-wrap:nowrap;
     }
     .nav-logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
@@ -43,10 +34,15 @@
       font-size:18px; font-weight:600; letter-spacing:3px;
       text-transform:uppercase; color:var(--green);
     }
-    .nav-links { display:none; gap:28px; }
+    .nav-links { display:none; gap:24px; }
+    .nav-links a {
+      font-size:10px; font-weight:500; letter-spacing:1.5px;
+      text-transform:uppercase; color:var(--grey);
+      text-decoration:none; transition:color 0.2s; white-space:nowrap;
+    }
+    .nav-links a:hover { color:var(--green); }
     .hamburger {
-      display:-webkit-flex; display:flex;
-      flex-direction:column; gap:5px;
+      display:flex; flex-direction:column; gap:5px;
       cursor:pointer; padding:4px; background:none; border:none;
     }
     .hamburger span {
@@ -57,10 +53,8 @@
     .hamburger.open span:nth-child(2) { opacity:0; }
     .hamburger.open span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
     .mobile-menu {
-      display:none; position:fixed;
-      top:65px; left:0; right:0; z-index:99;
-      background:var(--white);
-      border-bottom:1px solid var(--border);
+      display:none; position:fixed; top:65px; left:0; right:0; z-index:99;
+      background:var(--white); border-bottom:1px solid var(--border);
       padding:16px 20px; flex-direction:column;
     }
     .mobile-menu.open { display:flex; }
@@ -71,8 +65,6 @@
       border-bottom:1px solid var(--border); transition:color 0.2s;
     }
     .mobile-menu a:last-child { border-bottom:none; }
-    .mobile-menu a:hover { color:var(--green); }
-
     @media (min-width:901px) {
       .nav-links { display:flex !important; }
       .hamburger { display:none !important; }
@@ -81,14 +73,21 @@
 
     /* HERO */
     .page-hero {
-      background:var(--green); padding:72px 48px;
-      text-align:center; position:relative; overflow:hidden;
+      position:relative; min-height:60vh;
+      display:flex; flex-direction:column;
+      align-items:center; justify-content:center;
+      text-align:center; padding:80px 48px;
+      overflow:hidden;
+    }
+    .page-hero img.hero-bg {
+      position:absolute; inset:0; width:100%; height:100%;
+      object-fit:cover; z-index:0;
     }
     .page-hero::before {
-      content:''; position:absolute; inset:0;
-      background:radial-gradient(ellipse at 50% 80%, rgba(255,255,255,0.06), transparent 70%);
+      content:''; position:absolute; inset:0; z-index:1;
+      background:linear-gradient(to bottom, rgba(20,50,30,0.6), rgba(20,50,30,0.75));
     }
-    .page-hero > * { position:relative; z-index:1; }
+    .page-hero > *:not(img) { position:relative; z-index:2; }
     .page-hero .eyebrow {
       font-size:10px; letter-spacing:4px; text-transform:uppercase;
       color:rgba(255,255,255,0.55); margin-bottom:16px;
@@ -105,9 +104,7 @@
     }
 
     /* INTRO */
-    .journey-intro {
-      padding:64px 48px; max-width:720px; margin:0 auto; text-align:center;
-    }
+    .journey-intro { padding:64px 48px; max-width:720px; margin:0 auto; text-align:center; }
     .journey-intro p {
       font-family:'Cormorant Garamond',serif;
       font-size:clamp(17px,2vw,20px); color:var(--ink);
@@ -115,7 +112,7 @@
     }
     .journey-intro p em { color:var(--green); font-style:italic; }
 
-    /* TRIP COUNTER */
+    /* COUNTER */
     .trip-counter {
       display:flex; justify-content:center; gap:48px;
       padding:0 48px 56px; flex-wrap:wrap;
@@ -123,25 +120,19 @@
     .counter-item { text-align:center; }
     .counter-num {
       font-family:'Cormorant Garamond',serif;
-      font-size:48px; font-weight:400; color:var(--green);
-      line-height:1;
+      font-size:48px; font-weight:400; color:var(--green); line-height:1;
     }
     .counter-label {
       font-size:10px; font-weight:500; letter-spacing:3px;
       text-transform:uppercase; color:var(--grey); margin-top:4px;
     }
+    .divider { height:1px; background:var(--border); margin:0 48px 56px; }
 
-    /* DIVIDER */
-    .divider {
-      height:1px; background:var(--border);
-      margin:0 48px 56px;
-    }
-
-    /* TRIP ENTRIES */
+    /* TRIPS */
     .trips { padding:0 48px 80px; }
     .trip-entry {
       display:grid; grid-template-columns:1fr 1fr;
-      gap:48px; align-items:center;
+      gap:48px; align-items:start;
       margin-bottom:80px; padding-bottom:80px;
       border-bottom:1px solid var(--border);
     }
@@ -151,39 +142,27 @@
 
     /* PHOTO GRID */
     .trip-photos { display:grid; gap:8px; }
-    .trip-photos.single { grid-template-columns:1fr; }
+    .trip-photos.one { grid-template-columns:1fr; }
     .trip-photos.two { grid-template-columns:1fr 1fr; }
     .trip-photos.three { grid-template-columns:1fr 1fr; }
-    .trip-photos.three .photo-main { grid-column:1/-1; }
+    .trip-photos.three .main { grid-column:1/-1; }
     .trip-photo {
       width:100%; aspect-ratio:4/3; object-fit:cover;
-      border-radius:4px; display:block;
-      background:var(--green-l);
+      border-radius:4px; display:block; background:var(--green-l);
     }
     .trip-photo.tall { aspect-ratio:3/4; }
-    .photo-placeholder {
-      width:100%; aspect-ratio:4/3;
-      background:var(--green-l); border-radius:4px;
-      display:flex; align-items:center; justify-content:center;
-      color:var(--green); font-size:11px; letter-spacing:2px;
-      text-transform:uppercase;
-    }
 
     /* TRIP CONTENT */
-    .trip-content {}
     .trip-flag {
       font-size:10px; font-weight:500; letter-spacing:3px;
       text-transform:uppercase; color:var(--green); margin-bottom:8px;
     }
     .trip-title {
       font-family:'Cormorant Garamond',serif;
-      font-size:clamp(32px,4vw,48px); font-weight:400;
+      font-size:clamp(28px,3.5vw,44px); font-weight:400;
       color:var(--ink); line-height:1.1; margin-bottom:16px;
     }
-    .trip-meta {
-      display:flex; gap:16px; flex-wrap:wrap;
-      margin-bottom:20px;
-    }
+    .trip-meta { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:20px; }
     .trip-tag {
       font-size:10px; letter-spacing:1.5px; text-transform:uppercase;
       color:var(--green); border:1px solid rgba(61,138,90,0.25);
@@ -195,69 +174,46 @@
       line-height:1.85; margin-bottom:20px;
     }
     .trip-story em { color:var(--ink); font-style:italic; }
-    .trip-highlights {
-      list-style:none; display:flex; flex-direction:column; gap:8px;
-      margin-bottom:24px;
-    }
+    .trip-highlights { list-style:none; display:flex; flex-direction:column; gap:8px; margin-bottom:24px; }
     .trip-highlights li {
       font-size:13px; color:var(--ink);
       display:flex; align-items:flex-start; gap:10px; line-height:1.5;
     }
-    .trip-highlights li::before {
-      content:'—'; color:var(--green); flex-shrink:0; margin-top:1px;
-    }
-    .trip-read-more {
-      display:inline-flex; align-items:center; gap:6px;
-      font-family:'Cormorant Garamond',serif;
-      font-style:italic; font-size:15px;
-      color:var(--green); text-decoration:none;
-      transition:gap 0.2s;
-    }
-    .trip-read-more::after { content:'→'; font-style:normal; }
-    .trip-read-more:hover { gap:10px; }
+    .trip-highlights li::before { content:'—'; color:var(--green); flex-shrink:0; }
 
-    /* COMING SOON ENTRY */
-    .trip-coming {
-      opacity:0.45; pointer-events:none;
-    }
-    .coming-badge {
-      display:inline-block;
-      font-size:9px; letter-spacing:2px; text-transform:uppercase;
-      color:var(--grey); border:1px solid var(--border);
-      padding:3px 10px; border-radius:99px; margin-bottom:10px;
-    }
-
-    /* NEWSLETTER CTA */
+    /* FOLLOW CTA */
     .follow-cta {
-      background:var(--green); padding:64px 48px; text-align:center;
+      position:relative; overflow:hidden;
+      padding:64px 48px; text-align:center;
     }
+    .follow-cta img.cta-bg {
+      position:absolute; inset:0; width:100%; height:100%;
+      object-fit:cover; z-index:0;
+    }
+    .follow-cta::before {
+      content:''; position:absolute; inset:0; z-index:1;
+      background:rgba(42,97,64,0.8);
+    }
+    .follow-cta > *:not(img) { position:relative; z-index:2; }
     .follow-cta h2 {
       font-family:'Cormorant Garamond',serif;
       font-size:clamp(28px,5vw,48px); font-weight:400;
       color:#fff; margin-bottom:12px;
     }
-    .follow-cta p {
-      font-size:14px; color:rgba(255,255,255,0.7);
-      margin-bottom:28px; max-width:440px; margin-left:auto; margin-right:auto;
-    }
+    .follow-cta p { font-size:14px; color:rgba(255,255,255,0.7); margin-bottom:28px; }
     .follow-form { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
     .follow-input {
-      font-family:'DM Sans',sans-serif;
-      font-size:13px; padding:12px 20px;
-      border:none; border-radius:2px; outline:none;
-      width:280px; color:var(--ink);
+      font-family:'DM Sans',sans-serif; font-size:13px;
+      padding:12px 20px; border:none; border-radius:2px;
+      outline:none; width:280px; color:var(--ink);
     }
     .follow-btn {
-      font-family:'DM Sans',sans-serif;
-      font-size:11px; font-weight:500; letter-spacing:2px;
-      text-transform:uppercase; color:var(--green);
-      background:var(--white); border:none;
-      padding:12px 24px; border-radius:2px; cursor:pointer;
-      transition:background 0.2s;
+      font-family:'DM Sans',sans-serif; font-size:11px; font-weight:500;
+      letter-spacing:2px; text-transform:uppercase; color:var(--green);
+      background:var(--white); border:none; padding:12px 24px;
+      border-radius:2px; cursor:pointer;
     }
-    .follow-btn:hover { background:var(--green-l); }
 
-    /* FOOTER */
     footer {
       background:var(--ink); padding:32px 48px;
       display:flex; align-items:center; justify-content:space-between;
@@ -265,26 +221,24 @@
     }
     .footer-logo {
       font-family:'Cormorant Garamond',serif;
-      font-size:16px; letter-spacing:4px;
-      text-transform:uppercase; color:var(--green);
+      font-size:16px; letter-spacing:4px; text-transform:uppercase; color:var(--green);
     }
     .social-links { display:flex; gap:24px; }
     .social-links a {
       font-size:11px; letter-spacing:2px; text-transform:uppercase;
-      color:rgba(255,255,255,0.45); text-decoration:none; transition:color 0.2s;
+      color:rgba(255,255,255,0.45); text-decoration:none;
     }
     .social-links a:hover { color:var(--green); }
     .footer-copy { font-size:10px; color:rgba(255,255,255,0.2); width:100%; }
 
-    /* RESPONSIVE */
     @media (max-width:900px) {
       nav { padding:14px 20px; }
-      .page-hero { padding:56px 20px; }
-      .journey-intro { padding:48px 20px; }
-      .trip-counter { gap:32px; padding:0 20px 48px; }
-      .divider { margin:0 20px 48px; }
+      .page-hero { padding:60px 20px; }
+      .journey-intro { padding:40px 20px; }
+      .trip-counter { gap:28px; padding:0 20px 40px; }
+      .divider { margin:0 20px 40px; }
       .trips { padding:0 20px 56px; }
-      .trip-entry { grid-template-columns:1fr; gap:28px; margin-bottom:56px; padding-bottom:56px; }
+      .trip-entry { grid-template-columns:1fr; gap:24px; margin-bottom:56px; padding-bottom:56px; }
       .trip-entry.reverse { direction:ltr; }
       .follow-cta { padding:48px 20px; }
       footer { padding:28px 20px; flex-direction:column; align-items:flex-start; }
@@ -300,6 +254,8 @@
     </a>
     <div class="nav-links">
       <a href="index.html#destinations">Destinations</a>
+      <a href="adventures.html">Adventures</a>
+      <a href="quiz.html">Quiz</a>
       <a href="index.html#featured">Guides</a>
       <a href="index.html#book">Book a Tour</a>
       <a href="index.html#about">About</a>
@@ -311,34 +267,37 @@
 
   <div class="mobile-menu" id="mobileMenu">
     <a href="index.html#destinations" onclick="closeMenu()">Destinations</a>
+    <a href="adventures.html" onclick="closeMenu()">Adventures</a>
+    <a href="quiz.html" onclick="closeMenu()">Quiz</a>
     <a href="index.html#featured" onclick="closeMenu()">Guides</a>
     <a href="index.html#book" onclick="closeMenu()">Book a Tour</a>
     <a href="index.html#about" onclick="closeMenu()">About</a>
   </div>
 
   <div class="page-hero">
+    <img src="mounticeland.jpeg" alt="Iceland" class="hero-bg"/>
     <p class="eyebrow">Follow the journey</p>
     <h1>The Adventures</h1>
     <p>Every trip that shaped the way I see the world — and the ones still to come.</p>
   </div>
 
   <div class="journey-intro">
-    <p>I didn't start travelling to escape. I started because I was <em>curious</em> — about how people live, what silence sounds like in different countries, what it feels like to be completely lost and completely free at the same time.</p>
-    <p>These are the trips. Not the highlight reel — the real ones. The wrong turns, the unexpected kindness, the mornings that made everything worth it.</p>
+    <p>I didn't plan any of this. I just kept saying yes — to the detour, to the stranger's invitation, to the country nobody in my circle had been to. Most of these trips were with my travel buddy or a group of girls who trusted each other enough to get lost together.</p>
+    <p>These aren't highlights. They're the real ones — the wrong turns, the glacier road closures, the yurts, the local grandmothers who fed us, the moments that still show up in my mind at 2am for no reason.</p>
   </div>
 
   <div class="trip-counter">
     <div class="counter-item">
-      <div class="counter-num">12+</div>
+      <div class="counter-num">15+</div>
       <div class="counter-label">Countries</div>
     </div>
     <div class="counter-item">
-      <div class="counter-num">Solo</div>
-      <div class="counter-label">Travel style</div>
+      <div class="counter-num">Girls</div>
+      <div class="counter-label">Travel crew</div>
     </div>
     <div class="counter-item">
-      <div class="counter-num">Low</div>
-      <div class="counter-label">Budget</div>
+      <div class="counter-num">Local</div>
+      <div class="counter-label">Always first</div>
     </div>
     <div class="counter-item">
       <div class="counter-num">∞</div>
@@ -353,206 +312,295 @@
     <!-- ICELAND -->
     <div class="trip-entry">
       <div class="trip-photos three">
-        <div class="photo-placeholder photo-main">📸 Add Iceland photo here</div>
-        <div class="photo-placeholder">📸 Photo 2</div>
-        <div class="photo-placeholder">📸 Photo 3</div>
+        <img src="glaciericeland.jpeg" alt="Iceland glacier" class="trip-photo main"/>
+        <img src="wtaerfalliceland.jpeg" alt="Iceland waterfall" class="trip-photo"/>
+        <img src="auroraday2.jpeg" alt="Iceland aurora" class="trip-photo"/>
       </div>
       <div class="trip-content">
-        <p class="trip-flag">🇮🇸 Iceland</p>
-        <h2 class="trip-title">Where the sun never sets and silence is deafening</h2>
+        <p class="trip-flag">🇮🇸 Iceland — Top 1</p>
+        <h2 class="trip-title">Four girls, one car, nine nights, and a glacier that closed the road</h2>
         <div class="trip-meta">
-          <span class="trip-tag">Solo</span>
-          <span class="trip-tag">Hiking</span>
-          <span class="trip-tag">Camping</span>
+          <span class="trip-tag">Group of 4</span>
           <span class="trip-tag">Rent a car</span>
+          <span class="trip-tag">Ring Road</span>
+          <span class="trip-tag">Hiking</span>
         </div>
-        <p class="trip-story">I drove the Ring Road alone. No itinerary, no bookings — just a rental car, a sleeping bag, and the kind of quiet you can only find at 2am when the sun is still painting the sky pink. Iceland doesn't let you be indifferent. It either breaks you open or puts you back together. For me, it did both.</p>
+        <p class="trip-story">We planned to do the full Ring Road. On day seven, a glacier closed it. We turned back and didn't care — we'd already hiked every waterfall on the south coast, camped under the northern lights, stood inside a crater, and driven roads that felt like the end of the earth. Iceland doesn't need a complete plan. It just needs you to show up.</p>
         <ul class="trip-highlights">
-          <li>Slept in the car under the northern lights near Kirkjufell</li>
-          <li>Hiked to Skógafoss at sunrise — completely alone</li>
-          <li>Got lost on the Westfjords and found the most beautiful fjord I've ever seen</li>
-          <li>Total budget: under €800 for 10 days including flights</li>
+          <li>Hiked Skógafoss, Seljalandsfoss and waterfalls with no names</li>
+          <li>Golden Circle in one day — Þingvellir, Geysir, Gullfoss</li>
+          <li>Woke up to the northern lights outside the car</li>
+          <li>Road closed by glacier on day 7 — turned back without regret</li>
+          <li>9 nights — still not enough</li>
         </ul>
-        <a href="#" class="trip-read-more">Full Iceland journal</a>
       </div>
     </div>
 
     <!-- KYRGYZSTAN -->
     <div class="trip-entry reverse">
-      <div class="trip-photos two">
-        <div class="photo-placeholder">📸 Add Kyrgyzstan photo</div>
-        <div class="photo-placeholder">📸 Photo 2</div>
+      <div class="trip-photos three">
+        <img src="landscapkyrg1.jpeg" alt="Kyrgyzstan landscape" class="trip-photo main"/>
+        <img src="kyrgyurt.jpeg" alt="Yurt in Kyrgyzstan" class="trip-photo"/>
+        <img src="kyrgrock.jpeg" alt="Kyrgyzstan rocks" class="trip-photo"/>
       </div>
       <div class="trip-content">
-        <p class="trip-flag">🇰🇬 Kyrgyzstan</p>
-        <h2 class="trip-title">Woke up in a tent with no plan and found everything</h2>
+        <p class="trip-flag">🇰🇬 Kyrgyzstan — Top 2</p>
+        <h2 class="trip-title">The whole country in one trip — the landscape is violent and the people are everything</h2>
         <div class="trip-meta">
-          <span class="trip-tag">Solo</span>
-          <span class="trip-tag">Trekking</span>
-          <span class="trip-tag">Camping</span>
+          <span class="trip-tag">Full country</span>
+          <span class="trip-tag">Yurts</span>
+          <span class="trip-tag">Hiking</span>
           <span class="trip-tag">Off grid</span>
         </div>
-        <p class="trip-story">Kyrgyzstan is what happens when you go somewhere nobody told you to go. The mountains are violent and beautiful. The people are among the most generous I've ever encountered. I slept in yurts, trekked for days without seeing another tourist, and drank fermented mare's milk at 3,000 metres. It changed something in me permanently.</p>
+        <p class="trip-story">We went around the whole country. The landscape is the kind that makes you feel genuinely small — in the best way. We lived in yurts, hiked places that don't appear on most maps, and rode horses across open steppe. The city wasn't for us and the food was meh — but the mountains, the nomadic culture and the silence of being somewhere truly remote made it one of the most remarkable trips I've done.</p>
         <ul class="trip-highlights">
-          <li>3-day trek to Song-Köl lake — no crowds, just horses and sky</li>
-          <li>Stayed with a nomadic family in a yurt near Karakol</li>
-          <li>Hitchhiked across the Torugart Pass</li>
-          <li>One of the cheapest countries I've ever visited</li>
+          <li>Crossed the full country — north to south</li>
+          <li>Stayed in yurts with nomadic families</li>
+          <li>Hiked Song-Köl lake — no other tourists in sight</li>
+          <li>Remarkable landscape at every turn</li>
+          <li>One of the most affordable trips — quality stays, zero waste</li>
         </ul>
-        <a href="#" class="trip-read-more">Full Kyrgyzstan journal</a>
       </div>
     </div>
 
-    <!-- PORTUGAL -->
+    <!-- SRI LANKA -->
     <div class="trip-entry">
-      <div class="trip-photos two">
-        <div class="photo-placeholder">📸 Add Portugal photo</div>
-        <div class="photo-placeholder">📸 Photo 2</div>
+      <div class="trip-photos three">
+        <img src="Srilankalionrock.jpeg" alt="Sri Lanka Lion Rock" class="trip-photo main"/>
+        <img src="trainsrilanka.jpeg" alt="Sri Lanka train" class="trip-photo"/>
+        <img src="elephantsrilanka.jpeg" alt="Sri Lanka elephants" class="trip-photo"/>
       </div>
       <div class="trip-content">
-        <p class="trip-flag">🇵🇹 Portugal</p>
-        <h2 class="trip-title">Slow mornings, cold Atlantic, and the best €2 coffee of my life</h2>
+        <p class="trip-flag">🇱🇰 Sri Lanka — Top 3</p>
+        <h2 class="trip-title">Lived in the jungle, surfed at dawn, hiked the end of the world</h2>
         <div class="trip-meta">
-          <span class="trip-tag">Solo</span>
-          <span class="trip-tag">Coastal drive</span>
           <span class="trip-tag">Local life</span>
-          <span class="trip-tag">Rent a car</span>
+          <span class="trip-tag">Jungle stay</span>
+          <span class="trip-tag">Surfing</span>
+          <span class="trip-tag">Hiking</span>
         </div>
-        <p class="trip-story">Portugal surprised me. I expected beaches and tourists — I found fishing villages where time moves differently, cliffs that make you feel genuinely small, and a culture that still values sitting down and doing nothing. I drove from Porto to the Algarve with no fixed stops. I'm still thinking about a particular sunset in Sagres.</p>
+        <p class="trip-story">We lived with a Sri Lankan family in the jungle. Not a resort, not a hotel — a family home surrounded by trees and sounds I'd never heard before. We surfed in Weligama at dawn, beached in Mirissa, rode the famous train through Nuwara Eliya in the cold misty highlands, cooked their food, did a village tour, and hiked to what locals call the End of the World. The food was extraordinary. The kindness of the people even more so.</p>
         <ul class="trip-highlights">
-          <li>Rented a car in Porto — best decision of the trip</li>
-          <li>Spent 3 nights in a tiny fishing village near Nazaré</li>
-          <li>Hiked the Rota Vicentina coastal trail section</li>
-          <li>Avoided Lisbon tourist spots entirely — found better ones</li>
+          <li>Stayed with a local Sri Lankan family in the jungle</li>
+          <li>Surfed in Weligama — complete beginners welcome</li>
+          <li>Train through Nuwara Eliya — cold, misty, unforgettable</li>
+          <li>Hiked the End of the World — worth every step</li>
+          <li>Ella, Colombo, Mirissa — covered it all</li>
         </ul>
-        <a href="#" class="trip-read-more">Full Portugal journal</a>
       </div>
     </div>
 
-    <!-- ITALY -->
+    <!-- MADEIRA / PORTUGAL -->
     <div class="trip-entry reverse">
-      <div class="trip-photos single">
-        <div class="photo-placeholder">📸 Add Italy photo</div>
-      </div>
-      <div class="trip-content">
-        <p class="trip-flag">🇮🇹 Italy</p>
-        <h2 class="trip-title">Got lost on a backroad and found a village that didn't have Wi-Fi</h2>
-        <div class="trip-meta">
-          <span class="trip-tag">Solo</span>
-          <span class="trip-tag">Road trip</span>
-          <span class="trip-tag">Food</span>
-          <span class="trip-tag">Off the beaten path</span>
-        </div>
-        <p class="trip-story">Everyone goes to Rome and Florence. I rented a car and drove through Calabria, Basilicata and the Dolomites — regions most tourists fly over. I ate in places with no English menu, stayed in family-run guesthouses that cost €30 a night, and drove mountain roads that should probably be illegal. The Italy nobody talks about is the best Italy.</p>
-        <ul class="trip-highlights">
-          <li>Drove the Stelvio Pass — one of the greatest roads on earth</li>
-          <li>Stayed 2 nights in Matera — the city carved into rock</li>
-          <li>Found a village in Calabria where I was the only non-local</li>
-          <li>Ate the best food of my life for under €15 a day</li>
-        </ul>
-        <a href="#" class="trip-read-more">Full Italy journal</a>
-      </div>
-    </div>
-
-    <!-- PHILIPPINES -->
-    <div class="trip-entry">
       <div class="trip-photos two">
-        <div class="photo-placeholder">📸 Add Philippines photo</div>
-        <div class="photo-placeholder">📸 Photo 2</div>
+        <img src="jamesbond.jpeg" alt="James Bond island" class="trip-photo"/>
+        <img src="hithteroadkyrg.jpeg" alt="Road trip" class="trip-photo"/>
       </div>
       <div class="trip-content">
-        <p class="trip-flag">🇵🇭 Philippines</p>
-        <h2 class="trip-title">7,000 islands and I only needed three to understand the world differently</h2>
+        <p class="trip-flag">🇵🇹 Portugal — Madeira</p>
+        <h2 class="trip-title">Lisbon, then Madeira by plane, then Porto by train — one country, three worlds</h2>
         <div class="trip-meta">
-          <span class="trip-tag">Solo</span>
-          <span class="trip-tag">Island hopping</span>
-          <span class="trip-tag">Diving</span>
-          <span class="trip-tag">Local boats</span>
+          <span class="trip-tag">Road trip</span>
+          <span class="trip-tag">Hiking</span>
+          <span class="trip-tag">Black sand beach</span>
+          <span class="trip-tag">Train</span>
         </div>
-        <p class="trip-story">The Philippines is chaos and paradise existing simultaneously. I took local ferries between islands, avoided the tourist resorts entirely, and ended up in places so beautiful they felt unreal. The water is the kind of blue that makes you question every ocean you've seen before. The people will make you want to stay forever.</p>
+        <p class="trip-story">Portugal surprised us every time we changed cities. Lisbon first — beautiful and overwhelming. Then a short flight to Madeira, where we hiked almost every trail on the island and found a black sand beach that felt like another planet. Then the train to Porto, slow and scenic. Three completely different experiences in one country — none of them tourist traps.</p>
         <ul class="trip-highlights">
-          <li>Took a local bangka boat to an uninhabited island near Palawan</li>
-          <li>Spent a week in Siargao before it became famous</li>
-          <li>Dove with whale sharks in Donsol — no crowds, no cages</li>
-          <li>Total cost: one of the most affordable trips I've done</li>
+          <li>Madeira — hiked almost every levada trail</li>
+          <li>Black sand beach in Madeira — completely unexpected</li>
+          <li>Lisbon → Madeira → Porto — three cities, one trip</li>
+          <li>Porto by train from Lisbon — scenic and easy</li>
         </ul>
-        <a href="#" class="trip-read-more">Full Philippines journal</a>
       </div>
     </div>
 
     <!-- MALDIVES -->
-    <div class="trip-entry reverse">
-      <div class="trip-photos single">
-        <div class="photo-placeholder">📸 Add Maldives photo</div>
+    <div class="trip-entry">
+      <div class="trip-photos two">
+        <img src="maldiveswatervilla.jpeg" alt="Maldives water villa" class="trip-photo"/>
+        <img src="sunsetmaldives.jpeg" alt="Maldives sunset" class="trip-photo"/>
       </div>
       <div class="trip-content">
         <p class="trip-flag">🇲🇻 Maldives</p>
-        <h2 class="trip-title">You don't need a resort to experience the most beautiful water on earth</h2>
+        <h2 class="trip-title">Five girls, one island, zero other guests — we felt like we owned the place</h2>
         <div class="trip-meta">
-          <span class="trip-tag">Solo</span>
-          <span class="trip-tag">Local islands</span>
-          <span class="trip-tag">Budget</span>
-          <span class="trip-tag">Snorkelling</span>
+          <span class="trip-tag">Group of 5</span>
+          <span class="trip-tag">Diving</span>
+          <span class="trip-tag">Sharks</span>
+          <span class="trip-tag">Affordable resort</span>
         </div>
-        <p class="trip-story">Everyone thinks the Maldives is only for honeymooners with unlimited budgets. I went solo, stayed on local islands, paid €20 a night for a guesthouse, and swam in the same water as the €1,000-a-night overwater bungalows. The Maldives nobody talks about — the local island version — is actually better. Quieter, more real, infinitely more interesting.</p>
+        <p class="trip-story">Everyone assumes the Maldives is only for honeymoons with unlimited budgets. We found a beautiful, affordable resort where we were essentially the only guests — five girls who felt like they owned an entire island. We dived with sharks, snorkelled every morning, watched sunsets from the water and never once felt like we were missing anything the expensive places have. It was one of the most peaceful trips I've ever done.</p>
         <ul class="trip-highlights">
-          <li>Stayed on Maafushi and Dhigurah local islands</li>
-          <li>Snorkelled with mantas and reef sharks every morning</li>
-          <li>Ate local food for €3 a meal at family-run cafes</li>
-          <li>Total trip cost: fraction of what people assume</li>
+          <li>Found an amazing affordable resort — practically had it to ourselves</li>
+          <li>Dived with reef sharks — completely calm, completely beautiful</li>
+          <li>Snorkelling every single morning before breakfast</li>
+          <li>Five girls, total peace, zero regrets</li>
         </ul>
-        <a href="#" class="trip-read-more">Full Maldives journal</a>
+      </div>
+    </div>
+
+    <!-- PHILIPPINES -->
+    <div class="trip-entry reverse">
+      <div class="trip-photos three">
+        <img src="tatayfallphlip.jpeg" alt="Tatay Falls Philippines" class="trip-photo main"/>
+        <img src="snorkelphilipines.jpeg" alt="Snorkelling Philippines" class="trip-photo"/>
+        <img src="islandhopphilip.jpeg" alt="Island hopping Philippines" class="trip-photo"/>
+      </div>
+      <div class="trip-content">
+        <p class="trip-flag">🇵🇭 Philippines</p>
+        <h2 class="trip-title">Based in Batangas, went everywhere — Tatay Falls, Coron, and a grandmother's table</h2>
+        <div class="trip-meta">
+          <span class="trip-tag">Island hopping</span>
+          <span class="trip-tag">Snorkelling</span>
+          <span class="trip-tag">Local family</span>
+          <span class="trip-tag">Road trips</span>
+        </div>
+        <p class="trip-story">We lived in Batangas as our base — not a resort, just a home. From there we went everywhere: Tatay Falls, island hopping to Coron, snorkelling in water so clear it didn't feel real. We visited a friend's grandmother in the province, ate at her table, did road trips on roads with no names. The clearest coral I've ever seen. The warmest people I've ever met.</p>
+        <ul class="trip-highlights">
+          <li>Tatay Falls — reached by boat and jungle trail</li>
+          <li>Island hopping to Coron — the water is unreal</li>
+          <li>Snorkelled in the clearest coral reef I've ever seen</li>
+          <li>Visited a local family in Batangas — ate home-cooked food</li>
+          <li>Road trips with no destination — just driving and stopping</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ITALY -->
+    <div class="trip-entry">
+      <div class="trip-photos three">
+        <img src="florenceitalychurch.jpeg" alt="Florence Duomo" class="trip-photo main"/>
+        <img src="rockclimbcomoitaly.jpeg" alt="Rock climbing Lake Como Italy" class="trip-photo"/>
+        <img src="roaditaly.jpeg" alt="Italy road" class="trip-photo"/>
+      </div>
+      <div class="trip-content">
+        <p class="trip-flag">🇮🇹 Italy</p>
+        <h2 class="trip-title">Florence, Rome, Lake Como — and we accidentally drove into Switzerland</h2>
+        <div class="trip-meta">
+          <span class="trip-tag">Road trip</span>
+          <span class="trip-tag">Rock climbing</span>
+          <span class="trip-tag">Lake Como</span>
+          <span class="trip-tag">Unplanned</span>
+        </div>
+        <p class="trip-story">We started in Florence, walked to the Duomo at night when the crowds were gone, drove to Rome at sunrise for the Colosseum, then headed north toward Milan. Somewhere near Lake Como we stopped to rock climb — one of those completely unplanned moments that ends up being the one you remember most. We then drove in the wrong direction and entered Switzerland by accident. We turned around immediately but still count it as a third country.</p>
+        <ul class="trip-highlights">
+          <li>Florence Duomo at night — completely worth staying up for</li>
+          <li>Colosseum at dawn — almost nobody there</li>
+          <li>Rock climbing at Lake Como — spontaneous and incredible</li>
+          <li>Accidentally drove into Switzerland — unplanned Switzerland visit</li>
+          <li>Florence → Rome → Milan in one road trip</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- OMAN -->
+    <div class="trip-entry reverse">
+      <div class="trip-photos three">
+        <img src="wadioman.jpeg" alt="Wadi Oman" class="trip-photo main"/>
+        <img src="dimaniyatoman.jpeg" alt="Dimaniyat Islands Oman" class="trip-photo"/>
+        <img src="turtleloveoman.jpeg" alt="Turtle Oman" class="trip-photo"/>
+      </div>
+      <div class="trip-content">
+        <p class="trip-flag">🇴🇲 Oman — Regular</p>
+        <h2 class="trip-title">Wadis, Dimaniyat Islands, turtles, and Souq Muttrah — a neighbour worth revisiting</h2>
+        <div class="trip-meta">
+          <span class="trip-tag">Wadis</span>
+          <span class="trip-tag">Diving</span>
+          <span class="trip-tag">Islands</span>
+          <span class="trip-tag">Regular trip</span>
+        </div>
+        <p class="trip-story">Oman is close enough to visit regularly — and we do. The wadis are some of the most beautiful natural swimming spots in the region. Dimaniyat Islands is a marine reserve where you swim with turtles and coral that rivals anywhere in the world. Souq Muttrah in Muscat is the kind of market that makes you feel like you've stepped back 200 years. A neighbour that never gets old.</p>
+        <ul class="trip-highlights">
+          <li>Wadi Shab and Wadi Bani Khalid — worth every trip</li>
+          <li>Dimaniyat Islands — turtles, coral, complete peace</li>
+          <li>Souq Muttrah — Muscat's ancient market</li>
+          <li>Close enough for a long weekend — far enough to feel like another world</li>
+        </ul>
       </div>
     </div>
 
     <!-- TURKEY -->
     <div class="trip-entry">
       <div class="trip-photos two">
-        <div class="photo-placeholder">📸 Add Turkey photo</div>
-        <div class="photo-placeholder">📸 Photo 2</div>
+        <img src="bungloturk.jpeg" alt="Turkey bungalow" class="trip-photo"/>
+        <img src="turkeysofiroad.jpeg" alt="Turkey road" class="trip-photo"/>
       </div>
       <div class="trip-content">
-        <p class="trip-flag">🇹🇷 Turkey</p>
-        <h2 class="trip-title">From Istanbul's chaos to Cappadocia's silence — same country, different worlds</h2>
+        <p class="trip-flag">🇹🇷 Turkey — Regular</p>
+        <h2 class="trip-title">A hut in Sapanca, horse riding in Gebze, and a horse that threw me off in the middle of nowhere</h2>
         <div class="trip-meta">
-          <span class="trip-tag">Solo</span>
-          <span class="trip-tag">Culture</span>
+          <span class="trip-tag">Regular trip</span>
+          <span class="trip-tag">Road trips</span>
+          <span class="trip-tag">Horse riding</span>
           <span class="trip-tag">Hiking</span>
-          <span class="trip-tag">Rent a car</span>
         </div>
-        <p class="trip-story">Turkey is ten countries in one. I started in Istanbul — overwhelming, electric, ancient. Then I drove east. The landscape changes slowly at first, then all at once. By the time I reached Cappadocia I felt like I'd travelled centuries, not kilometres. The hot air balloons at sunrise over the valleys is one of the few things that's exactly as good as the photos suggest.</p>
+        <p class="trip-story">Turkey is one of those places we keep going back to. Once we stayed in a hut bungalow in Sapanca with a group of friends — cold mornings, the hosts making a full Turkish breakfast, wood stove, complete silence. Another time I went horse riding in Gebze and the horse threw me off in the middle of nowhere. Alone. I walked back. We also drove to Bursa for snow, and motorskiied somewhere that shouldn't be forgotten.</p>
         <ul class="trip-highlights">
-          <li>Watched sunrise over Cappadocia from a rooftop — no balloon needed</li>
-          <li>Hiked the Ihlara Valley alone — saw nobody for hours</li>
-          <li>Found a hammam in Istanbul that's been running since 1584</li>
-          <li>Drove the Black Sea coast — completely underrated</li>
+          <li>Hut bungalow in Sapanca — woke up to homemade Turkish breakfast</li>
+          <li>Horse riding in Gebze — got thrown off, walked back alone</li>
+          <li>Drove to Bursa for snow and mountain air</li>
+          <li>Motorskiing — one of the most fun things we've done</li>
+          <li>Istanbul regulalry — always finds something new</li>
         </ul>
-        <a href="#" class="trip-read-more">Full Turkey journal</a>
       </div>
     </div>
 
-    <!-- SEYCHELLES -->
-    <div class="trip-entry reverse trip-coming">
-      <div class="trip-photos single">
-        <div class="photo-placeholder">📸 Coming soon</div>
+    <!-- SPAIN -->
+    <div class="trip-entry reverse">
+      <div class="trip-photos two">
+        <img src="spotkyrg.jpeg" alt="Spain" class="trip-photo"/>
+        <img src="picnickyrg.jpeg" alt="Spain" class="trip-photo"/>
       </div>
       <div class="trip-content">
-        <span class="coming-badge">Coming soon</span>
-        <p class="trip-flag">🇸🇨 Seychelles</p>
-        <h2 class="trip-title">The one where I finally understood what "remote" really means</h2>
+        <p class="trip-flag">🇪🇸 Spain</p>
+        <h2 class="trip-title">Hiked Málaga, drove to Tarifa, got lost in Andalucía, played golf twice in Marbella</h2>
         <div class="trip-meta">
-          <span class="trip-tag">Solo</span>
+          <span class="trip-tag">Travel buddy</span>
+          <span class="trip-tag">Road trip</span>
           <span class="trip-tag">Hiking</span>
-          <span class="trip-tag">Nature</span>
+          <span class="trip-tag">Marbella</span>
         </div>
-        <p class="trip-story">Journal coming soon. Follow on Instagram for updates.</p>
+        <p class="trip-story">Me and my travel buddy drove the south of Spain together. Hiked in Málaga, then drove the coast to Tarifa — the southernmost point of Europe, where you can see Africa across the water. Stopped to meet a friend in Andalucía, then on to Ronda for the famous bridge. Ended in Marbella at my aunt's house where we explored, drove around with people who had very nice cars, and played golf twice. Neither of us knew how to play golf.</p>
+        <ul class="trip-highlights">
+          <li>Hiked in Málaga — underrated trail views</li>
+          <li>Tarifa — saw Africa from Europe across the strait</li>
+          <li>Ronda — the bridge is as dramatic as it looks</li>
+          <li>Marbella — stayed with family, explored like locals</li>
+          <li>Played golf twice — no regrets, would do again</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- THAILAND -->
+    <div class="trip-entry">
+      <div class="trip-photos two">
+        <img src="thailandphiphi.jpeg" alt="Thailand Phi Phi" class="trip-photo"/>
+        <img src="thailandboat.jpeg" alt="Thailand boat" class="trip-photo"/>
+      </div>
+      <div class="trip-content">
+        <p class="trip-flag">🇹🇭 Thailand</p>
+        <h2 class="trip-title">Phuket, Krabi, Bangkok — great food, great islands, too many tourists</h2>
+        <div class="trip-meta">
+          <span class="trip-tag">Island hopping</span>
+          <span class="trip-tag">Food</span>
+          <span class="trip-tag">Shopping</span>
+          <span class="trip-tag">Busy</span>
+        </div>
+        <p class="trip-story">Thailand is fun — genuinely fun. Phuket has some of the best street food I've eaten anywhere. Krabi is beautiful for island hopping even if you share the water with 200 other boats. Bangkok is great for shopping and the night markets are worth every minute. Honest verdict: it's busy, it's touristy, and it's still worth going. Just manage your expectations and go in the shoulder season.</p>
+        <ul class="trip-highlights">
+          <li>Phuket — best street food of the trip</li>
+          <li>Krabi — island hopping, a lot of boats but beautiful water</li>
+          <li>Bangkok night markets — go with an empty stomach</li>
+          <li>Honest take — very busy, still worth it</li>
+        </ul>
       </div>
     </div>
 
   </div>
 
-  <!-- FOLLOW CTA -->
   <div class="follow-cta">
+    <img src="icelandaurora1.jpeg" alt="Iceland aurora" class="cta-bg"/>
     <h2>Follow the journey</h2>
     <p>New destinations, honest guides and stories from the road — straight to your inbox.</p>
     <div class="follow-form">
