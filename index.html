@@ -3,263 +3,507 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>The Journey — Ataraxia</title>
-  <meta name="description" content="Follow the journey — personal travel stories across Iceland, Kyrgyzstan, Sri Lanka, Philippines, Italy, Portugal, Maldives, Oman, Turkey and beyond."/>
-  <meta property="og:title" content="The Journey — Ataraxia"/>
-  <meta property="og:description" content="Not every journey needs a plan. Follow along."/>
-  <meta property="og:image" content="https://ataraxiaadv.github.io/mounticeland.jpeg"/>
+  <title>Ataraxia — Your Travel Encyclopedia</title>
+
+  <!-- SEO -->
+  <meta name="description" content="A Bahrain-based travel encyclopedia. Hidden gems, hiking trails, local food guides and honest travel tips across the GCC and beyond."/>
+  <meta name="keywords" content="Bahrain travel, hidden Manama, GCC travel guide, Bahrain food, travel encyclopedia, ataraxia travel"/>
+  <meta name="author" content="Ataraxia"/>
+
+  <!-- Open Graph (WhatsApp, Facebook, iMessage) -->
+  <meta property="og:title" content="Ataraxia — Your Travel Encyclopedia"/>
+  <meta property="og:description" content="Hidden gems, local food, and honest guides across Bahrain and the GCC. No noise — just the good stuff locals know."/>
+  <meta property="og:image" content="https://ataraxiaadv.github.io/Ataraxia-adv/Manama.jpg"/>
+  <meta property="og:url" content="https://ataraxiaadv.github.io/Ataraxia-adv/"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:site_name" content="Ataraxia"/>
+
+  <!-- Twitter / X card -->
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Ataraxia — Your Travel Encyclopedia"/>
+  <meta name="twitter:description" content="Hidden gems, local food, and honest guides across Bahrain and the GCC."/>
+  <meta name="twitter:image" content="https://ataraxiaadv.github.io/Ataraxia-adv/Manama.jpg"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --green:#3d8a5a; --green-d:#2a6140; --green-l:#e8f4ee;
-      --white:#ffffff; --ink:#1a1a1a; --grey:#6b6b6b;
-      --sand:#f0ebe3; --border:rgba(61,138,90,0.15);
+      --green:   #3d8a5a;
+      --green-d: #2a6140;
+      --green-l: #e8f4ee;
+      --white:   #ffffff;
+      --ink:     #1a1a1a;
+      --grey:    #6b6b6b;
+      --sand:    #f0ebe3;
+      --border:  rgba(61,138,90,0.15);
     }
-    * { margin:0; padding:0; box-sizing:border-box; }
-    html { scroll-behavior:smooth; }
-    body { font-family:'DM Sans',sans-serif; background:var(--white); color:var(--ink); }
 
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--ink); }
+
+    /* NAV */
     nav {
-      position:sticky; top:0; z-index:100;
-      display:flex; align-items:center; justify-content:space-between;
-      padding:16px 32px; background:rgba(255,255,255,0.96);
-      backdrop-filter:blur(10px); border-bottom:1px solid var(--border);
-      flex-wrap:nowrap;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 32px;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(61,138,90,0.12);
+      flex-wrap: nowrap;
     }
-    .nav-logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
-    .nav-logo img { height:32px; width:32px; border-radius:50%; object-fit:cover; }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none;
+    }
+    .nav-logo img {
+      height: 36px; width: 36px; border-radius: 50%; object-fit: cover;
+    }
     .nav-logo-text {
-      font-family:'Cormorant Garamond',serif;
-      font-size:18px; font-weight:600; letter-spacing:3px;
-      text-transform:uppercase; color:var(--green);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px; font-weight: 600; letter-spacing: 3px;
+      color: var(--green); text-transform: uppercase;
     }
-    .nav-links { display:none; gap:24px; }
+    .nav-links { display: none; gap: 32px; }
+    .hamburger { 
+      display: -webkit-flex;
+      display: flex;
+      flex-direction: column; gap: 5px;
+      cursor: pointer; padding: 4px; 
+      background: none; border: none;
+    }
+
+    /* DESKTOP ONLY */
+    @media (min-width: 901px) {
+      .nav-links { display: flex !important; }
+      .hamburger { display: none !important; }
+      .mobile-menu { display: none !important; }
+    }
+    .nav-links { display: none; gap: 24px; }
     .nav-links a {
-      font-size:10px; font-weight:500; letter-spacing:1.5px;
-      text-transform:uppercase; color:var(--grey);
-      text-decoration:none; transition:color 0.2s; white-space:nowrap;
+      font-size: 10px; font-weight: 500; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--grey); text-decoration: none;
+      transition: color 0.2s; white-space: nowrap;
     }
-    .nav-links a:hover { color:var(--green); }
-    .hamburger {
-      display:flex; flex-direction:column; gap:5px;
-      cursor:pointer; padding:4px; background:none; border:none;
-    }
-    .hamburger span {
-      display:block; width:22px; height:2px;
-      background:var(--green); border-radius:2px; transition:all 0.3s;
-    }
-    .hamburger.open span:nth-child(1) { transform:rotate(45deg) translate(5px,5px); }
-    .hamburger.open span:nth-child(2) { opacity:0; }
-    .hamburger.open span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
-    .mobile-menu {
-      display:none; position:fixed; top:65px; left:0; right:0; z-index:99;
-      background:var(--white); border-bottom:1px solid var(--border);
-      padding:16px 20px; flex-direction:column;
-    }
-    .mobile-menu.open { display:flex; }
-    .mobile-menu a {
-      font-size:12px; font-weight:500; letter-spacing:2px;
-      text-transform:uppercase; color:var(--ink);
-      text-decoration:none; padding:14px 0;
-      border-bottom:1px solid var(--border); transition:color 0.2s;
-    }
-    .mobile-menu a:last-child { border-bottom:none; }
-    @media (min-width:901px) {
-      .nav-links { display:flex !important; }
-      .hamburger { display:none !important; }
-      .mobile-menu { display:none !important; }
-    }
+    .nav-links a:hover { color: var(--green); }
 
     /* HERO */
-    .page-hero {
-      position:relative; min-height:60vh;
-      display:flex; flex-direction:column;
-      align-items:center; justify-content:center;
-      text-align:center; padding:80px 48px;
-      overflow:hidden;
+    .hero {
+      min-height: 100vh;
+      position: relative; overflow: hidden;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 120px 48px 80px;
     }
-    .page-hero img.hero-bg {
-      position:absolute; inset:0; width:100%; height:100%;
-      object-fit:cover; z-index:0;
+    .hero-video {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; z-index: 0;
     }
-    .page-hero::before {
-      content:''; position:absolute; inset:0; z-index:1;
-      background:linear-gradient(to bottom, rgba(20,50,30,0.6), rgba(20,50,30,0.75));
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(to bottom,
+        rgba(42,97,64,0.72) 0%,
+        rgba(42,97,64,0.55) 50%,
+        rgba(20,40,28,0.8) 100%);
     }
-    .page-hero > *:not(img) { position:relative; z-index:2; }
-    .page-hero .eyebrow {
-      font-size:10px; letter-spacing:4px; text-transform:uppercase;
-      color:rgba(255,255,255,0.55); margin-bottom:16px;
+    .hero > *:not(.hero-video) { position: relative; z-index: 2; }
+    .hero-eyebrow {
+      font-size: 10px; font-weight: 500; letter-spacing: 4px;
+      text-transform: uppercase; color: rgba(255,255,255,0.55);
+      margin-bottom: 24px;
     }
-    .page-hero h1 {
-      font-family:'Cormorant Garamond',serif;
-      font-size:clamp(36px,7vw,72px); font-weight:400;
-      color:#fff; margin-bottom:16px; line-height:1;
+    .hero-logo-img {
+      height: 72px; margin-bottom: 20px;
+      filter: brightness(0) invert(1);
     }
-    .page-hero p {
-      font-family:'Cormorant Garamond',serif;
-      font-style:italic; font-size:18px;
-      color:rgba(255,255,255,0.75); max-width:520px; margin:0 auto;
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(52px, 10vw, 100px);
+      font-weight: 400; line-height: 0.95;
+      color: var(--white); letter-spacing: 10px;
+      text-transform: uppercase; margin-bottom: 28px;
+    }
+    .hero-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic; font-size: clamp(17px, 2.2vw, 22px);
+      color: rgba(255,255,255,0.75);
+      max-width: 500px; line-height: 1.7; margin-bottom: 40px;
+    }
+    .hero-tags {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      justify-content: center; margin-bottom: 52px;
+    }
+    .hero-tag {
+      font-size: 10px; letter-spacing: 1.5px;
+      color: rgba(255,255,255,0.7);
+      border: 1px solid rgba(255,255,255,0.25);
+      padding: 6px 14px; border-radius: 99px;
+      transition: all 0.2s;
+    }
+    .hero-tag:hover { background: rgba(255,255,255,0.1); color: #fff; }
+    .hero-cta {
+      display: inline-block;
+      font-size: 11px; font-weight: 500; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--green);
+      background: var(--white); padding: 14px 36px;
+      text-decoration: none; border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .hero-cta:hover { background: var(--green-l); }
+    .hero-scroll {
+      position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+      font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      white-space: nowrap;
+    }
+    .hero-scroll::after {
+      content: ''; width: 1px; height: 36px;
+      background: rgba(255,255,255,0.3);
+      animation: pulse 1.8s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity: 0.3; } 50% { opacity: 1; }
     }
 
-    /* INTRO */
-    .journey-intro { padding:64px 48px; max-width:720px; margin:0 auto; text-align:center; }
-    .journey-intro p {
-      font-family:'Cormorant Garamond',serif;
-      font-size:clamp(17px,2vw,20px); color:var(--ink);
-      line-height:1.85; margin-bottom:20px;
+    /* SECTIONS */
+    .section { padding: 80px 48px; }
+    .section-header { margin-bottom: 44px; }
+    .section-eyebrow {
+      font-size: 10px; font-weight: 500; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--green); margin-bottom: 8px;
     }
-    .journey-intro p em { color:var(--green); font-style:italic; }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(32px, 5vw, 48px); font-weight: 400;
+      color: var(--ink); line-height: 1.1;
+    }
 
-    /* COUNTER */
-    .trip-counter {
-      display:flex; justify-content:center; gap:48px;
-      padding:0 48px 56px; flex-wrap:wrap;
+    /* INTRO STRIP */
+    .intro-strip {
+      background: var(--white);
+      padding: 64px 48px;
+      border-bottom: 1px solid rgba(61,138,90,0.1);
     }
-    .counter-item { text-align:center; }
-    .counter-num {
-      font-family:'Cormorant Garamond',serif;
-      font-size:48px; font-weight:400; color:var(--green); line-height:1;
+    .intro-inner {
+      max-width: 720px; margin: 0 auto;
     }
-    .counter-label {
-      font-size:10px; font-weight:500; letter-spacing:3px;
-      text-transform:uppercase; color:var(--grey); margin-top:4px;
+    .intro-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(17px, 2vw, 20px);
+      color: var(--ink); line-height: 1.85;
+      margin-bottom: 24px;
     }
-    .divider { height:1px; background:var(--border); margin:0 48px 56px; }
+    .intro-text em { color: var(--green); font-style: italic; }
+    .intro-sub {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px; font-weight: 500; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--green);
+      margin-top: 8px;
+    }
 
-    /* TRIPS */
-    .trips { padding:0 48px 80px; }
-    .trip-entry {
-      display:grid; grid-template-columns:1fr 1fr;
-      gap:48px; align-items:start;
-      margin-bottom:80px; padding-bottom:80px;
-      border-bottom:1px solid var(--border);
+    /* DESTINATIONS */
+    #destinations { background: var(--white); }
+    .dest-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
     }
-    .trip-entry:last-child { border-bottom:none; margin-bottom:0; }
-    .trip-entry.reverse { direction:rtl; }
-    .trip-entry.reverse > * { direction:ltr; }
+    .dest-card {
+      position: relative; overflow: hidden; border-radius: 4px;
+      aspect-ratio: 3/4; display: block;
+      text-decoration: none; background: var(--green-l);
+    }
+    .dest-card-img {
+      width: 100%; height: 100%;
+      background-size: cover; background-position: center;
+      transition: transform 0.6s ease;
+    }
+    .dest-card:hover .dest-card-img { transform: scale(1.04); }
+    .dest-bahrain { background-color: #2a5a6a; background-image: url('Manama.jpg'); }
+    .dest-uae     { background: linear-gradient(135deg, #c8a96e, #8b6914); }
+    .dest-oman    { background: linear-gradient(135deg, #4a8a5a, #2a5a3a); }
+    .dest-saudi   { background: linear-gradient(135deg, #8a4a3a, #5a2a1a); }
+    .dest-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(20,40,28,0.8) 0%, rgba(20,40,28,0.1) 55%, transparent 100%);
+    }
+    .dest-card:hover .dest-overlay { background: linear-gradient(to top, rgba(20,40,28,0.85) 0%, rgba(20,40,28,0.2) 55%, transparent 100%); }
+    .dest-info {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 24px 20px;
+    }
+    .dest-region {
+      font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+      color: rgba(255,255,255,0.55); margin-bottom: 6px;
+    }
+    .dest-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px; font-weight: 600; color: #fff; line-height: 1.1;
+    }
+    .dest-sub { font-size: 11px; color: rgba(255,255,255,0.55); margin-top: 4px; }
+    .dest-soon {
+      position: absolute; top: 14px; right: 14px;
+      font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 4px 10px; border-radius: 99px;
+    }
 
-    /* PHOTO GRID */
-    .trip-photos { display:grid; gap:8px; }
-    .trip-photos.one { grid-template-columns:1fr; }
-    .trip-photos.two { grid-template-columns:1fr 1fr; }
-    .trip-photos.three { grid-template-columns:1fr 1fr; }
-    .trip-photos.three .main { grid-column:1/-1; }
-    .trip-photo {
-      width:100%; aspect-ratio:4/3; object-fit:cover;
-      border-radius:4px; display:block; background:var(--green-l);
-    }
-    .trip-photo.tall { aspect-ratio:3/4; }
-
-    /* TRIP CONTENT */
-    .trip-flag {
-      font-size:10px; font-weight:500; letter-spacing:3px;
-      text-transform:uppercase; color:var(--green); margin-bottom:8px;
-    }
-    .trip-title {
-      font-family:'Cormorant Garamond',serif;
-      font-size:clamp(28px,3.5vw,44px); font-weight:400;
-      color:var(--ink); line-height:1.1; margin-bottom:16px;
-    }
-    .trip-meta { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:20px; }
-    .trip-tag {
-      font-size:10px; letter-spacing:1.5px; text-transform:uppercase;
-      color:var(--green); border:1px solid rgba(61,138,90,0.25);
-      padding:4px 12px; border-radius:99px;
-    }
-    .trip-story {
-      font-family:'Cormorant Garamond',serif;
-      font-size:17px; color:var(--grey);
-      line-height:1.85; margin-bottom:20px;
-    }
-    .trip-story em { color:var(--ink); font-style:italic; }
-    .trip-highlights { list-style:none; display:flex; flex-direction:column; gap:8px; margin-bottom:24px; }
-    .trip-highlights li {
-      font-family:'Cormorant Garamond',serif;
-      font-style:italic; font-size:15px; color:var(--ink);
-      display:flex; align-items:flex-start; gap:10px; line-height:1.5;
-    }
-    .trip-highlights li::before { content:'✦'; color:var(--green); flex-shrink:0; font-style:normal; font-size:11px; margin-top:3px; }
-
-    /* FOLLOW CTA */
-    .follow-cta {
+    /* MANIFESTO */
+    .manifesto {
       position:relative; overflow:hidden;
       padding:64px 48px; text-align:center;
     }
-    .follow-cta img.cta-bg {
+    .manifesto-bg {
       position:absolute; inset:0; width:100%; height:100%;
       object-fit:cover; z-index:0;
     }
-    .follow-cta::before {
+    .manifesto::before {
       content:''; position:absolute; inset:0; z-index:1;
-      background:rgba(42,97,64,0.8);
+      background:rgba(42,97,64,0.82);
     }
-    .follow-cta > *:not(img) { position:relative; z-index:2; }
-    .follow-cta h2 {
-      font-family:'Cormorant Garamond',serif;
-      font-size:clamp(28px,5vw,48px); font-weight:400;
-      color:#fff; margin-bottom:12px;
-    }
-    .follow-cta p { font-size:14px; color:rgba(255,255,255,0.7); margin-bottom:28px; }
-    .follow-form { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
-    .follow-input {
-      font-family:'DM Sans',sans-serif; font-size:13px;
-      padding:12px 20px; border:none; border-radius:2px;
-      outline:none; width:280px; color:var(--ink);
-    }
-    .follow-btn {
-      font-family:'DM Sans',sans-serif; font-size:11px; font-weight:500;
-      letter-spacing:2px; text-transform:uppercase; color:var(--green);
-      background:var(--white); border:none; padding:12px 24px;
-      border-radius:2px; cursor:pointer;
+    .manifesto p {
+      position:relative; z-index:2;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(20px, 3vw, 30px);
+      color: #fff; line-height: 1.6;
+      max-width: 680px; margin: 0 auto;
     }
 
+    /* FEATURED */
+    #featured { background: var(--white); }
+    .feat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .feat-main {
+      background: var(--green); border-radius: 4px;
+      padding: 48px 40px; display: flex;
+      flex-direction: column; justify-content: flex-end; min-height: 260px;
+    }
+    .feat-label {
+      font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+      color: rgba(255,255,255,0.5); margin-bottom: 14px;
+    }
+    .feat-main h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 30px; font-weight: 400; color: #fff;
+      line-height: 1.2; margin-bottom: 10px;
+    }
+    .feat-main p { font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.6; }
+    .feat-side { display: flex; flex-direction: column; gap: 20px; }
+    .feat-mini {
+      background: var(--green-l); border-radius: 4px;
+      padding: 28px 24px; flex: 1;
+      border-left: 3px solid var(--green);
+    }
+    .feat-mini h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px; font-weight: 400; color: var(--ink); margin-bottom: 6px;
+    }
+    .feat-mini p { font-size: 12px; color: var(--grey); line-height: 1.5; }
+
+    /* ABOUT */
+    #about { background: var(--linen); }
+    .about-inner {
+      display: grid; grid-template-columns: auto 1fr;
+      gap: 32px; align-items: start; max-width: 640px;
+    }
+    .about-avatar {
+      width: 64px; height: 64px; border-radius: 50%;
+      object-fit: cover; border: 2px solid var(--green); flex-shrink: 0;
+    }
+    .about-text h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px; font-weight: 400; color: var(--ink); margin-bottom: 10px;
+    }
+    .about-text p { font-size: 14px; color: var(--grey); line-height: 1.8; }
+
+    /* BOOKING */
+    .booking-wrap {
+      display: grid; grid-template-columns: 1fr 2fr; gap: 48px; align-items: start;
+    }
+    .booking-intro {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic; font-size: 16px; color: var(--grey); line-height: 1.8; margin-bottom: 20px;
+    }
+    .booking-perks {
+      list-style: none;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+      margin-top: 8px;
+    }
+    .booking-perks li {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic; font-size: 13px;
+      color: var(--green);
+      border: 1px solid rgba(61,138,90,0.25);
+      padding: 6px 12px; border-radius: 99px;
+      background: transparent;
+      line-height: 1.4; text-align: center;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .booking-perks li::before { content: none; }
+    .booking-perks li:last-child:nth-child(odd) {
+      grid-column: 1 / -1; width: 50%; margin: 0 auto; text-align: center;
+    }
+    .booking-form-wrap {
+      background: var(--white); border-radius: 4px;
+      padding: 28px; border: 1px solid rgba(61,138,90,0.15);
+    }
+    .booking-form { display: flex; flex-direction: column; gap: 16px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .form-group { display: flex; flex-direction: column; gap: 5px; }
+    .form-group label {
+      font-size: 10px; font-weight: 500; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--grey);
+    }
+    .form-group input, .form-group select, .form-group textarea {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px; color: var(--grey);
+      border: 1px solid rgba(61,138,90,0.2); border-radius: 2px;
+      padding: 9px 12px; background: var(--white);
+      transition: border-color 0.2s; outline: none;
+      -webkit-appearance: none; appearance: none;
+      width: 100%;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      border-color: var(--green);
+    }
+    .form-group textarea { resize: vertical; }
+    .checkbox-row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 4px;
+    }
+    .checkbox-label {
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; color: var(--ink); cursor: pointer;
+      background: var(--green-l); padding: 8px 10px; border-radius: 2px;
+      border: 1px solid transparent; transition: all 0.2s; text-align: center;
+    }
+    .checkbox-label:has(input:checked) {
+      background: var(--green); color: #fff; border-color: var(--green);
+    }
+    .checkbox-label input { display: none; }
+    .booking-btn {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px; font-weight: 500; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--white);
+      background: var(--green); border: none;
+      padding: 14px 32px; border-radius: 2px; cursor: pointer;
+      transition: background 0.2s; align-self: flex-start;
+    }
+    .booking-btn:hover { background: var(--green-d); }
+    .form-note {
+      font-size: 11px; color: var(--grey); margin-top: -8px;
+    }
+    .booking-success {
+      text-align: center; padding: 32px 16px;
+    }
+    .success-icon {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: var(--green); color: #fff;
+      font-size: 22px; display: flex; align-items: center;
+      justify-content: center; margin: 0 auto 16px;
+    }
+    .booking-success h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 24px; font-weight: 400; color: var(--ink); margin-bottom: 8px;
+    }
+    .booking-success p { font-size: 13px; color: var(--grey); }
+
+    /* FOOTER */
     footer {
-      background:var(--ink); padding:32px 48px;
-      display:flex; align-items:center; justify-content:space-between;
-      flex-wrap:wrap; gap:16px;
+      background: var(--ink); padding: 36px 48px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 16px;
     }
     .footer-logo {
-      font-family:'Cormorant Garamond',serif;
-      font-size:16px; letter-spacing:4px; text-transform:uppercase; color:var(--green);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px; letter-spacing: 4px;
+      text-transform: uppercase; color: var(--green);
     }
-    .social-links { display:flex; gap:24px; }
-    .social-links a {
-      font-size:11px; letter-spacing:2px; text-transform:uppercase;
-      color:rgba(255,255,255,0.45); text-decoration:none;
+    .footer-links { display: flex; gap: 28px; }
+    .footer-links a {
+      font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+      color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s;
     }
-    .social-links a:hover { color:var(--green); }
-    .footer-copy { font-size:10px; color:rgba(255,255,255,0.2); width:100%; }
+    .footer-links a:hover { color: var(--green); }
+    .footer-copy { font-size: 10px; color: rgba(255,255,255,0.25); width: 100%; }
 
-    @media (max-width:900px) {
-      nav { padding:14px 20px; }
-      .page-hero { padding:60px 20px; }
-      .journey-intro { padding:40px 20px; }
-      .trip-counter { gap:28px; padding:0 20px 40px; }
-      .divider { margin:0 20px 40px; }
-      .trips { padding:0 20px 56px; }
-      .trip-entry { grid-template-columns:1fr; gap:24px; margin-bottom:56px; padding-bottom:56px; }
-      .trip-entry.reverse { direction:ltr; }
-      .follow-cta { padding:48px 20px; }
-      footer { padding:28px 20px; flex-direction:column; align-items:flex-start; }
+    /* HAMBURGER */
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; padding: 4px; background: none; border: none;
+    }
+    .hamburger span {
+      display: block; width: 22px; height: 2px;
+      background: var(--green); border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    .mobile-menu {
+      display: none; position: fixed;
+      top: 65px; left: 0; right: 0; z-index: 99;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 20px;
+      flex-direction: column; gap: 0;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-size: 12px; font-weight: 500; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--ink);
+      text-decoration: none; padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+      transition: color 0.2s;
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu a:hover { color: var(--green); }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { padding: 14px 20px; }
+      .hero { padding: 100px 24px 80px; }
+      .intro-strip { padding: 40px 20px; }
+      .intro-text { font-size: 15px; line-height: 1.7; }
+      .section { padding: 48px 20px; }
+      .dest-grid { grid-template-columns: 1fr 1fr; }
+      .dest-card { aspect-ratio: 2/3; }
+      .feat-grid { grid-template-columns: 1fr; }
+      .manifesto { padding: 40px 20px; }
+      footer { padding: 28px 20px; flex-direction: column; align-items: flex-start; }
+      .about-inner { grid-template-columns: 1fr; }
+      .booking-wrap { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .booking-form-wrap { padding: 20px; }
+      .booking-perks { grid-template-columns: 1fr 1fr; }
+      .booking-perks li:last-child:nth-child(odd) { width: 100%; }
+    }
+    @media (max-width: 480px) {
+      .dest-grid { grid-template-columns: 1fr; }
+      .dest-card { aspect-ratio: 4/3; }
+      .hero-tags { gap: 6px; }
+      .hero-tag { font-size: 9px; padding: 4px 10px; }
     }
   </style>
 </head>
 <body>
 
   <nav>
-    <a class="nav-logo" href="index.html">
-      <img src="1.png" alt="Ataraxia"/>
+    <a class="nav-logo" href="#">
+      <img src="1.png" alt="Ataraxia logo"/>
       <span class="nav-logo-text">Ataraxia</span>
     </a>
     <div class="nav-links">
-      <a href="index.html#destinations">Destinations</a>
+      <a href="#destinations">Destinations</a>
       <a href="adventures.html">Adventures</a>
       <a href="quiz.html">Quiz</a>
-      <a href="index.html#featured">Guides</a>
-      <a href="index.html#book">Book a Tour</a>
-      <a href="index.html#about">About</a>
+      <a href="newsletter.html">Journal</a>
+      <a href="#featured">Guides</a>
+      <a href="#book">Book a Tour</a>
+      <a href="#about">About</a>
     </div>
     <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
       <span></span><span></span><span></span>
@@ -267,360 +511,225 @@
   </nav>
 
   <div class="mobile-menu" id="mobileMenu">
-    <a href="index.html#destinations" onclick="closeMenu()">Destinations</a>
+    <a href="#destinations" onclick="closeMenu()">Destinations</a>
     <a href="adventures.html" onclick="closeMenu()">Adventures</a>
     <a href="quiz.html" onclick="closeMenu()">Quiz</a>
-    <a href="index.html#featured" onclick="closeMenu()">Guides</a>
-    <a href="index.html#book" onclick="closeMenu()">Book a Tour</a>
-    <a href="index.html#about" onclick="closeMenu()">About</a>
+    <a href="newsletter.html" onclick="closeMenu()">Journal</a>
+    <a href="#featured" onclick="closeMenu()">Guides</a>
+    <a href="#book" onclick="closeMenu()">Book a Tour</a>
+    <a href="#about" onclick="closeMenu()">About</a>
   </div>
 
-  <div class="page-hero">
-    <img src="mounticeland.jpeg" alt="Iceland" class="hero-bg"/>
-    <p class="eyebrow">Follow the journey</p>
-    <h1>The Adventures</h1>
-    <p>Every trip that shaped the way I see the world — and the ones still to come.</p>
+  <div class="hero">
+    <video class="hero-video" autoplay muted loop playsinline poster="Manama.jpg">
+      <source src="hero.mp4" type="video/mp4">
+    </video>
+    <p class="hero-eyebrow">Your travel encyclopedia</p>
+    <h1>Ataraxia</h1>
+    <p class="hero-quote">"Not all who wander are lost — some of us are just finally found."</p>
+    <div class="hero-tags">
+      <span class="hero-tag">#solo</span>
+      <span class="hero-tag">#growth</span>
+      <span class="hero-tag">#connection</span>
+      <span class="hero-tag">#unplanned</span>
+      <span class="hero-tag">#peace</span>
+      <span class="hero-tag">#leave only footprints</span>
+      <span class="hero-tag">#low budget</span>
+      <span class="hero-tag">#off the beaten path</span>
+      <span class="hero-tag">#follow the journey</span>
+      <span class="hero-tag">#camp & hike</span>
+      <span class="hero-tag">#local first</span>
+      <span class="hero-tag">#rent a car & go</span>
+    </div>
+    <a href="#destinations" class="hero-cta">Explore destinations</a>
   </div>
 
-  <div class="journey-intro">
-    <p>I didn't plan any of this. I just kept saying yes — to the detour, to the stranger's invitation, to the country nobody in my circle had been to. Most of these trips were with my travel buddy or a group of girls who trusted each other enough to get lost together.</p>
-    <p>These aren't highlights. They're the real ones — the wrong turns, the glacier road closures, the yurts, the local grandmothers who fed us, the moments that still show up in my mind at 2am for no reason.</p>
-  </div>
-
-  <div class="trip-counter">
-    <div class="counter-item">
-      <div class="counter-num">15+</div>
-      <div class="counter-label">Countries</div>
-    </div>
-    <div class="counter-item">
-      <div class="counter-num">Girls</div>
-      <div class="counter-label">Travel crew</div>
-    </div>
-    <div class="counter-item">
-      <div class="counter-num">Local</div>
-      <div class="counter-label">Always first</div>
-    </div>
-    <div class="counter-item">
-      <div class="counter-num">∞</div>
-      <div class="counter-label">Still going</div>
+  <!-- PERSONAL INTRO STRIP -->
+  <div class="intro-strip">
+    <div class="intro-inner">
+      <p class="intro-text">
+        Ataraxia started as a personal journal. A way to remember the mornings I woke up in a tent in Kyrgyzstan with no plan, the backroads in Italy I only found because I got lost, the silence of the Icelandic highlands at 2am when the sun still hadn't set. It became a page because people kept asking — <em><a href="adventures.html" style="color:var(--green);text-decoration:none;">how do you travel like that?</a></em>
+      </p>
+      <p class="intro-text">
+        The answer is simpler than most expect. Rent a car. Find quality stays that don't break the bank. Eat local. Avoid the crowds. Trust the detour. You don't need a big budget — you need the right mindset. Whether you're exploring Bahrain for the first time or planning a trip to Portugal, the Philippines, the Maldives, or somewhere you can't even pronounce yet — this is your starting point.
+      </p>
+      <p class="intro-sub">From Bahrain to the world — real places, real experiences, no noise.</p>
     </div>
   </div>
 
-  <div class="divider"></div>
-
-  <div class="trips">
-
-    <!-- ICELAND -->
-    <div class="trip-entry">
-      <div class="trip-photos three">
-        <img src="glaciericeland.jpeg" alt="Iceland glacier" class="trip-photo main"/>
-        <img src="wtaerfalliceland.jpeg" alt="Iceland waterfall" class="trip-photo"/>
-        <img src="auroraday2.jpeg" alt="Iceland aurora" class="trip-photo"/>
-      </div>
-      <div class="trip-content">
-        <p class="trip-flag">🇮🇸 Iceland — Top 1</p>
-        <h2 class="trip-title">Four girls, one car, nine nights, and a glacier that closed the road</h2>
-        <div class="trip-meta">
-          <span class="trip-tag">Group of 4</span>
-          <span class="trip-tag">Rent a car</span>
-          <span class="trip-tag">Ring Road</span>
-          <span class="trip-tag">Hiking</span>
+  <section class="section" id="destinations">
+    <div class="section-header">
+      <p class="section-eyebrow">Where to go</p>
+      <h2 class="section-title">Destinations</h2>
+    </div>
+    <div class="dest-grid">
+      <a href="bahrain.html" class="dest-card">
+        <div class="dest-card-img dest-bahrain"></div>
+        <div class="dest-overlay"></div>
+        <div class="dest-info">
+          <p class="dest-region">Bahrain</p>
+          <h3 class="dest-name">Hidden Manama</h3>
+          <p class="dest-sub">Local gems & old souqs</p>
         </div>
-        <p class="trip-story">We planned to do the full Ring Road. On day seven, a glacier closed it. We turned back and didn't care — we'd already hiked every waterfall on the south coast, camped under the northern lights, stood inside a crater, and driven roads that felt like the end of the earth. Iceland doesn't need a complete plan. It just needs you to show up.</p>
-        <ul class="trip-highlights">
-          <li>Hiked Skógafoss, Seljalandsfoss and waterfalls with no names</li>
-          <li>Golden Circle in one day — Þingvellir, Geysir, Gullfoss</li>
-          <li>Woke up to the northern lights outside the car</li>
-          <li>Road closed by glacier on day 7 — turned back without regret</li>
-          <li>9 nights — still not enough</li>
-        </ul>
+      </a>
+      <div class="dest-card">
+        <div class="dest-card-img dest-uae"></div>
+        <div class="dest-overlay"></div>
+        <div class="dest-info">
+          <p class="dest-region">UAE</p>
+          <h3 class="dest-name">Dubai Off-Script</h3>
+          <p class="dest-sub">Beyond the towers</p>
+        </div>
+        <span class="dest-soon">Coming soon</span>
+      </div>
+      <div class="dest-card">
+        <div class="dest-card-img dest-oman"></div>
+        <div class="dest-overlay"></div>
+        <div class="dest-info">
+          <p class="dest-region">Oman</p>
+          <h3 class="dest-name">Muscat & Wadis</h3>
+          <p class="dest-sub">Nature & ancient culture</p>
+        </div>
+        <span class="dest-soon">Coming soon</span>
+      </div>
+      <div class="dest-card">
+        <div class="dest-card-img dest-saudi"></div>
+        <div class="dest-overlay"></div>
+        <div class="dest-info">
+          <p class="dest-region">Saudi Arabia</p>
+          <h3 class="dest-name">Al Ula & Beyond</h3>
+          <p class="dest-sub">The kingdom's best kept secret</p>
+        </div>
+        <span class="dest-soon">Coming soon</span>
       </div>
     </div>
+  </section>
 
-    <!-- KYRGYZSTAN -->
-    <div class="trip-entry reverse">
-      <div class="trip-photos three">
-        <img src="landscapkyrg1.jpeg" alt="Kyrgyzstan landscape" class="trip-photo main"/>
-        <img src="kyrgyurt.jpeg" alt="Yurt in Kyrgyzstan" class="trip-photo"/>
-        <img src="kyrgrock.jpeg" alt="Kyrgyzstan rocks" class="trip-photo"/>
-      </div>
-      <div class="trip-content">
-        <p class="trip-flag">🇰🇬 Kyrgyzstan — Top 2</p>
-        <h2 class="trip-title">The whole country in one trip — the landscape is violent and the people are everything</h2>
-        <div class="trip-meta">
-          <span class="trip-tag">Full country</span>
-          <span class="trip-tag">Yurts</span>
-          <span class="trip-tag">Hiking</span>
-          <span class="trip-tag">Off grid</span>
-        </div>
-        <p class="trip-story">We went around the whole country. The landscape is the kind that makes you feel genuinely small — in the best way. We lived in yurts, hiked places that don't appear on most maps, and rode horses across open steppe. The city wasn't for us and the food was meh — but the mountains, the nomadic culture and the silence of being somewhere truly remote made it one of the most remarkable trips I've done.</p>
-        <ul class="trip-highlights">
-          <li>Crossed the full country — north to south</li>
-          <li>Stayed in yurts with nomadic families</li>
-          <li>Hiked Song-Köl lake — no other tourists in sight</li>
-          <li>Remarkable landscape at every turn</li>
-          <li>One of the most affordable trips — quality stays, zero waste</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- SRI LANKA -->
-    <div class="trip-entry">
-      <div class="trip-photos three">
-        <img src="Srilankalionrock.jpeg" alt="Sri Lanka Lion Rock" class="trip-photo main"/>
-        <img src="trainsrilanka.jpeg" alt="Sri Lanka train" class="trip-photo"/>
-        <img src="elephantsrilanka.jpeg" alt="Sri Lanka elephants" class="trip-photo"/>
-      </div>
-      <div class="trip-content">
-        <p class="trip-flag">🇱🇰 Sri Lanka — Top 3</p>
-        <h2 class="trip-title">Lived in the jungle, surfed at dawn, hiked the end of the world</h2>
-        <div class="trip-meta">
-          <span class="trip-tag">Local life</span>
-          <span class="trip-tag">Jungle stay</span>
-          <span class="trip-tag">Surfing</span>
-          <span class="trip-tag">Hiking</span>
-        </div>
-        <p class="trip-story">We lived with a Sri Lankan family in the jungle. Not a resort, not a hotel — a family home surrounded by trees and sounds I'd never heard before. We surfed in Weligama at dawn, beached in Mirissa, rode the famous train through Nuwara Eliya in the cold misty highlands, cooked their food, did a village tour, and hiked to what locals call the End of the World. The food was extraordinary. The kindness of the people even more so.</p>
-        <ul class="trip-highlights">
-          <li>Stayed with a local Sri Lankan family in the jungle</li>
-          <li>Surfed in Weligama — complete beginners welcome</li>
-          <li>Train through Nuwara Eliya — cold, misty, unforgettable</li>
-          <li>Hiked the End of the World — worth every step</li>
-          <li>Ella, Colombo, Mirissa — covered it all</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- MADEIRA / PORTUGAL -->
-    <div class="trip-entry reverse">
-      <div class="trip-photos two">
-        <img src="jamesbond.jpeg" alt="James Bond island" class="trip-photo"/>
-        <img src="hithteroadkyrg.jpeg" alt="Road trip" class="trip-photo"/>
-      </div>
-      <div class="trip-content">
-        <p class="trip-flag">🇵🇹 Portugal — Madeira</p>
-        <h2 class="trip-title">Lisbon, then Madeira by plane, then Porto by train — one country, three worlds</h2>
-        <div class="trip-meta">
-          <span class="trip-tag">Road trip</span>
-          <span class="trip-tag">Hiking</span>
-          <span class="trip-tag">Black sand beach</span>
-          <span class="trip-tag">Train</span>
-        </div>
-        <p class="trip-story">Portugal surprised us every time we changed cities. Lisbon first — beautiful and overwhelming. Then a short flight to Madeira, where we hiked almost every trail on the island and found a black sand beach that felt like another planet. Then the train to Porto, slow and scenic. Three completely different experiences in one country — none of them tourist traps.</p>
-        <ul class="trip-highlights">
-          <li>Madeira — hiked almost every levada trail</li>
-          <li>Black sand beach in Madeira — completely unexpected</li>
-          <li>Lisbon → Madeira → Porto — three cities, one trip</li>
-          <li>Porto by train from Lisbon — scenic and easy</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- MALDIVES -->
-    <div class="trip-entry">
-      <div class="trip-photos two">
-        <img src="maldiveswatervilla.jpeg" alt="Maldives water villa" class="trip-photo"/>
-        <img src="sunsetmaldives.jpeg" alt="Maldives sunset" class="trip-photo"/>
-      </div>
-      <div class="trip-content">
-        <p class="trip-flag">🇲🇻 Maldives</p>
-        <h2 class="trip-title">Five girls, one island, zero other guests — we felt like we owned the place</h2>
-        <div class="trip-meta">
-          <span class="trip-tag">Group of 5</span>
-          <span class="trip-tag">Diving</span>
-          <span class="trip-tag">Sharks</span>
-          <span class="trip-tag">Affordable resort</span>
-        </div>
-        <p class="trip-story">Everyone assumes the Maldives is only for honeymoons with unlimited budgets. We found a beautiful, affordable resort where we were essentially the only guests — five girls who felt like they owned an entire island. We dived with sharks, snorkelled every morning, watched sunsets from the water and never once felt like we were missing anything the expensive places have. It was one of the most peaceful trips I've ever done.</p>
-        <ul class="trip-highlights">
-          <li>Found an amazing affordable resort — practically had it to ourselves</li>
-          <li>Dived with reef sharks — completely calm, completely beautiful</li>
-          <li>Snorkelling every single morning before breakfast</li>
-          <li>Five girls, total peace, zero regrets</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- PHILIPPINES -->
-    <div class="trip-entry reverse">
-      <div class="trip-photos three">
-        <img src="tatayfallphlip.jpeg" alt="Tatay Falls Philippines" class="trip-photo main"/>
-        <img src="snorkelphilipines.jpeg" alt="Snorkelling Philippines" class="trip-photo"/>
-        <img src="islandhopphilip.jpeg" alt="Island hopping Philippines" class="trip-photo"/>
-      </div>
-      <div class="trip-content">
-        <p class="trip-flag">🇵🇭 Philippines</p>
-        <h2 class="trip-title">Based in Batangas, went everywhere — Tatay Falls, Coron, and a grandmother's table</h2>
-        <div class="trip-meta">
-          <span class="trip-tag">Island hopping</span>
-          <span class="trip-tag">Snorkelling</span>
-          <span class="trip-tag">Local family</span>
-          <span class="trip-tag">Road trips</span>
-        </div>
-        <p class="trip-story">We lived in Batangas as our base — not a resort, just a home. From there we went everywhere: Tatay Falls, island hopping to nearby islands, snorkelling in water so clear it didn't feel real. We visited a friend's grandmother in the province, ate at her table, did road trips on roads with no names. The clearest coral I've ever seen. The warmest people I've ever met.</p>
-        <ul class="trip-highlights">
-          <li>Tatay Falls — reached by boat and jungle trail</li>
-          <li>Island hopping — the water is unreal</li>
-          <li>Snorkelled in the clearest coral reef I've ever seen</li>
-          <li>Visited a local family in Batangas — ate home-cooked food</li>
-          <li>Road trips with no destination — just driving and stopping</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- ITALY -->
-    <div class="trip-entry">
-      <div class="trip-photos three">
-        <img src="italy1.jpeg" alt="Italy Colosseum" class="trip-photo main"/>
-        <img src="florenceitalychurch.jpeg" alt="Florence Duomo" class="trip-photo"/>
-        <img src="roaditaly.jpeg" alt="Italy road" class="trip-photo"/>
-      </div>
-      <div class="trip-content">
-        <p class="trip-flag">🇮🇹 Italy</p>
-        <h2 class="trip-title">Florence, Rome, Lake Como — and we accidentally drove into Switzerland</h2>
-        <div class="trip-meta">
-          <span class="trip-tag">Road trip</span>
-          <span class="trip-tag">Rock climbing</span>
-          <span class="trip-tag">Lake Como</span>
-          <span class="trip-tag">Unplanned</span>
-        </div>
-        <p class="trip-story">We started in Florence, walked to the Duomo at night when the crowds were gone, drove to Rome at sunrise for the Colosseum, then headed north toward Milan. Somewhere near Lake Como we stopped to rock climb — one of those completely unplanned moments that ends up being the one you remember most. We then drove in the wrong direction and entered Switzerland by accident. We turned around immediately but still count it as a third country.</p>
-        <ul class="trip-highlights">
-          <li>Florence Duomo at night — completely worth staying up for</li>
-          <li>Colosseum at dawn — almost nobody there</li>
-          <li>Rock climbing at Lake Como — spontaneous and incredible</li>
-          <li>Accidentally drove into Switzerland — unplanned Switzerland visit</li>
-          <li>Florence → Rome → Milan in one road trip</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- OMAN -->
-    <div class="trip-entry reverse">
-      <div class="trip-photos three">
-        <img src="wadioman.jpeg" alt="Wadi Oman" class="trip-photo main"/>
-        <img src="dimaniyatoman.jpeg" alt="Dimaniyat Islands Oman" class="trip-photo"/>
-        <img src="turtleloveoman.jpeg" alt="Turtle Oman" class="trip-photo"/>
-      </div>
-      <div class="trip-content">
-        <p class="trip-flag">🇴🇲 Oman — Regular</p>
-        <h2 class="trip-title">Wadis, Dimaniyat Islands, turtles, and Souq Muttrah — a neighbour worth revisiting</h2>
-        <div class="trip-meta">
-          <span class="trip-tag">Wadis</span>
-          <span class="trip-tag">Diving</span>
-          <span class="trip-tag">Islands</span>
-          <span class="trip-tag">Regular trip</span>
-        </div>
-        <p class="trip-story">Oman is close enough to visit regularly — and we do. The wadis are some of the most beautiful natural swimming spots in the region. Dimaniyat Islands is a marine reserve where you swim with turtles and coral that rivals anywhere in the world. Souq Muttrah in Muscat is the kind of market that makes you feel like you've stepped back 200 years. A neighbour that never gets old.</p>
-        <ul class="trip-highlights">
-          <li>Wadi Shab and Wadi Bani Khalid — worth every trip</li>
-          <li>Dimaniyat Islands — turtles, coral, complete peace</li>
-          <li>Souq Muttrah — Muscat's ancient market</li>
-          <li>Close enough for a long weekend — far enough to feel like another world</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- TURKEY -->
-    <div class="trip-entry">
-      <div class="trip-photos two">
-        <img src="bungloturk.jpeg" alt="Turkey bungalow" class="trip-photo"/>
-        <img src="turkeyysofiroad.jpeg" alt="Turkey road" class="trip-photo"/>
-      </div>
-      <div class="trip-content">
-        <p class="trip-flag">🇹🇷 Turkey — Regular</p>
-        <h2 class="trip-title">A hut in Sapanca, horse riding in Gebze, and a horse that threw me off in the middle of nowhere</h2>
-        <div class="trip-meta">
-          <span class="trip-tag">Regular trip</span>
-          <span class="trip-tag">Road trips</span>
-          <span class="trip-tag">Horse riding</span>
-          <span class="trip-tag">Hiking</span>
-        </div>
-        <p class="trip-story">Turkey is one of those places we keep going back to. Once we stayed in a hut bungalow in Sapanca with a group of friends — cold mornings, the hosts making a full Turkish breakfast, wood stove, complete silence. Another time I went horse riding in Gebze and the horse threw me off in the middle of nowhere. Alone. I walked back. We also drove to Bursa for snow, and motorskiied somewhere that shouldn't be forgotten.</p>
-        <ul class="trip-highlights">
-          <li>Hut bungalow in Sapanca — woke up to homemade Turkish breakfast</li>
-          <li>Horse riding in Gebze — got thrown off, walked back alone</li>
-          <li>Drove to Bursa for snow and mountain air</li>
-          <li>Motorskiing — one of the most fun things we've done</li>
-          <li>Istanbul regulalry — always finds something new</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- SPAIN -->
-    <div class="trip-entry reverse">
-      <div class="trip-photos two">
-        <img src="malagaspain.jpeg" alt="Malaga Spain" class="trip-photo"/>
-        <img src="tarifaspain.jpeg" alt="Tarifa Spain" class="trip-photo"/>
-      </div>
-      <div class="trip-content">
-        <p class="trip-flag">🇪🇸 Spain</p>
-        <h2 class="trip-title">Hiked Málaga, drove to Tarifa, got lost in Andalucía, played golf twice in Marbella</h2>
-        <div class="trip-meta">
-          <span class="trip-tag">Travel buddy</span>
-          <span class="trip-tag">Road trip</span>
-          <span class="trip-tag">Hiking</span>
-          <span class="trip-tag">Marbella</span>
-        </div>
-        <p class="trip-story">Me and my travel buddy drove the south of Spain together. Hiked in Málaga, then drove the coast to Tarifa — the southernmost point of Europe, where you can see Africa across the water. Stopped to meet a friend in Andalucía, then on to Ronda for the famous bridge. Ended in Marbella at my aunt's house where we explored, drove around with people who had very nice cars, and played golf twice. Neither of us knew how to play golf.</p>
-        <ul class="trip-highlights">
-          <li>Hiked in Málaga — underrated trail views</li>
-          <li>Tarifa — saw Africa from Europe across the strait</li>
-          <li>Ronda — the bridge is as dramatic as it looks</li>
-          <li>Marbella — stayed with family, explored like locals</li>
-          <li>Played golf twice — no regrets, would do again</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- THAILAND -->
-    <div class="trip-entry">
-      <div class="trip-photos two">
-        <img src="thailandphiphi.jpeg" alt="Thailand Phi Phi" class="trip-photo"/>
-        <img src="jamesbond.jpeg" alt="James Bond Island Thailand" class="trip-photo"/>
-      </div>
-      <div class="trip-content">
-        <p class="trip-flag">🇹🇭 Thailand</p>
-        <h2 class="trip-title">Phuket, Krabi, Bangkok — great food, great islands, too many tourists</h2>
-        <div class="trip-meta">
-          <span class="trip-tag">Island hopping</span>
-          <span class="trip-tag">Food</span>
-          <span class="trip-tag">Shopping</span>
-          <span class="trip-tag">Busy</span>
-        </div>
-        <p class="trip-story">Thailand is fun — genuinely fun. Phuket has some of the best street food I've eaten anywhere. Krabi is beautiful for island hopping even if you share the water with 200 other boats. Bangkok is great for shopping and the night markets are worth every minute. Honest verdict: it's busy, it's touristy, and it's still worth going. Just manage your expectations and go in the shoulder season.</p>
-        <ul class="trip-highlights">
-          <li>Phuket — best street food of the trip</li>
-          <li>Krabi — island hopping, a lot of boats but beautiful water</li>
-          <li>Bangkok night markets — go with an empty stomach</li>
-          <li>Honest take — very busy, still worth it</li>
-        </ul>
-      </div>
-    </div>
-
+  <div class="manifesto">
+    <img src="spotkyrg.jpeg" alt="Kyrgyzstan" class="manifesto-bg"/>
+    <p>Not every journey needs a plan. Some of the best ones begin with a single step into the unfamiliar — and end somewhere you never expected to love.</p>
   </div>
 
-  <!-- ITINERARY CTA -->
-  <div style="background:var(--green-l); border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:48px; text-align:center;">
-    <p style="font-size:10px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--green);margin-bottom:10px;">Want to explore Bahrain?</p>
-    <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(24px,4vw,36px);font-weight:400;color:var(--ink);margin-bottom:10px;">Get the Hidden Manama itinerary</h2>
-    <p style="font-size:13px;color:var(--grey);margin-bottom:24px;max-width:420px;margin-left:auto;margin-right:auto;">A printable one-day guide with timings, tips, and the spots only locals know — all in one PDF.</p>
-    <a href="https://ataraxia32.gumroad.com/l/jcbsiq" style="display:inline-block;background:var(--green);color:#fff;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;letter-spacing:2px;text-transform:uppercase;padding:14px 32px;border-radius:2px;text-decoration:none;">Get the itinerary</a>
-  </div>
-
-  <div class="follow-cta">
-    <img src="icelandaurora1.jpeg" alt="Iceland aurora" class="cta-bg"/>
-    <h2>Follow the journey</h2>
-    <p>New destinations, honest guides and stories from the road — straight to your inbox.</p>
-    <div class="follow-form">
-      <input type="email" class="follow-input" placeholder="your@email.com"/>
-      <button class="follow-btn">Follow along</button>
+  <section class="section" id="featured" style="position:relative; overflow:hidden;">
+    <img src="florenceitalychurch.jpeg" alt="Florence" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:0.12;"/>
+    <div style="position:relative;z-index:1;">
+    <div class="section-header">
+      <p class="section-eyebrow">Read</p>
+      <h2 class="section-title">Featured guides</h2>
     </div>
-  </div>
+    <div class="feat-grid">
+      <div class="feat-main">
+        <p class="feat-label">Saudi Arabia</p>
+        <h3>A weekend in Al Ula</h3>
+        <p>The kingdom's most breathtaking destination — where to stay, eat, and let the ancient landscape change you.</p>
+      </div>
+      <div class="feat-side">
+        <div class="feat-mini">
+          <h4>48hrs in Bahrain</h4>
+          <p>The perfect layover guide for first-timers who want to go deeper than the airport.</p>
+        </div>
+        <div class="feat-mini">
+          <h4>GCC road trip</h4>
+          <p>Bahrain to Muscat — the full unplanned route guide for those who drive to think.</p>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- BOOK A TOUR -->
+  <section class="section" id="book" style="position:relative; overflow:hidden; background:var(--sand);">
+    <img src="maldiveswatervilla.jpeg" alt="Maldives" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:0.07;"/>
+    <div style="position:relative;z-index:1;">
+    <div class="section-header">
+      <p class="section-eyebrow">Plan with us</p>
+      <h2 class="section-title">Book a guided tour</h2>
+    </div>
+    <div class="booking-wrap">
+      <div class="booking-left">
+        <p class="booking-intro">Want a local to show you around? We offer personalised guided experiences across Bahrain — from hidden forts to the best breakfast spots only locals know. Fill in your details and we'll be in touch.</p>
+        <ul class="booking-perks">
+          <li>Custom itineraries</li>
+          <li>Local food tours</li>
+          <li>Historical deep dives</li>
+          <li>Sunrise & sunset experiences</li>
+          <li>Solo, couples & small groups</li>
+        </ul>
+      </div>
+      <div class="booking-form-wrap">
+        <form class="booking-form" id="bookingForm" onsubmit="submitBooking(event)">
+          <input type="hidden" name="access_key" value="4c5b72eb-85e7-4815-b1f8-fd6c5a757f76"/>
+          <input type="hidden" name="subject" value="New Tour Enquiry — Ataraxia"/>
+          <input type="hidden" name="from_name" value="Ataraxia Website"/>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Your name</label>
+              <input type="text" placeholder="e.g. Sara Ahmed" required/>
+            </div>
+            <div class="form-group">
+              <label>Email or WhatsApp</label>
+              <input type="text" placeholder="email or +973 XXXX XXXX" required/>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Country you're visiting from</label>
+              <input type="text" placeholder="e.g. United Kingdom, Saudi Arabia"/>
+            </div>
+            <div class="form-group">
+              <label>Group size</label>
+              <select>
+                <option>Just me</option>
+                <option>2 people</option>
+                <option>3–5 people</option>
+                <option>6+ people</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>When are you visiting?</label>
+            <input type="date" min="2026-07-01" style="color-scheme: light; color: var(--grey);"/>
+          </div>
+          <div class="form-group">
+            <label>What interests you most?</label>
+            <div class="checkbox-row">
+              <label class="checkbox-label"><input type="checkbox" value="history"/> History & Forts</label>
+              <label class="checkbox-label"><input type="checkbox" value="food"/> Food & Restaurants</label>
+              <label class="checkbox-label"><input type="checkbox" value="nature"/> Nature & Outdoors</label>
+              <label class="checkbox-label"><input type="checkbox" value="culture"/> Culture & Crafts</label>
+              <label class="checkbox-label"><input type="checkbox" value="adventure"/> Adventure & Sports</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Anything else you'd like us to know?</label>
+            <textarea placeholder="Tell us about your trip, any special requests, or questions..." rows="3"></textarea>
+          </div>
+          <button type="submit" class="booking-btn">Send enquiry</button>
+          <p class="form-note">We usually respond within 24 hours via email or WhatsApp.</p>
+        </form>
+        <div class="booking-success" id="bookingSuccess" style="display:none;">
+          <div class="success-icon">✓</div>
+          <h3>Enquiry sent!</h3>
+          <p>Thank you — we'll be in touch within 24 hours to plan your journey.</p>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="about-inner">
+      <img src="1.png" alt="Ataraxia" class="about-avatar"/>
+      <div class="about-text">
+        <h3>About Ataraxia</h3>
+        <p>A Bahrain-based travel page for those who travel slowly, intentionally, and alone sometimes. No noise — just honest guides, hidden spots, and the good stuff only locals know. Follow the journey.</p>
+      </div>
+    </div>
+  </section>
 
   <footer>
     <span class="footer-logo">Ataraxia</span>
-    <div class="social-links">
+    <div class="footer-links">
       <a href="https://www.instagram.com/ataraxia.adv/">Instagram</a>
       <a href="mailto:ataraxia.adv@gmail.com">Contact</a>
     </div>
@@ -629,12 +738,57 @@
 
   <script>
     function toggleMenu() {
-      document.getElementById('mobileMenu').classList.toggle('open');
-      document.getElementById('hamburger').classList.toggle('open');
+      const menu = document.getElementById('mobileMenu');
+      const btn = document.getElementById('hamburger');
+      menu.classList.toggle('open');
+      btn.classList.toggle('open');
     }
     function closeMenu() {
       document.getElementById('mobileMenu').classList.remove('open');
       document.getElementById('hamburger').classList.remove('open');
+    }
+
+    async function submitBooking(e) {
+      e.preventDefault();
+      const form = document.getElementById('bookingForm');
+      const btn = form.querySelector('.booking-btn');
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+
+      const name = form.querySelector('input[placeholder*="Sara"]').value;
+      const contact = form.querySelector('input[placeholder*="email"]').value;
+      const country = form.querySelector('input[placeholder*="United Kingdom"]').value;
+      const date = form.querySelector('input[type="date"]').value;
+      const group = form.querySelector('select').value;
+      const message = form.querySelector('textarea').value;
+      const interests = [...form.querySelectorAll('input[type=checkbox]:checked')].map(c => c.value).join(', ');
+
+      const payload = {
+        access_key: '4c5b72eb-85e7-4815-b1f8-fd6c5a757f76',
+        subject: 'New Tour Enquiry — Ataraxia',
+        from_name: 'Ataraxia Website',
+        name: name,
+        message: `Name: ${name}\nContact: ${contact}\nCountry: ${country}\nVisiting: ${date}\nGroup: ${group}\nInterests: ${interests || 'Not specified'}\n\nMessage:\n${message}`
+      };
+
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const result = await res.json();
+        if (result.success) {
+          form.style.display = 'none';
+          document.getElementById('bookingSuccess').style.display = 'block';
+        } else {
+          btn.textContent = 'Try again';
+          btn.disabled = false;
+        }
+      } catch (err) {
+        btn.textContent = 'Try again';
+        btn.disabled = false;
+      }
     }
   </script>
 
