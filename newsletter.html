@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Journal — Ataraxia</title>
+  <meta name="description" content="Travel tips, honest guides and stories from the road — the Ataraxia newsletter."/>
+  <meta property="og:title" content="The Journal — Ataraxia"/>
+  <meta property="og:description" content="Travel tips, budget hacks and honest guides from someone who actually does this."/>
+  <meta property="og:image" content="https://ataraxiaadv.github.io/spotkyrg.jpeg"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green:#3d8a5a; --green-d:#2a6140; --green-l:#e8f4ee;
+      --white:#ffffff; --ink:#1a1a1a; --grey:#6b6b6b;
+      --sand:#f0ebe3; --border:rgba(61,138,90,0.15);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { font-family:'DM Sans',sans-serif; background:var(--white); color:var(--ink); }
+
+    /* NAV */
+    nav {
+      position:sticky; top:0; z-index:100;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:16px 32px; background:rgba(255,255,255,0.96);
+      backdrop-filter:blur(10px); border-bottom:1px solid var(--border);
+    }
+    .nav-logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
+    .nav-logo img { height:32px; width:32px; border-radius:50%; object-fit:cover; }
+    .nav-logo-text {
+      font-family:'Cormorant Garamond',serif;
+      font-size:18px; font-weight:600; letter-spacing:3px;
+      text-transform:uppercase; color:var(--green);
+    }
+    .nav-links { display:none; gap:24px; }
+    .nav-links a {
+      font-size:10px; font-weight:500; letter-spacing:1.5px;
+      text-transform:uppercase; color:var(--grey);
+      text-decoration:none; transition:color 0.2s; white-space:nowrap;
+    }
+    .nav-links a:hover { color:var(--green); }
+    .hamburger {
+      display:flex; flex-direction:column; gap:5px;
+      cursor:pointer; padding:4px; background:none; border:none;
+    }
+    .hamburger span {
+      display:block; width:22px; height:2px;
+      background:var(--green); border-radius:2px; transition:all 0.3s;
+    }
+    .hamburger.open span:nth-child(1) { transform:rotate(45deg) translate(5px,5px); }
+    .hamburger.open span:nth-child(2) { opacity:0; }
+    .hamburger.open span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
+    .mobile-menu {
+      display:none; position:fixed; top:65px; left:0; right:0; z-index:99;
+      background:var(--white); border-bottom:1px solid var(--border);
+      padding:16px 20px; flex-direction:column;
+    }
+    .mobile-menu.open { display:flex; }
+    .mobile-menu a {
+      font-size:12px; font-weight:500; letter-spacing:2px;
+      text-transform:uppercase; color:var(--ink);
+      text-decoration:none; padding:14px 0;
+      border-bottom:1px solid var(--border);
+    }
+    .mobile-menu a:last-child { border-bottom:none; }
+    @media (min-width:901px) {
+      .nav-links { display:flex !important; }
+      .hamburger { display:none !important; }
+      .mobile-menu { display:none !important; }
+    }
+
+    /* HERO */
+    .page-hero {
+      position:relative; overflow:hidden;
+      min-height:50vh; display:flex; flex-direction:column;
+      align-items:center; justify-content:center;
+      text-align:center; padding:80px 48px;
+    }
+    .hero-bg {
+      position:absolute; inset:0; width:100%; height:100%;
+      object-fit:cover; z-index:0;
+    }
+    .page-hero::before {
+      content:''; position:absolute; inset:0; z-index:1;
+      background:linear-gradient(to bottom, rgba(42,97,64,0.75), rgba(20,40,28,0.85));
+    }
+    .page-hero > *:not(img) { position:relative; z-index:2; }
+    .page-hero .eyebrow {
+      font-size:10px; letter-spacing:4px; text-transform:uppercase;
+      color:rgba(255,255,255,0.55); margin-bottom:14px;
+    }
+    .page-hero h1 {
+      font-family:'Cormorant Garamond',serif;
+      font-size:clamp(36px,7vw,68px); font-weight:400;
+      color:#fff; margin-bottom:14px; line-height:1;
+    }
+    .page-hero p {
+      font-family:'Cormorant Garamond',serif; font-style:italic;
+      font-size:18px; color:rgba(255,255,255,0.75);
+      max-width:480px; margin:0 auto;
+    }
+
+    /* SIGNUP STRIP */
+    .signup-strip {
+      background:var(--green-l); padding:40px 48px;
+      border-bottom:1px solid var(--border);
+      display:flex; align-items:center; justify-content:space-between;
+      gap:24px; flex-wrap:wrap;
+    }
+    .signup-strip-text h3 {
+      font-family:'Cormorant Garamond',serif;
+      font-size:22px; font-weight:400; color:var(--ink); margin-bottom:4px;
+    }
+    .signup-strip-text p { font-size:12px; color:var(--grey); }
+    .signup-form { display:flex; gap:8px; flex-wrap:wrap; }
+    .signup-input {
+      font-family:'DM Sans',sans-serif; font-size:13px; color:var(--ink);
+      border:1px solid rgba(61,138,90,0.25); border-radius:2px;
+      padding:10px 16px; outline:none; width:240px;
+      transition:border-color 0.2s;
+    }
+    .signup-input:focus { border-color:var(--green); }
+    .signup-btn {
+      font-family:'DM Sans',sans-serif; font-size:10px; font-weight:500;
+      letter-spacing:2px; text-transform:uppercase;
+      color:#fff; background:var(--green); border:none;
+      padding:10px 20px; border-radius:2px; cursor:pointer;
+      transition:background 0.2s; white-space:nowrap;
+    }
+    .signup-btn:hover { background:var(--green-d); }
+    .signup-success { font-size:13px; color:var(--green); font-style:italic; display:none; }
+
+    /* ARTICLES GRID */
+    .articles-section { padding:64px 48px; }
+    .articles-header { margin-bottom:40px; }
+    .articles-eyebrow {
+      font-size:10px; font-weight:500; letter-spacing:3px;
+      text-transform:uppercase; color:var(--green); margin-bottom:8px;
+    }
+    .articles-title {
+      font-family:'Cormorant Garamond',serif;
+      font-size:clamp(28px,4vw,40px); font-weight:400; color:var(--ink);
+    }
+
+    .articles-grid {
+      display:grid; grid-template-columns:repeat(3,1fr); gap:24px;
+    }
+    .article-card {
+      border:1px solid var(--border); border-radius:4px;
+      overflow:hidden; transition:box-shadow 0.2s; cursor:pointer;
+    }
+    .article-card:hover { box-shadow:0 4px 20px rgba(61,138,90,0.1); }
+    .article-card.featured {
+      grid-column:1/-1; display:grid; grid-template-columns:1.2fr 1fr;
+    }
+    .article-thumb {
+      width:100%; aspect-ratio:16/9; object-fit:cover;
+      display:block; background:var(--green-l);
+    }
+    .article-card.featured .article-thumb { aspect-ratio:auto; height:100%; }
+    .article-body { padding:24px; }
+    .article-card.featured .article-body {
+      display:flex; flex-direction:column; justify-content:center; padding:36px;
+    }
+    .article-tag {
+      font-size:9px; font-weight:500; letter-spacing:2px;
+      text-transform:uppercase; color:var(--green);
+      margin-bottom:10px; display:block;
+    }
+    .article-title {
+      font-family:'Cormorant Garamond',serif;
+      font-size:20px; font-weight:400; color:var(--ink);
+      line-height:1.2; margin-bottom:10px;
+    }
+    .article-card.featured .article-title { font-size:28px; }
+    .article-excerpt {
+      font-size:12px; color:var(--grey); line-height:1.6; margin-bottom:16px;
+    }
+    .article-read {
+      font-family:'Cormorant Garamond',serif; font-style:italic;
+      font-size:13px; color:var(--green); text-decoration:none;
+      transition:gap 0.2s; display:inline-flex; align-items:center; gap:5px;
+    }
+    .article-read::after { content:'→'; font-style:normal; }
+    .article-read:hover { gap:8px; }
+    .article-meta {
+      font-size:10px; color:var(--grey); letter-spacing:0.5px;
+      margin-bottom:8px;
+    }
+
+    /* COMING SOON CARD */
+    .article-card.coming { opacity:0.5; cursor:default; }
+    .article-card.coming:hover { box-shadow:none; }
+
+    /* TOPICS SECTION */
+    .topics-section {
+      background:var(--sand); padding:64px 48px;
+      border-top:1px solid var(--border);
+    }
+    .topics-grid {
+      display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:32px;
+    }
+    .topic-card {
+      background:var(--white); border:1px solid var(--border);
+      border-radius:4px; padding:24px; text-align:center;
+      transition:all 0.2s; cursor:pointer;
+    }
+    .topic-card:hover { border-color:var(--green); background:var(--green-l); }
+    .topic-icon { font-size:28px; margin-bottom:10px; }
+    .topic-title {
+      font-family:'Cormorant Garamond',serif;
+      font-size:17px; font-weight:600; color:var(--ink); margin-bottom:4px;
+    }
+    .topic-count { font-size:11px; color:var(--grey); letter-spacing:0.5px; }
+
+    /* FOOTER */
+    footer {
+      background:var(--ink); padding:32px 48px;
+      display:flex; align-items:center; justify-content:space-between;
+      flex-wrap:wrap; gap:16px;
+    }
+    .footer-logo {
+      font-family:'Cormorant Garamond',serif;
+      font-size:16px; letter-spacing:4px; text-transform:uppercase; color:var(--green);
+    }
+    .social-links { display:flex; gap:24px; }
+    .social-links a {
+      font-size:11px; letter-spacing:2px; text-transform:uppercase;
+      color:rgba(255,255,255,0.45); text-decoration:none;
+    }
+    .social-links a:hover { color:var(--green); }
+    .footer-copy { font-size:10px; color:rgba(255,255,255,0.2); width:100%; }
+
+    @media (max-width:900px) {
+      nav { padding:14px 20px; }
+      .page-hero { padding:60px 20px; min-height:40vh; }
+      .signup-strip { padding:28px 20px; flex-direction:column; align-items:flex-start; }
+      .articles-section { padding:40px 20px; }
+      .articles-grid { grid-template-columns:1fr; }
+      .article-card.featured { grid-template-columns:1fr; }
+      .article-card.featured .article-thumb { aspect-ratio:16/9; height:auto; }
+      .topics-section { padding:40px 20px; }
+      .topics-grid { grid-template-columns:1fr 1fr; }
+      footer { padding:28px 20px; flex-direction:column; align-items:flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="index.html">
+      <img src="1.png" alt="Ataraxia"/>
+      <span class="nav-logo-text">Ataraxia</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html#destinations">Destinations</a>
+      <a href="adventures.html">Adventures</a>
+      <a href="quiz.html">Quiz</a>
+      <a href="newsletter.html" style="color:var(--green);">Journal</a>
+      <a href="index.html#book">Book a Tour</a>
+      <a href="index.html#about">About</a>
+    </div>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html#destinations" onclick="closeMenu()">Destinations</a>
+    <a href="adventures.html" onclick="closeMenu()">Adventures</a>
+    <a href="quiz.html" onclick="closeMenu()">Quiz</a>
+    <a href="newsletter.html" onclick="closeMenu()">Journal</a>
+    <a href="index.html#book" onclick="closeMenu()">Book a Tour</a>
+    <a href="index.html#about" onclick="closeMenu()">About</a>
+  </div>
+
+  <div class="page-hero">
+    <img src="landscapkyrg1.jpeg" alt="The Journal" class="hero-bg" loading="lazy"/>
+    <p class="eyebrow">Ataraxia Journal</p>
+    <h1>The Journal</h1>
+    <p>Honest travel tips, budget guides and lessons from the road — written by someone who actually does this.</p>
+  </div>
+
+  <!-- SIGNUP STRIP -->
+  <div class="signup-strip">
+    <div class="signup-strip-text">
+      <h3>Get new articles in your inbox</h3>
+      <p>No spam. Just good travel content when it's ready.</p>
+    </div>
+    <div class="signup-form">
+      <input type="email" class="signup-input" id="signupEmail" placeholder="your@email.com"/>
+      <button class="signup-btn" onclick="submitSignup()">Subscribe</button>
+    </div>
+    <p class="signup-success" id="signupSuccess">✓ You're in — welcome to the journey.</p>
+  </div>
+
+  <!-- ARTICLES -->
+  <div class="articles-section">
+    <div class="articles-header">
+      <p class="articles-eyebrow">Latest</p>
+      <h2 class="articles-title">Travel tips & guides</h2>
+    </div>
+
+    <div class="articles-grid">
+
+      <!-- FEATURED -->
+      <div class="article-card featured">
+        <img src="glaciericeland.jpeg" alt="Iceland" class="article-thumb" loading="lazy"/>
+        <div class="article-body">
+          <span class="article-tag">Budget travel</span>
+          <p class="article-meta">5 min read</p>
+          <h2 class="article-title">How to travel Iceland for under €800 — flights included</h2>
+          <p class="article-excerpt">Everyone thinks Iceland is expensive. It doesn't have to be. We did 9 nights, rented a car, camped under the northern lights and hiked every waterfall on the south coast — for less than most people spend on one night in a hotel. Here's exactly how.</p>
+          <a href="#" class="article-read">Read the guide</a>
+        </div>
+      </div>
+
+      <!-- ARTICLE 2 -->
+      <div class="article-card">
+        <img src="maldiveswatervilla.jpeg" alt="Maldives" class="article-thumb" loading="lazy"/>
+        <div class="article-body">
+          <span class="article-tag">Budget travel</span>
+          <p class="article-meta">4 min read</p>
+          <h3 class="article-title">The Maldives nobody tells you about — local islands on a real budget</h3>
+          <p class="article-excerpt">You don't need a €1,000-a-night resort. You need to know which islands to stay on.</p>
+          <a href="#" class="article-read">Read the guide</a>
+        </div>
+      </div>
+
+      <!-- ARTICLE 3 -->
+      <div class="article-card">
+        <img src="kyrgyurt.jpeg" alt="Kyrgyzstan yurt" class="article-thumb" loading="lazy"/>
+        <div class="article-body">
+          <span class="article-tag">Off the beaten path</span>
+          <p class="article-meta">6 min read</p>
+          <h3 class="article-title">Why Kyrgyzstan should be your next trip — and how to actually do it</h3>
+          <p class="article-excerpt">Remarkable landscapes, almost zero tourists, yurts, horses and mountains that make everything else look small.</p>
+          <a href="#" class="article-read">Read the guide</a>
+        </div>
+      </div>
+
+      <!-- ARTICLE 4 -->
+      <div class="article-card">
+        <img src="Srilankalionrock.jpeg" alt="Sri Lanka" class="article-thumb" loading="lazy"/>
+        <div class="article-body">
+          <span class="article-tag">Local life</span>
+          <p class="article-meta">5 min read</p>
+          <h3 class="article-title">How to travel Sri Lanka like a local — jungle stays, trains and real food</h3>
+          <p class="article-excerpt">Skip the resort. Stay with a family in the jungle, ride the mountain train, hike the End of the World.</p>
+          <a href="#" class="article-read">Read the guide</a>
+        </div>
+      </div>
+
+      <!-- ARTICLE 5 -->
+      <div class="article-card">
+        <img src="wadioman.jpeg" alt="Oman wadi" class="article-thumb" loading="lazy"/>
+        <div class="article-body">
+          <span class="article-tag">GCC travel</span>
+          <p class="article-meta">3 min read</p>
+          <h3 class="article-title">Oman as a long weekend — wadis, islands and why it never gets old</h3>
+          <p class="article-excerpt">Close enough to go regularly. Far enough to feel like another world. The Dimaniyat Islands alone are worth the trip.</p>
+          <a href="#" class="article-read">Read the guide</a>
+        </div>
+      </div>
+
+      <!-- COMING SOON -->
+      <div class="article-card coming">
+        <div class="article-thumb" style="background:var(--green-l);display:flex;align-items:center;justify-content:center;">
+          <span style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--green);">Coming soon</span>
+        </div>
+        <div class="article-body">
+          <span class="article-tag">Packing</span>
+          <p class="article-meta">4 min read</p>
+          <h3 class="article-title">What I actually pack for a 2-week trip — and what I leave behind</h3>
+          <p class="article-excerpt">Everything fits in a 40L backpack. Here's the list.</p>
+        </div>
+      </div>
+
+      <!-- COMING SOON 2 -->
+      <div class="article-card coming">
+        <div class="article-thumb" style="background:var(--green-l);display:flex;align-items:center;justify-content:center;">
+          <span style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--green);">Coming soon</span>
+        </div>
+        <div class="article-body">
+          <span class="article-tag">Flights</span>
+          <p class="article-meta">5 min read</p>
+          <h3 class="article-title">How to find cheap flights — the tools and tactics that actually work</h3>
+          <p class="article-excerpt">Not just Google Flights. The real method, step by step.</p>
+        </div>
+      </div>
+
+      <!-- COMING SOON 3 -->
+      <div class="article-card coming">
+        <div class="article-thumb" style="background:var(--green-l);display:flex;align-items:center;justify-content:center;">
+          <span style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--green);">Coming soon</span>
+        </div>
+        <div class="article-body">
+          <span class="article-tag">Solo travel</span>
+          <p class="article-meta">4 min read</p>
+          <h3 class="article-title">Travel buddy vs solo — when each one is the right call</h3>
+          <p class="article-excerpt">Both have changed the way I see the world. Here's when to choose which.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TOPICS -->
+  <div class="topics-section">
+    <p class="articles-eyebrow">Browse by topic</p>
+    <h2 class="articles-title">What are you looking for?</h2>
+    <div class="topics-grid">
+      <div class="topic-card">
+        <div class="topic-icon">✈️</div>
+        <p class="topic-title">Flights & Getting There</p>
+        <p class="topic-count">Coming soon</p>
+      </div>
+      <div class="topic-card">
+        <div class="topic-icon">💰</div>
+        <p class="topic-title">Budget Travel</p>
+        <p class="topic-count">2 articles</p>
+      </div>
+      <div class="topic-card">
+        <div class="topic-icon">🏕</div>
+        <p class="topic-title">Off the Beaten Path</p>
+        <p class="topic-count">1 article</p>
+      </div>
+      <div class="topic-card">
+        <div class="topic-icon">🎒</div>
+        <p class="topic-title">Packing & Prep</p>
+        <p class="topic-count">Coming soon</p>
+      </div>
+      <div class="topic-card">
+        <div class="topic-icon">🌏</div>
+        <p class="topic-title">GCC & Middle East</p>
+        <p class="topic-count">1 article</p>
+      </div>
+      <div class="topic-card">
+        <div class="topic-icon">🏠</div>
+        <p class="topic-title">Where to Stay</p>
+        <p class="topic-count">Coming soon</p>
+      </div>
+      <div class="topic-card">
+        <div class="topic-icon">🤝</div>
+        <p class="topic-title">Local Life</p>
+        <p class="topic-count">1 article</p>
+      </div>
+      <div class="topic-card">
+        <div class="topic-icon">👯</div>
+        <p class="topic-title">Solo vs Group</p>
+        <p class="topic-count">Coming soon</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <span class="footer-logo">Ataraxia</span>
+    <div class="social-links">
+      <a href="https://www.instagram.com/ataraxia.adv/">Instagram</a>
+      <a href="mailto:ataraxia.adv@gmail.com">Contact</a>
+    </div>
+    <p class="footer-copy">© 2026 Ataraxia — Your Travel Encyclopedia</p>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('mobileMenu').classList.toggle('open');
+      document.getElementById('hamburger').classList.toggle('open');
+    }
+    function closeMenu() {
+      document.getElementById('mobileMenu').classList.remove('open');
+      document.getElementById('hamburger').classList.remove('open');
+    }
+
+    async function submitSignup() {
+      const email = document.getElementById('signupEmail').value;
+      if (!email) return;
+      const payload = {
+        access_key: '4c5b72eb-85e7-4815-b1f8-fd6c5a757f76',
+        subject: 'New Newsletter Signup — Ataraxia',
+        from_name: 'Ataraxia Journal',
+        message: `New subscriber: ${email}`
+      };
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body: JSON.stringify(payload)
+        });
+        const result = await res.json();
+        if (result.success) {
+          document.querySelector('.signup-form').style.display = 'none';
+          document.getElementById('signupSuccess').style.display = 'block';
+        }
+      } catch(err) { console.error(err); }
+    }
+  </script>
+
+</body>
+</html>
