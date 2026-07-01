@@ -176,10 +176,11 @@
     .trip-story em { color:var(--ink); font-style:italic; }
     .trip-highlights { list-style:none; display:flex; flex-direction:column; gap:8px; margin-bottom:24px; }
     .trip-highlights li {
-      font-size:13px; color:var(--ink);
+      font-family:'Cormorant Garamond',serif;
+      font-style:italic; font-size:15px; color:var(--ink);
       display:flex; align-items:flex-start; gap:10px; line-height:1.5;
     }
-    .trip-highlights li::before { content:'—'; color:var(--green); flex-shrink:0; }
+    .trip-highlights li::before { content:'✦'; color:var(--green); flex-shrink:0; font-style:normal; font-size:11px; margin-top:3px; }
 
     /* FOLLOW CTA */
     .follow-cta {
@@ -392,9 +393,8 @@
 
     <!-- MADEIRA / PORTUGAL -->
     <div class="trip-entry reverse">
-      <div class="trip-photos two">
-        <img src="jamesbond.jpeg" alt="James Bond island" class="trip-photo"/>
-        <img src="hithteroadkyrg.jpeg" alt="Road trip" class="trip-photo"/>
+      <div class="trip-photos one">
+        <img src="portugal.jpeg" alt="Portugal" class="trip-photo"/>
       </div>
       <div class="trip-content">
         <p class="trip-flag">🇵🇹 Portugal — Madeira</p>
@@ -456,10 +456,10 @@
           <span class="trip-tag">Local family</span>
           <span class="trip-tag">Road trips</span>
         </div>
-        <p class="trip-story">We lived in Batangas as our base — not a resort, just a home. From there we went everywhere: Tatay Falls, island hopping to Coron, snorkelling in water so clear it didn't feel real. We visited a friend's grandmother in the province, ate at her table, did road trips on roads with no names. The clearest coral I've ever seen. The warmest people I've ever met.</p>
+        <p class="trip-story">We lived in Batangas as our base — not a resort, just a home. From there we went everywhere: Tatay Falls, island hopping to nearby islands, snorkelling in water so clear it didn't feel real. We visited a friend's grandmother in the province, ate at her table, did road trips on roads with no names. The clearest coral I've ever seen. The warmest people I've ever met.</p>
         <ul class="trip-highlights">
           <li>Tatay Falls — reached by boat and jungle trail</li>
-          <li>Island hopping to Coron — the water is unreal</li>
+          <li>Island hopping — the water is unreal</li>
           <li>Snorkelled in the clearest coral reef I've ever seen</li>
           <li>Visited a local family in Batangas — ate home-cooked food</li>
           <li>Road trips with no destination — just driving and stopping</li>
@@ -470,8 +470,8 @@
     <!-- ITALY -->
     <div class="trip-entry">
       <div class="trip-photos three">
-        <img src="florenceitalychurch.jpeg" alt="Florence Duomo" class="trip-photo main"/>
-        <img src="rockclimbcomoitaly.jpeg" alt="Rock climbing Lake Como Italy" class="trip-photo"/>
+        <img src="italy1.jpeg" alt="Italy Colosseum" class="trip-photo main"/>
+        <img src="florenceitalychurch.jpeg" alt="Florence Duomo" class="trip-photo"/>
         <img src="roaditaly.jpeg" alt="Italy road" class="trip-photo"/>
       </div>
       <div class="trip-content">
@@ -524,7 +524,7 @@
     <div class="trip-entry">
       <div class="trip-photos two">
         <img src="bungloturk.jpeg" alt="Turkey bungalow" class="trip-photo"/>
-        <img src="turkeysofiroad.jpeg" alt="Turkey road" class="trip-photo"/>
+        <img src="turkeyysofiroad.jpeg" alt="Turkey road" class="trip-photo"/>
       </div>
       <div class="trip-content">
         <p class="trip-flag">🇹🇷 Turkey — Regular</p>
@@ -549,8 +549,8 @@
     <!-- SPAIN -->
     <div class="trip-entry reverse">
       <div class="trip-photos two">
-        <img src="spotkyrg.jpeg" alt="Spain" class="trip-photo"/>
-        <img src="picnickyrg.jpeg" alt="Spain" class="trip-photo"/>
+        <img src="malagaspain.jpeg" alt="Malaga Spain" class="trip-photo"/>
+        <img src="tarifaspain.jpeg" alt="Tarifa Spain" class="trip-photo"/>
       </div>
       <div class="trip-content">
         <p class="trip-flag">🇪🇸 Spain</p>
@@ -576,7 +576,7 @@
     <div class="trip-entry">
       <div class="trip-photos two">
         <img src="thailandphiphi.jpeg" alt="Thailand Phi Phi" class="trip-photo"/>
-        <img src="thailandboat.jpeg" alt="Thailand boat" class="trip-photo"/>
+        <img src="jamesbond.jpeg" alt="James Bond Island Thailand" class="trip-photo"/>
       </div>
       <div class="trip-content">
         <p class="trip-flag">🇹🇭 Thailand</p>
@@ -597,6 +597,14 @@
       </div>
     </div>
 
+  </div>
+
+  <!-- ITINERARY CTA -->
+  <div style="background:var(--green-l); border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:48px; text-align:center;">
+    <p style="font-size:10px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--green);margin-bottom:10px;">Want to explore Bahrain?</p>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(24px,4vw,36px);font-weight:400;color:var(--ink);margin-bottom:10px;">Get the Hidden Manama itinerary</h2>
+    <p style="font-size:13px;color:var(--grey);margin-bottom:24px;max-width:420px;margin-left:auto;margin-right:auto;">A printable one-day guide with timings, tips, and the spots only locals know — all in one PDF.</p>
+    <a href="https://ataraxia32.gumroad.com/l/jcbsiq" style="display:inline-block;background:var(--green);color:#fff;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;letter-spacing:2px;text-transform:uppercase;padding:14px 32px;border-radius:2px;text-decoration:none;">Get the itinerary</a>
   </div>
 
   <div class="follow-cta">
