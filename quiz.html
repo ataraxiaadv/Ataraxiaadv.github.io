@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>What Type of Traveller Are You? — Ataraxia</title>
+  <meta name="description" content="Take the Ataraxia travel personality quiz and find out if you're a Wanderer, Budget Ninja or Adventurer."/>
+  <meta property="og:title" content="What type of traveller are you? — Ataraxia"/>
+  <meta property="og:description" content="Answer 8 questions and find out your travel personality. Share your result."/>
+  <meta property="og:image" content="https://ataraxiaadv.github.io/Manama.jpg"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green:   #3d8a5a;
+      --green-d: #2a6140;
+      --green-l: #e8f4ee;
+      --white:   #ffffff;
+      --ink:     #1a1a1a;
+      --grey:    #6b6b6b;
+      --sand:    #f0ebe3;
+      --border:  rgba(61,138,90,0.15);
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { font-family:'DM Sans',sans-serif; background:var(--white); color:var(--ink); }
+
+    /* NAV */
+    nav {
+      position:sticky; top:0; z-index:100;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:16px 48px;
+      background:rgba(255,255,255,0.96);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--border);
+    }
+    .nav-logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
+    .nav-logo img { height:32px; width:32px; border-radius:50%; object-fit:cover; }
+    .nav-logo-text {
+      font-family:'Cormorant Garamond',serif;
+      font-size:18px; font-weight:600; letter-spacing:3px;
+      text-transform:uppercase; color:var(--green);
+    }
+    .nav-links { display:none; gap:28px; }
+    .hamburger {
+      display:flex; flex-direction:column; gap:5px;
+      cursor:pointer; padding:4px; background:none; border:none;
+    }
+    .hamburger span {
+      display:block; width:22px; height:2px;
+      background:var(--green); border-radius:2px; transition:all 0.3s;
+    }
+    .hamburger.open span:nth-child(1) { transform:rotate(45deg) translate(5px,5px); }
+    .hamburger.open span:nth-child(2) { opacity:0; }
+    .hamburger.open span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
+    .mobile-menu {
+      display:none; position:fixed;
+      top:65px; left:0; right:0; z-index:99;
+      background:var(--white); border-bottom:1px solid var(--border);
+      padding:16px 20px; flex-direction:column;
+    }
+    .mobile-menu.open { display:flex; }
+    .mobile-menu a {
+      font-size:12px; font-weight:500; letter-spacing:2px;
+      text-transform:uppercase; color:var(--ink);
+      text-decoration:none; padding:14px 0;
+      border-bottom:1px solid var(--border); transition:color 0.2s;
+    }
+    .mobile-menu a:last-child { border-bottom:none; }
+    @media (min-width:901px) {
+      .nav-links { display:flex !important; }
+      .hamburger { display:none !important; }
+      .mobile-menu { display:none !important; }
+    }
+
+    /* HERO */
+    .quiz-hero {
+      background:var(--green); padding:72px 48px 56px;
+      text-align:center; position:relative; overflow:hidden;
+    }
+    .quiz-hero::before {
+      content:''; position:absolute; inset:0;
+      background:radial-gradient(ellipse at 50% 100%, rgba(255,255,255,0.07), transparent 70%);
+    }
+    .quiz-hero > * { position:relative; z-index:1; }
+    .quiz-hero .eyebrow {
+      font-size:10px; letter-spacing:4px; text-transform:uppercase;
+      color:rgba(255,255,255,0.55); margin-bottom:16px;
+    }
+    .quiz-hero h1 {
+      font-family:'Cormorant Garamond',serif;
+      font-size:clamp(32px,6vw,60px); font-weight:400;
+      color:#fff; margin-bottom:16px; line-height:1.1;
+    }
+    .quiz-hero p {
+      font-size:14px; color:rgba(255,255,255,0.7);
+      max-width:440px; margin:0 auto 32px;
+    }
+    .quiz-types {
+      display:flex; justify-content:center; gap:12px; flex-wrap:wrap;
+    }
+    .quiz-type-pill {
+      font-size:11px; letter-spacing:1.5px; text-transform:uppercase;
+      color:rgba(255,255,255,0.8);
+      border:1px solid rgba(255,255,255,0.3);
+      padding:6px 16px; border-radius:99px;
+    }
+
+    /* QUIZ CONTAINER */
+    .quiz-wrap {
+      max-width:680px; margin:0 auto; padding:64px 24px 80px;
+    }
+
+    /* PROGRESS */
+    .progress-bar {
+      height:3px; background:var(--border);
+      border-radius:99px; margin-bottom:48px; overflow:hidden;
+    }
+    .progress-fill {
+      height:100%; background:var(--green);
+      border-radius:99px; transition:width 0.4s ease;
+      width:0%;
+    }
+    .progress-label {
+      font-size:10px; font-weight:500; letter-spacing:2px;
+      text-transform:uppercase; color:var(--grey);
+      margin-bottom:8px; display:block;
+    }
+
+    /* QUESTION */
+    .question-block { display:none; }
+    .question-block.active { display:block; }
+    .question-num {
+      font-size:10px; font-weight:500; letter-spacing:3px;
+      text-transform:uppercase; color:var(--green); margin-bottom:10px;
+    }
+    .question-text {
+      font-family:'Cormorant Garamond',serif;
+      font-size:clamp(22px,4vw,32px); font-weight:400;
+      color:var(--ink); line-height:1.2; margin-bottom:32px;
+    }
+
+    /* OPTIONS */
+    .options { display:flex; flex-direction:column; gap:12px; }
+    .option {
+      display:flex; align-items:flex-start; gap:14px;
+      padding:16px 20px; border:1px solid var(--border);
+      border-radius:4px; cursor:pointer; transition:all 0.2s;
+      background:var(--white);
+    }
+    .option:hover { border-color:var(--green); background:var(--green-l); }
+    .option.selected { border-color:var(--green); background:var(--green-l); }
+    .option-letter {
+      font-family:'Cormorant Garamond',serif;
+      font-size:18px; font-weight:600; color:var(--green);
+      flex-shrink:0; line-height:1.2;
+    }
+    .option-text { font-size:13px; color:var(--ink); line-height:1.5; }
+
+    /* NEXT BUTTON */
+    .next-btn {
+      display:none; margin-top:24px;
+      font-family:'DM Sans',sans-serif;
+      font-size:11px; font-weight:500; letter-spacing:3px;
+      text-transform:uppercase; color:var(--white);
+      background:var(--green); border:none;
+      padding:14px 32px; border-radius:2px;
+      cursor:pointer; transition:background 0.2s;
+    }
+    .next-btn:hover { background:var(--green-d); }
+    .next-btn.visible { display:inline-block; }
+
+    /* RESULT */
+    .result-block { display:none; text-align:center; }
+    .result-block.active { display:block; }
+    .result-emoji { font-size:64px; margin-bottom:20px; }
+    .result-label {
+      font-size:10px; font-weight:500; letter-spacing:4px;
+      text-transform:uppercase; color:var(--green); margin-bottom:10px;
+    }
+    .result-title {
+      font-family:'Cormorant Garamond',serif;
+      font-size:clamp(36px,7vw,60px); font-weight:400;
+      color:var(--ink); margin-bottom:20px; line-height:1;
+    }
+    .result-desc {
+      font-family:'Cormorant Garamond',serif;
+      font-style:italic; font-size:18px; color:var(--grey);
+      line-height:1.8; max-width:520px; margin:0 auto 32px;
+    }
+    .result-traits {
+      display:flex; justify-content:center; gap:10px;
+      flex-wrap:wrap; margin-bottom:36px;
+    }
+    .result-trait {
+      font-size:11px; letter-spacing:1.5px; text-transform:uppercase;
+      color:var(--green); border:1px solid rgba(61,138,90,0.25);
+      padding:5px 14px; border-radius:99px;
+    }
+    .result-actions {
+      display:flex; gap:12px; justify-content:center; flex-wrap:wrap;
+    }
+    .share-btn {
+      font-family:'DM Sans',sans-serif;
+      font-size:11px; font-weight:500; letter-spacing:2px;
+      text-transform:uppercase; padding:12px 24px; border-radius:2px;
+      cursor:pointer; transition:all 0.2s; text-decoration:none;
+      display:inline-block;
+    }
+    .share-btn.primary {
+      background:var(--green); color:#fff; border:none;
+    }
+    .share-btn.primary:hover { background:var(--green-d); }
+    .share-btn.secondary {
+      background:transparent; color:var(--green);
+      border:1px solid rgba(61,138,90,0.3);
+    }
+    .share-btn.secondary:hover { background:var(--green-l); }
+
+    /* DESTINATIONS FOR YOUR TYPE */
+    .result-destinations {
+      margin-top:48px; padding-top:40px;
+      border-top:1px solid var(--border); text-align:left;
+    }
+    .result-destinations h3 {
+      font-family:'Cormorant Garamond',serif;
+      font-size:26px; font-weight:400; color:var(--ink);
+      margin-bottom:6px;
+    }
+    .result-destinations p {
+      font-size:13px; color:var(--grey); margin-bottom:20px;
+    }
+    .dest-pills {
+      display:flex; flex-wrap:wrap; gap:10px;
+    }
+    .dest-pill {
+      font-size:12px; color:var(--ink);
+      background:var(--sand); padding:8px 16px;
+      border-radius:99px; text-decoration:none;
+      transition:background 0.2s;
+    }
+    .dest-pill:hover { background:var(--green-l); color:var(--green); }
+
+    /* RETAKE */
+    .retake-btn {
+      background:none; border:none; cursor:pointer;
+      font-size:12px; color:var(--grey); margin-top:20px;
+      letter-spacing:1px; text-decoration:underline;
+      display:block; margin:20px auto 0;
+    }
+
+    /* FOOTER */
+    footer {
+      background:var(--ink); padding:32px 48px;
+      display:flex; align-items:center; justify-content:space-between;
+      flex-wrap:wrap; gap:16px;
+    }
+    .footer-logo {
+      font-family:'Cormorant Garamond',serif;
+      font-size:16px; letter-spacing:4px;
+      text-transform:uppercase; color:var(--green);
+    }
+    .social-links { display:flex; gap:24px; }
+    .social-links a {
+      font-size:11px; letter-spacing:2px; text-transform:uppercase;
+      color:rgba(255,255,255,0.45); text-decoration:none;
+    }
+    .social-links a:hover { color:var(--green); }
+    .footer-copy { font-size:10px; color:rgba(255,255,255,0.2); width:100%; }
+
+    @media (max-width:768px) {
+      nav { padding:14px 20px; }
+      .quiz-hero { padding:56px 20px 40px; }
+      .quiz-wrap { padding:40px 20px 56px; }
+      footer { padding:28px 20px; flex-direction:column; align-items:flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="index.html">
+      <img src="1.png" alt="Ataraxia"/>
+      <span class="nav-logo-text">Ataraxia</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html#destinations">Destinations</a>
+      <a href="adventures.html">Adventures</a>
+      <a href="index.html#featured">Guides</a>
+      <a href="index.html#book">Book a Tour</a>
+      <a href="index.html#about">About</a>
+    </div>
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html#destinations" onclick="closeMenu()">Destinations</a>
+    <a href="adventures.html" onclick="closeMenu()">Adventures</a>
+    <a href="index.html#featured" onclick="closeMenu()">Guides</a>
+    <a href="index.html#book" onclick="closeMenu()">Book a Tour</a>
+    <a href="index.html#about" onclick="closeMenu()">About</a>
+  </div>
+
+  <div class="quiz-hero">
+    <p class="eyebrow">Ataraxia Travel Quiz</p>
+    <h1>What type of traveller are you?</h1>
+    <p>8 questions. No right answers. Just the truth about how you actually travel.</p>
+    <div class="quiz-types">
+      <span class="quiz-type-pill">The Wanderer</span>
+      <span class="quiz-type-pill">The Budget Ninja</span>
+      <span class="quiz-type-pill">The Adventurer</span>
+    </div>
+  </div>
+
+  <div class="quiz-wrap">
+
+    <span class="progress-label" id="progressLabel">Question 1 of 8</span>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <!-- Q1 -->
+    <div class="question-block active" data-q="0">
+      <p class="question-num">01 —</p>
+      <h2 class="question-text">You have 10 days and no plan. What happens first?</h2>
+      <div class="options">
+        <div class="option" onclick="selectOption(this, 'W')">
+          <span class="option-letter">A</span>
+          <span class="option-text">I buy a one-way ticket to somewhere I've never been and figure it out when I land</span>
+        </div>
+        <div class="option" onclick="selectOption(this, 'B')">
+          <span class="option-letter">B</span>
+          <span class="option-text">I spend a week finding the cheapest flights, best hostels and free things to do</span>
+        </div>
+        <div class="option" onclick="selectOption(this, 'A')">
+          <span class="option-letter">C</span>
+          <span class="option-text">I look up the best hikes, trails and outdoor experiences and plan around those</span>
+        </div>
+      </div>
+      <button class="next-btn" onclick="nextQuestion()">Next →</button>
+    </div>
+
+    <!-- Q2 -->
+    <div class="question-block" data-q="1">
+      <p class="question-num">02 —</p>
+      <h2 class="question-text">Your ideal place to sleep on a trip is...</h2>
+      <div class="options">
+        <div class="option" onclick="selectOption(this, 'W')">
+          <span class="option-letter">A</span>
+          <span class="option-text">Wherever I end up — a stranger's couch, a last-minute hostel, the back of a car</span>
+        </div>
+        <div class="option" onclick="selectOption(this, 'B')">
+          <span class="option-letter">B</span>
+          <span class="option-text">A €15-a-night guesthouse that's actually nicer than most hotels</span>
+        </div>
+        <div class="option" onclick="selectOption(this, 'A')">
+          <span class="option-letter">C</span>
+          <span class="option-text">A tent under the stars — preferably somewhere with no phone signal</span>
+        </div>
+      </div>
+      <button class="next-btn" onclick="nextQuestion()">Next →</button>
+    </div>
+
+    <!-- Q3 -->
+    <div class="question-block" data-q="2">
+      <p class="question-num">03 —</p>
+      <h2 class="question-text">A local offers to take you somewhere "not in any guidebook". You...</h2>
+      <div class="options">
+        <div class="option" onclick="selectOption(this, 'W')">
+          <span class="option-letter">A</span>
+          <span class="option-text">Say yes immediately. This is exactly why you travel</span>
+        </div>
+        <div class="option" onclick="selectOption(this, 'B')">
+          <span class="option-letter">B</span>
+          <span class="option-text">Ask if it's free first, then say yes immediately</span>
+        </div>
+        <div class="option" onclick="selectOption(this, 'A')">
+          <span class="option-letter">C</span>
+          <span class="option-text">Ask if there's a trail involved. If yes, you're already putting your boots on</span>
+        </div>
+      </div>
+      <button class="next-btn" onclick="nextQuestion()">Next →</button>
+    </div>
+
+    <!-- Q4 -->
+    <div class="question-block" data-q="3">
+      <p class="question-num">04 —</p>
+      <h2 class="question-text">Your travel budget for two weeks is €600. You feel...</h2>
+      <div class="options">
+        <div class="option" onclick="selectOption(this, 'W')">
+          <span class="option-letter">A</span>
+          <span class="option-text">Fine. Money follows if you stay flexible and say yes to the right things</span>
+        </div>
+        <div class="option" onclick="selectOption(this, 'B')">
+          <span class="option-letter">B</span>
+          <span class="option-text">Confident. I've already mentally mapped out how to make it work</span>
+        </div>
+        <div class="option" onclick="selectOption(this, 'A')">
+          <span class="option-letter">C</span>
+          <span class="option-text">Great — most of the best experiences cost nothing anyway</span>
+        </div>
+      </div>
+      <button class="next-btn" onclick="nextQuestion()">Next →</button>
+    </div>
+
+    <!-- Q5 -->
+    <div class="question-block" data-q="4">
+      <p class="question-num">05 —</p>
+      <h2 class="question-text">The moment you feel most alive on a trip is...</h2>
+      <div class="options">
+        <div class="option" onclick="selectOption(this, 'W')">
+          <span class="option-letter">A</span>
+          <span class="option-text">When you're completely lost in a city you've never been to and you don't care</span>
+        </div>
+        <div class="option" onclick="selectOption(this, 'B')">
+          <span class="option-letter">B</span>
+          <span class="option-text">When you realise you've had an incredible day and spent almost nothing</span>
+        </div>
+        <div class="option" onclick="selectOption(this, 'A')">
+          <span class="option-letter">C</span>
+          <span class="option-text">Standing at the top of something — a mountain, a cliff, a waterfall — breathless</span>
+        </div>
+      </div>
+      <button class="next-btn" onclick="nextQuestion()">Next →</button>
+    </div>
+
+    <!-- Q6 -->
+    <div class="question-block" data-q="5">
+      <p class="question-num">06 —</p>
+      <h2 class="question-text">What's always in your bag?</h2>
+      <div class="options">
+        <div class="option" onclick="selectOption(this, 'W')">
+          <span class="option-letter">A</span>
+          <span class="option-text">A notebook, a camera, and as little else as possible</span>
+        </div>
+        <div class="option" onclick="selectOption(this, 'B')">
+          <span class="option-letter">B</span>
+          <span class="option-text">A spreadsheet of free things to do, backup payment cards, and snacks from the local market</span>
+        </div>
+        <div class="option" onclick="selectOption(this, 'A')">
+          <span class="option-letter">C</span>
+          <span class="option-text">Hiking boots, a water filter, a headtorch, and a tent</span>
+        </div>
+      </div>
+      <button class="next-btn" onclick="nextQuestion()">Next →</button>
+    </div>
+
+    <!-- Q7 -->
+    <div class="question-block" data-q="6">
+      <p class="question-num">07 —</p>
+      <h2 class="question-text">Your friends describe your travel style as...</h2>
+      <div class="options">
+        <div class="option" onclick="selectOption(this, 'W')">
+          <span class="option-letter">A</span>
+          <span class="option-text">"Chaotic but somehow always ends up somewhere incredible"</span>
+        </div>
+        <div class="option" onclick="selectOption(this, 'B')">
+          <span class="option-letter">B</span>
+          <span class="option-text">"I don't know how they do it for so cheap but I'm always jealous"</span>
+        </div>
+        <div class="option" onclick="selectOption(this, 'A')">
+          <span class="option-letter">C</span>
+          <span class="option-text">"They come back exhausted, sunburnt, and happier than anyone I've ever seen"</span>
+        </div>
+      </div>
+      <button class="next-btn" onclick="nextQuestion()">Next →</button>
+    </div>
+
+    <!-- Q8 -->
+    <div class="question-block" data-q="7">
+      <p class="question-num">08 —</p>
+      <h2 class="question-text">The trip that changed you most involved...</h2>
+      <div class="options">
+        <div class="option" onclick="selectOption(this, 'W')">
+          <span class="option-letter">A</span>
+          <span class="option-text">Going somewhere completely alone with no plan and finding exactly what you needed</span>
+        </div>
+        <div class="option" onclick="selectOption(this, 'B')">
+          <span class="option-letter">B</span>
+          <span class="option-text">Realising you can experience the world fully without spending a fortune</span>
+        </div>
+        <div class="option" onclick="selectOption(this, 'A')">
+          <span class="option-letter">C</span>
+          <span class="option-text">A physical challenge — a summit, a crossing, a dive — that showed you what you're made of</span>
+        </div>
+      </div>
+      <button class="next-btn" onclick="nextQuestion()">See my result →</button>
+    </div>
+
+    <!-- RESULTS -->
+    <div class="result-block" id="result-W">
+      <div class="result-emoji">🌀</div>
+      <p class="result-label">Your travel type</p>
+      <h2 class="result-title">The Wanderer</h2>
+      <p class="result-desc">You don't travel to escape — you travel to find. Plans feel like cages. The best moments of your life have happened because you said yes when you had no idea what came next. You trust the detour. You follow the feeling. And somehow, it always leads somewhere worth remembering.</p>
+      <div class="result-traits">
+        <span class="result-trait">Solo by choice</span>
+        <span class="result-trait">Unplanned</span>
+        <span class="result-trait">Present</span>
+        <span class="result-trait">Follows instinct</span>
+        <span class="result-trait">Finds the unexpected</span>
+      </div>
+      <div class="result-destinations">
+        <h3>Destinations for The Wanderer</h3>
+        <p>Places that reward those who show up without a plan.</p>
+        <div class="dest-pills">
+          <a href="bahrain.html" class="dest-pill">🇧🇭 Hidden Manama</a>
+          <span class="dest-pill">🇵🇹 Portugal backroads</span>
+          <span class="dest-pill">🇰🇬 Kyrgyzstan</span>
+          <span class="dest-pill">🇮🇸 Iceland Ring Road</span>
+          <span class="dest-pill">🇲🇦 Morocco medinas</span>
+        </div>
+      </div>
+      <div class="result-actions">
+        <button class="share-btn primary" onclick="shareResult('The Wanderer')">Share my result</button>
+        <a href="adventures.html" class="share-btn secondary">Read the journey</a>
+      </div>
+      <button class="retake-btn" onclick="retakeQuiz()">Retake the quiz</button>
+    </div>
+
+    <div class="result-block" id="result-B">
+      <div class="result-emoji">🧠</div>
+      <p class="result-label">Your travel type</p>
+      <h2 class="result-title">The Budget Ninja</h2>
+      <p class="result-desc">You've turned low-budget travel into an art form. While others spend thousands chasing the same Instagram spots, you're eating better, staying longer, and seeing more — for a fraction of the price. You know that the best experiences in life are almost always free. You've just figured out how to get there.</p>
+      <div class="result-traits">
+        <span class="result-trait">Smart spender</span>
+        <span class="result-trait">Local first</span>
+        <span class="result-trait">Long trips</span>
+        <span class="result-trait">No tourist traps</span>
+        <span class="result-trait">Always finds a way</span>
+      </div>
+      <div class="result-destinations">
+        <h3>Destinations for The Budget Ninja</h3>
+        <p>Maximum experience, minimum spend.</p>
+        <div class="dest-pills">
+          <a href="bahrain.html" class="dest-pill">🇧🇭 Hidden Manama</a>
+          <span class="dest-pill">🇵🇭 Philippines local islands</span>
+          <span class="dest-pill">🇰🇬 Kyrgyzstan</span>
+          <span class="dest-pill">🇲🇻 Maldives local islands</span>
+          <span class="dest-pill">🇹🇷 Turkey off-season</span>
+        </div>
+      </div>
+      <div class="result-actions">
+        <button class="share-btn primary" onclick="shareResult('The Budget Ninja')">Share my result</button>
+        <a href="adventures.html" class="share-btn secondary">Read the journey</a>
+      </div>
+      <button class="retake-btn" onclick="retakeQuiz()">Retake the quiz</button>
+    </div>
+
+    <div class="result-block" id="result-A">
+      <div class="result-emoji">⛰️</div>
+      <p class="result-label">Your travel type</p>
+      <h2 class="result-title">The Adventurer</h2>
+      <p class="result-desc">You measure trips in elevation gained, kilometres walked and depths dived. The view from the summit isn't the reward — the climb is. You come home tired in every muscle and more alive than you've felt all year. You don't travel for comfort. You travel for the kind of stories that still give you goosebumps ten years later.</p>
+      <div class="result-traits">
+        <span class="result-trait">Physical challenge</span>
+        <span class="result-trait">Outdoors always</span>
+        <span class="result-trait">Early starts</span>
+        <span class="result-trait">No crowds</span>
+        <span class="result-trait">Earns the view</span>
+      </div>
+      <div class="result-destinations">
+        <h3>Destinations for The Adventurer</h3>
+        <p>Places that will push you and reward you equally.</p>
+        <div class="dest-pills">
+          <a href="bahrain.html" class="dest-pill">🇧🇭 Bahrain outdoors</a>
+          <span class="dest-pill">🇮🇸 Iceland highlands</span>
+          <span class="dest-pill">🇰🇬 Kyrgyzstan treks</span>
+          <span class="dest-pill">🇵🇭 Philippines diving</span>
+          <span class="dest-pill">🇳🇴 Norway fjords</span>
+        </div>
+      </div>
+      <div class="result-actions">
+        <button class="share-btn primary" onclick="shareResult('The Adventurer')">Share my result</button>
+        <a href="adventures.html" class="share-btn secondary">Read the journey</a>
+      </div>
+      <button class="retake-btn" onclick="retakeQuiz()">Retake the quiz</button>
+    </div>
+
+  </div>
+
+  <footer>
+    <span class="footer-logo">Ataraxia</span>
+    <div class="social-links">
+      <a href="https://www.instagram.com/ataraxia.adv/">Instagram</a>
+      <a href="mailto:ataraxia.adv@gmail.com">Contact</a>
+    </div>
+    <p class="footer-copy">© 2026 Ataraxia — Your Travel Encyclopedia</p>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('mobileMenu').classList.toggle('open');
+      document.getElementById('hamburger').classList.toggle('open');
+    }
+    function closeMenu() {
+      document.getElementById('mobileMenu').classList.remove('open');
+      document.getElementById('hamburger').classList.remove('open');
+    }
+
+    const scores = { W: 0, B: 0, A: 0 };
+    let currentQ = 0;
+    const totalQ = 8;
+
+    function selectOption(el, type) {
+      // Deselect all options in this question
+      el.closest('.options').querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+      el.classList.add('selected');
+
+      // Store score
+      const q = el.closest('.question-block');
+      q.dataset.selected = type;
+
+      // Show next button
+      q.querySelector('.next-btn').classList.add('visible');
+    }
+
+    function nextQuestion() {
+      const current = document.querySelector('.question-block.active');
+      const selected = current.dataset.selected;
+      if (!selected) return;
+
+      // Add to score
+      scores[selected]++;
+
+      currentQ++;
+      updateProgress();
+
+      // Hide current
+      current.classList.remove('active');
+
+      if (currentQ >= totalQ) {
+        showResult();
+      } else {
+        // Show next question
+        document.querySelector(`[data-q="${currentQ}"]`).classList.add('active');
+      }
+    }
+
+    function updateProgress() {
+      const pct = (currentQ / totalQ) * 100;
+      document.getElementById('progressFill').style.width = pct + '%';
+      document.getElementById('progressLabel').textContent =
+        currentQ < totalQ ? `Question ${currentQ + 1} of ${totalQ}` : 'Your result';
+    }
+
+    function showResult() {
+      // Find winner
+      const winner = Object.entries(scores).sort((a,b) => b[1]-a[1])[0][0];
+      document.getElementById('result-' + winner).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function shareResult(type) {
+      const text = `I took the Ataraxia travel quiz and I'm "${type}" — what type of traveller are you? 🌍`;
+      if (navigator.share) {
+        navigator.share({ title: 'Ataraxia Travel Quiz', text, url: window.location.href });
+      } else {
+        navigator.clipboard.writeText(text + '\n' + window.location.href);
+        alert('Result copied! Paste it anywhere to share 🌍');
+      }
+    }
+
+    function retakeQuiz() {
+      scores.W = 0; scores.B = 0; scores.A = 0;
+      currentQ = 0;
+      document.querySelectorAll('.result-block').forEach(r => r.classList.remove('active'));
+      document.querySelectorAll('.question-block').forEach(q => {
+        q.classList.remove('active');
+        q.dataset.selected = '';
+        q.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+        q.querySelector('.next-btn').classList.remove('visible');
+      });
+      document.querySelector('[data-q="0"]').classList.add('active');
+      updateProgress();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+
+</body>
+</html>
