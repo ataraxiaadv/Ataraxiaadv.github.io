@@ -148,6 +148,23 @@
     .trip-photos.three .main { grid-column:1/-1; }
     .trip-photos.five { grid-template-columns:1fr 1fr; }
     .trip-photos.five .main { grid-column:1/-1; }
+
+    /* SURROUND FRAME (Portugal) */
+    .portugal-frame {
+      display:grid; grid-template-columns:1fr 1.3fr 1fr;
+      gap:10px; margin-bottom:80px; padding-bottom:80px;
+      border-bottom:1px solid var(--border);
+    }
+    .portugal-frame .frame-photo {
+      width:100%; height:100%; object-fit:cover;
+      border-radius:4px; display:block; background:var(--green-l);
+    }
+    .portugal-frame .f-top-l { grid-column:1; grid-row:1; aspect-ratio:4/3; }
+    .portugal-frame .f-top-c { grid-column:2; grid-row:1; aspect-ratio:16/9; }
+    .portugal-frame .f-top-r { grid-column:3; grid-row:1; aspect-ratio:4/3; }
+    .portugal-frame .f-side-l { grid-column:1; grid-row:2; aspect-ratio:3/4; }
+    .portugal-frame .f-side-r { grid-column:3; grid-row:2; aspect-ratio:3/4; }
+    .portugal-frame .trip-content { grid-column:2; grid-row:2; }
     .trip-photo {
       width:100%; aspect-ratio:4/3; object-fit:cover;
       border-radius:4px; display:block; background:var(--green-l);
@@ -243,6 +260,8 @@
       .trips { padding:0 20px 56px; }
       .trip-entry { grid-template-columns:1fr; gap:24px; margin-bottom:56px; padding-bottom:56px; }
       .trip-entry.reverse { direction:ltr; }
+      .portugal-frame { grid-template-columns:1fr; gap:16px; margin-bottom:56px; padding-bottom:56px; }
+      .portugal-frame > * { grid-column:1; grid-row:auto; }
       .follow-cta { padding:48px 20px; }
       footer { padding:28px 20px; flex-direction:column; align-items:flex-start; }
     }
@@ -394,14 +413,11 @@
     </div>
 
     <!-- MADEIRA / PORTUGAL -->
-    <div class="trip-entry reverse">
-      <div class="trip-photos five">
-        <img src="madeira1.jpeg" alt="Madeira Portugal" class="trip-photo main"/>
-        <img src="madeira3.jpeg" alt="Madeira Portugal" class="trip-photo"/>
-        <img src="porto1.jpeg" alt="Porto Portugal" class="trip-photo"/>
-        <img src="porto2.jpeg" alt="Porto Portugal" class="trip-photo"/>
-        <img src="portos.jpeg" alt="Porto Portugal" class="trip-photo"/>
-      </div>
+    <div class="portugal-frame">
+      <img src="madeira1.jpeg" alt="Madeira Portugal" class="frame-photo f-top-l"/>
+      <img src="portos.jpeg" alt="Porto Portugal" class="frame-photo f-top-c"/>
+      <img src="madeira3.jpeg" alt="Madeira Portugal" class="frame-photo f-top-r"/>
+      <img src="porto1.jpeg" alt="Porto Portugal" class="frame-photo f-side-l"/>
       <div class="trip-content">
         <p class="trip-flag">🇵🇹 Portugal — Madeira</p>
         <h2 class="trip-title">Lisbon, then Madeira by plane, then Porto by train — one country, three worlds</h2>
@@ -419,6 +435,7 @@
           <li>Porto by train from Lisbon — scenic and easy</li>
         </ul>
       </div>
+      <img src="porto2.jpeg" alt="Porto Portugal" class="frame-photo f-side-r"/>
     </div>
 
     <!-- MALDIVES -->
